@@ -1,8 +1,8 @@
 josib     --- OK
-bonkoskk
-randont ok
-xuxin
-lichun
-gogodagj
-malacarc
-yeungd
+bonkoskk  --- PAS OK
+randont   --- OK
+xuxin     --- PAS OK
+lichun    --- PAS OK
+gogodagj  --- PAS OK
+malacarc  --- PAS OK
+yeungd    --- PAS OK
