@@ -1,5 +1,5 @@
 josib     --- OK
-bonkoskk  --- PAS OK
+bonkoskk  --- OK
 randont   --- OK
 xuxin     --- PAS OK
 lichun    --- OK
