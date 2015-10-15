@@ -1,0 +1,23 @@
+
+L'execution du projet se fait comme suit :
+
+    => ouvrir QtCreator (disponible sur les machines de l'imag)
+
+    => cliquer sur ouvrir projet et selectionner le fichier acvl.pro se
+    trouvant dans le répertoire code/acvl/
+
+    => cliquer sur l'onglet compiler puis lancer executer qmake.
+
+    => ctrl+R pour compiler tout le projet et le lancer.
+
+    => une interface graphique s'ouvre et vous pouvez jouer en suivant le
+    manuel utilisateur.
+
+
+Le rendu : 
+
+    => le dossier code/ contient tout le code de l'application, en c++
+
+Les documents demandés sont numérotés comme les parties du sujet et commencent par ACVL_ .
+
+
