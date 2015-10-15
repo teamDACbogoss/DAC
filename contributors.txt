@@ -3,6 +3,6 @@ bonkoskk  --- OK
 randont   --- OK
 xuxin     --- PAS OK
 lichun    --- OK
-gogodagj  --- PAS OK
+gogodagj  --- OK
 malacarc  --- PAS OK
-yeungd    --- PAS OK
+yeungd    --- OK
