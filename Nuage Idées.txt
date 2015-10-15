@@ -1,0 +1,47 @@
+Qui est le client :
+Particulier qui gère son portefeuille
+Suppose que le client a déjà des informations sur les sous-jacents et passe des ordres informés
+
+
+Ce qu'on veut dans notre appli :
+
+1. Interface Connexion/Inscription
+	-> [incrément] nécessité de créditer le compte à l'inscription
+
+2. Simulation de portefeuille 
+	-> le client a un crédit de départ, montant à décider
+	-> le portefeuille correspond au panier du sujet
+	-> pricer toutes les options quotidiennement (ou plus fréquemment si possible)
+	-> possibilité de sélectionner des options et de préciser ses paramètres, option qu'on doit pricer
+	-> [incrément] graphes sur les sous-jacents pour l'informer
+	-> fournir la volatilité
+	-> fournir des grecques
+	-> graphes sur le prix de l'option dans le passé
+	-> [incrément] achat d'actions
+	-> notion de liquidité
+		- possibilité de créditer son compte
+		- [incrément] toucher des dividendes
+	-> à maturité, le compte client est crédité du payoff
+	-> revente d'option (pas à découvert)
+	-> [incrément] simulation du revenu du portefeuille
+	-> possibilité de selectionner un selectionner une stratégie
+	-> reception des paramètres de l'option que le client souhaite acheter
+	-> [incrément] possibilité de créer et enregistrer une stratégie (propre au client)
+	-> empêcher un client de se connecter sur sa session en parallèle
+	-> [incrément] Afficher l'historique des options passées et flux associé
+	-> graphe de la valorisation du portefeuille depuis sa création
+	-> quand l'utilisateur selectionne un sous-jacent, interrogation de Yahoo.fr pour récupérer le cours réel et pricer l'option
+	-> doit prendre en compte le fait que certains jours ne sont pas travaillés (samedi, dimanche => pas de mise à jours des taux)
+
+3. Récupération et stockage (dans un serveur à nous) des données historiques
+	-> fréquence = fréquence de mise à jour (à fixer)
+	-> historique = 30 jours antérieurs pour l'estimation de la volatilité
+
+4. Stocker en dur les informations utilisateurs (id, historiques, ...)
+	-> password haché
+	-> historique : ordres passés + valeur passées du portefeuille
+
+5. Requête Web
+	-> Récupération du cours réel d'une action (Yahoo.fr)
+
+6. Déconnexion et sauvegarde des données
