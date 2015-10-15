@@ -2,7 +2,7 @@ josib     --- OK
 bonkoskk  --- PAS OK
 randont   --- OK
 xuxin     --- PAS OK
-lichun    --- PAS OK
+lichun    --- OK
 gogodagj  --- PAS OK
 malacarc  --- PAS OK
 yeungd    --- PAS OK
