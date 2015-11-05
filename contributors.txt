@@ -4,5 +4,5 @@ randont   --- OK
 xuxin     --- PAS OK
 lichun    --- OK
 gogodagj  --- OK
-malacarc  --- PAS OK
+malacarc  --- OK
 yeungd    --- OK
