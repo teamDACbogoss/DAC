@@ -1,0 +1,5 @@
+- Penser à la partie admin.
+Par exemple, une page admin
+- Penser à des profiles de droits
+Par exemple, qui peut accèder à quoi dans la base de donnée ?
+
