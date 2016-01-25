@@ -6,4 +6,6 @@ glassfish4/
 javaee-samples-read-only/
 .class
 src/tmp/
+src/eclipse/
+src/modules/
 
