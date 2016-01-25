@@ -1,2 +1,4 @@
 glassfish4/
 javaee-samples-read-only/
+.class
+src/tmp/
