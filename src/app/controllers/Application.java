@@ -18,15 +18,15 @@ public class Application extends Controller {
     }
  
     public static void index() {
-        Post frontPost = Post.find("order by postedAt desc").first();
-        List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
-        render(frontPost, olderPosts);
+        //Post frontPost = Post.find("order by postedAt desc").first();
+        //List<Post> olderPosts = Post.find("order by postedAt desc").from(1).fetch(10);
+        //render(frontPost, olderPosts);
     }
     
     public static void show(Long id) {
-        Post post = Post.findById(id);
+        //Post post = Post.findById(id);
         String randomID = Codec.UUID();
-        render(post, randomID);
+        //render(post, randomID);
     }
     
     public static void postComment(
@@ -36,14 +36,14 @@ public class Application extends Controller {
         @Required(message="Please type the code") String code, 
         String randomID) 
     {
-        Post post = Post.findById(postId);
+        //Post post = Post.findById(postId);
         if(!Play.id.equals("test")) {
             validation.equals(code, Cache.get(randomID)).message("Invalid code. Please type it again");
         }
         if(validation.hasErrors()) {
-            render("Application/show.html", post, randomID);
+          //  render("Application/show.html", post, randomID);
         }
-        post.addComment(author, content);
+        //post.addComment(author, content);
         flash.success("Thanks for posting %s", author);
         Cache.delete(randomID);
         show(postId);
@@ -57,8 +57,8 @@ public class Application extends Controller {
     }
     
     public static void listTagged(String tag) {
-        List<Post> posts = Post.findTaggedWith(tag);
-        render(tag, posts);
+        //List<Post> posts = Post.findTaggedWith(tag);
+        //render(tag, posts);
     }
  
 }
