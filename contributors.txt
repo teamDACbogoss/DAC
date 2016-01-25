@@ -1,7 +1,7 @@
 josib     --- OK
 bonkoskk  --- OK
 randont   --- OK
-xuxin     --- PAS OK
+xuxin     --- OK
 lichun    --- OK
 gogodagj  --- OK
 malacarc  --- PAS OK
