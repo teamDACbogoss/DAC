@@ -1,4 +1,11 @@
+src/.classpath
+src/.project
+src/.settings/org.eclipse.core.resources.prefs
+src/.settings/org.eclipse.jdt.core.prefs
 glassfish4/
 javaee-samples-read-only/
 .class
 src/tmp/
+src/eclipse/
+src/modules/
+
