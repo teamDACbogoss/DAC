@@ -39,19 +39,19 @@ public class User implements Serializable {
         this.email = email;
     }
     
-    public List<Strategy> getEmail() {
+    public List<Strategy> getPersonalStrategies() {
         return personalStrategies;
     }
 
-    public void setEmail(List<Strategy> personalStrategies) {
+    public void setPersonalStrategies(List<Strategy> personalStrategies) {
         this.personalStrategies = personalStrategies;
     }
     
-    public boolean getPortfolio() {
+    public Portfolio getPortfolio() {
         return portfolio;
     }
 
-    public void setPortfolio(boolean portfolio) {
+    public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
     }
     

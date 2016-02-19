@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -46,10 +47,10 @@ public class Portfolio implements Serializable {
         return "fr.ensimag.projetjava.Portfolio[ id=" + id + " ]";
     }
     
-    public double getValue() {
+    public double getValue(Date date) {
         double result = 0.0;
         for (Strategy strategy : this.strategies)
-            result += strategy.getValue();
+            result += strategy.getPrice(date);
         return result;
     }
     

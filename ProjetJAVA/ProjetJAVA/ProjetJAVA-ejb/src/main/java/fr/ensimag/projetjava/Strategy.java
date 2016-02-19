@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
 import javax.persistence.Entity;
@@ -32,11 +33,11 @@ public class Strategy implements Serializable {
         this.strategyName = strategyName;
     }
 
-    public Map<Asset, Integer> getName() {
+    public Map<Asset, Integer> getAssets() {
         return assets;
     }
 
-    public void setName(Map<Asset, Integer> assets) {
+    public void setAssets(Map<Asset, Integer> assets) {
         this.assets = assets;
     }
     
@@ -58,10 +59,11 @@ public class Strategy implements Serializable {
         return "fr.ensimag.projetjava.Strategy[ name=" + strategyName + " ]";
     }
     
-    public double getValue() {
+    public double getPrice(Date date) {
         double result = 0.0;
         for (Entry<Asset, Integer> asset : this.assets.entrySet()) {
-            result += asset.getValue() * asset.getKey().getValue();
+            result += asset.getValue() * asset.getKey().getPrice(date);
+        }
         return result;
     }
     
