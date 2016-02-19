@@ -1,0 +1,16 @@
+SPECS
+aspect graphique
+-> Maquette
+-> diagramme de séquence
+-> diagramme de tâches
+-> enchainement du site web
+-> chaque champ à remplir doit être spécifié
+-> Les technos utilisés
+-> Interface web
+-> Administration du serveur
+
+Dans le CdC
+-> Exprimer les besoins primaires
+-> Contraintes technologiques
+-> Contraintes de dates
+
