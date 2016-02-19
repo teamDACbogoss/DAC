@@ -24,7 +24,7 @@ public class User implements Serializable {
     private String email;
     private boolean isAdmin;
     private Portfolio portfolio;
-    private List<Strategy> strategies;
+    private List<Strategy> personalStrategies;
     private String name;
     private String firstName;
     private SecretQuestion secretQuestion;
@@ -40,11 +40,11 @@ public class User implements Serializable {
     }
     
     public List<Strategy> getEmail() {
-        return strategies;
+        return personalStrategies;
     }
 
-    public void setEmail(List<Strategy> strategies) {
-        this.strategies = strategies;
+    public void setEmail(List<Strategy> personalStrategies) {
+        this.personalStrategies = personalStrategies;
     }
     
     public boolean getPortfolio() {
@@ -109,23 +109,10 @@ public class User implements Serializable {
         hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
-    
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.User[ id=" + email + " ]";
+        return "fr.ensimag.projetjava.User[ email=" + email + " ]";
     }
     
 }
