@@ -8,8 +8,21 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:graphicImage value="#{resource['images:wave.med.gif']}"/>
-                <h:outputText value="You are in the Main Content Section"/>
+                <h:form>
+                    <h3>PigeOption Tsa mère</h3>
+                    <h:outputText value="Username" />
+                    <h:inputText id="username" value="#{login.user}"></h:inputText>
+                    <h:message for="username"></h:message>
+                    <br /><br />
+
+                    <h:outputText value="Password" />
+                    <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
+                    <h:message for="password"></h:message>
+                    <br /><br />
+
+                    <h:commandButton action="#{login.validateUsernamePassword}"
+                        value="Login"></h:commandButton>
+                </h:form>
             </ui:define>
         </ui:composition>
     </h:body>

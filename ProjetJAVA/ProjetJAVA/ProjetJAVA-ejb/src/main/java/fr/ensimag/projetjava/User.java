@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,11 +32,11 @@ public class User implements Serializable {
     private String secretQuestionAnswer;
     private boolean isConnected;
 
-    public User(String email, boolean isAdmin, Portfolio portfolio, List<Strategy> personalStrategies, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+    public User(String email, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
         this.email = email;
         this.isAdmin = isAdmin;
-        this.portfolio = portfolio;
-        this.personalStrategies = personalStrategies;
+        this.portfolio = new Portfolio();
+        this.personalStrategies = new ArrayList<Strategy>();
         this.name = name;
         this.firstName = firstName;
         this.secretQuestion = secretQuestion;
