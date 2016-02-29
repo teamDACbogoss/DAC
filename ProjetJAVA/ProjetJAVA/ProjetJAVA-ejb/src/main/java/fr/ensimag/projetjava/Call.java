@@ -18,6 +18,15 @@ import javax.persistence.Id;
  */
 @Entity
 public class Call extends Option {
+    
+    public Call(String name, Stock underlying, double strike, Date maturity) {
+        this.underlying = new ParamStock(underlying);
+        this.strike = new ParamDouble(strike);
+        this.maturity = new ParamDate(maturity);
+        this.name = "Call option on " + underlying.getName();
+    }
+    
+    
     @Override
     public String toString() {
         return "fr.ensimag.projetjava.Call[ id=" + id + " ]";

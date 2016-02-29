@@ -20,6 +20,11 @@ import javax.persistence.Id;
 public class Stock extends Asset {
     String stockCode;
 
+    public Stock(String name, String stockCode) {
+        this.name = name;
+        this.stockCode = stockCode;
+    }
+    
     @Override
     public String toString() {
         return "fr.ensimag.projetjava.Stock[ id=" + id + " ]";

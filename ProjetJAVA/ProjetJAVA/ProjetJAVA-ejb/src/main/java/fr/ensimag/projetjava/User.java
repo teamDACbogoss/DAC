@@ -30,6 +30,18 @@ public class User implements Serializable {
     private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
+
+    public User(String email, boolean isAdmin, Portfolio portfolio, List<Strategy> personalStrategies, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+        this.email = email;
+        this.isAdmin = isAdmin;
+        this.portfolio = portfolio;
+        this.personalStrategies = personalStrategies;
+        this.name = name;
+        this.firstName = firstName;
+        this.secretQuestion = secretQuestion;
+        this.secretQuestionAnswer = secretQuestionAnswer;
+        this.isConnected = false;
+    }
     
     public String getEmail() {
         return email;

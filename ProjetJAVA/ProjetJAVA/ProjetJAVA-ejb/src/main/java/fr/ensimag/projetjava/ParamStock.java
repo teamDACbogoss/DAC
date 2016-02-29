@@ -19,6 +19,10 @@ import javax.persistence.Id;
 public class ParamStock extends Param {
     Stock value;
     
+    public ParamStock(Stock p) {
+        value = p;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

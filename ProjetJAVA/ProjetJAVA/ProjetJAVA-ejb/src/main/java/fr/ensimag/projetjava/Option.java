@@ -19,5 +19,5 @@ import javax.persistence.Id;
 public abstract class Option extends Asset {
     protected ParamDouble strike;
     protected ParamStock underlying;
-    protected ParamDate Maturity;
+    protected ParamDate maturity;
 }
