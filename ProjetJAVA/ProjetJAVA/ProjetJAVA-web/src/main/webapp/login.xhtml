@@ -15,10 +15,15 @@
             <ui:define name="content">
                 <h:form>
                     <h3>Connexion à PigeOption</h3>
-                    <h:outputText value="E-mail" />
+                    <!--<h:outputText value="E-mail" />
                     <h:inputText id="email" value="#{login.user}"></h:inputText>
                     <h:message for="E-mail"></h:message>
-                    <br /><br />
+                    <br /><br />-->
+                    
+                    <div class="input-group input-group-sm">
+  <span class="input-group-addon" id="sizing-addon3">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon3"/>
+</div>
 
                     <h:outputText value="Mot de passe" />
                     <h:inputSecret id="mdp" value="#{login.pwd}"></h:inputSecret>
