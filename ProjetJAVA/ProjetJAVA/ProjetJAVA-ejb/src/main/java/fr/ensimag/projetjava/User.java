@@ -23,6 +23,7 @@ public class User implements Serializable {
     
     @Id
     private String email;
+    private String mdp;
     private boolean isAdmin;
     private Portfolio portfolio;
     private List<Strategy> personalStrategies;
@@ -32,8 +33,9 @@ public class User implements Serializable {
     private String secretQuestionAnswer;
     private boolean isConnected;
 
-    public User(String email, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+    public User(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
         this.email = email;
+        this.mdp = mdp;
         this.isAdmin = isAdmin;
         this.portfolio = new Portfolio();
         this.personalStrategies = new ArrayList<Strategy>();
@@ -47,11 +49,19 @@ public class User implements Serializable {
     public String getEmail() {
         return email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
     
+    public String getMdp() {
+        return mdp;
+    }
+    
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
     public List<Strategy> getPersonalStrategies() {
         return personalStrategies;
     }
@@ -123,9 +133,34 @@ public class User implements Serializable {
         return hash;
     }
 
+    
     @Override
     public String toString() {
         return "fr.ensimag.projetjava.User[ email=" + email + " ]";
     }
     
+    /*
+        //validate login
+    public String validateUsernamePassword() {
+        boolean valid = LoginDAO.validate(user, pwd);
+        if (valid) {
+            HttpSession session = SessionBean.getSession();
+            session.setAttribute("username", user);
+            return "admin";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Passowrd",
+                            "Please enter correct username and Password"));
+            return "login";
+        }
+    }
+ 
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionBean.getSession();
+        session.invalidate();
+        return "login";
+    }*/
 }

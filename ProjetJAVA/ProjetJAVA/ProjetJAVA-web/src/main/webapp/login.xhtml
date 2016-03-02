@@ -5,25 +5,50 @@
       xmlns:h="http://java.sun.com/jsf/html">
     
     <h:body>
+        <script>
+        function baduser(){
+            window.alert('Mot de passe ou login incorrect, veuillez recommencer');
+        }
+        </script>
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
                 <h:form>
-                    <h3>PigeOption Tsa mère</h3>
-                    <h:outputText value="Username" />
-                    <h:inputText id="username" value="#{login.user}"></h:inputText>
-                    <h:message for="username"></h:message>
-                    <br /><br />
+                    <h3>Connexion à PigeOption</h3>
+                    <!--<h:outputText value="E-mail" />
+                    <h:inputText id="email" value="#{login.user}"></h:inputText>
+                    <h:message for="E-mail"></h:message>
+                    <br /><br />-->
+                    
+                    <div class="input-group input-group-sm">
+  <span class="input-group-addon" id="sizing-addon3">@</span>
+  <input type="text" class="form-control" placeholder="Username" aria-describedby="sizing-addon3"/>
+</div>
 
-                    <h:outputText value="Password" />
-                    <h:inputSecret id="password" value="#{login.pwd}"></h:inputSecret>
-                    <h:message for="password"></h:message>
+                    <h:outputText value="Mot de passe" />
+                    <h:inputSecret id="mdp" value="#{login.pwd}"></h:inputSecret>
+                    <h:message for="Mot de passe"></h:message>
                     <br /><br />
-
+                    
+                    
+                    <h:commandButton onclick="baduser()" 
+                        value="blabla"></h:commandButton>
+                    
                     <h:commandButton action="#{login.validateUsernamePassword}"
-                        value="Login"></h:commandButton>
+                        value="Mot de passe oublié"></h:commandButton>
+                    
+                    <h:commandButton action="#{login.validateUsernamePassword}"
+                        value="Pas de compte?"></h:commandButton>
+                    
+                    <h:commandButton action="#{login.validateUsernamePassword}"
+                        value="Connexion"></h:commandButton>
+                                                        
+                    
                 </h:form>
             </ui:define>
         </ui:composition>
+        
+        
     </h:body>
+    
 </html>
