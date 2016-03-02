@@ -22,8 +22,8 @@
     <h:body>
         <div id="wrapper">
 
-            <!-- Sidebar -->
-            <div id="sidebar-wrapper">
+            <!-- Sidebar left -->
+            <div id="sidebar-left-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
                         <a href="#">
@@ -41,6 +41,8 @@
                     </li>
                 </ul>
             </div>
+            
+            <ui:include src="./profile.xhtml" />
 
             <!-- content -->
             <div id="page-content-wrapper" class="text-center">
@@ -51,6 +53,7 @@
                                 <h:graphicImage name="img/logo.png" />
                             </h:link>
                             <ui:insert name="content">Content</ui:insert>
+                            <!-- <ui:insert name="profile">Profile</ui:insert> -->
                         </div>
                     </div>
                 </div>
@@ -70,6 +73,7 @@
         });
         </script>
         
+
         <script type="text/javascript">
 
             function baduser() {
@@ -79,5 +83,4 @@
         </script>
         
     </h:body>
-    
 </html>
