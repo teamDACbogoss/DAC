@@ -19,6 +19,10 @@ import javax.persistence.Id;
 public class ParamDouble extends Param {
     double value;
     
+    public ParamDouble(double p) {
+        value = p;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

@@ -18,6 +18,14 @@ import javax.persistence.Id;
  */
 @Entity
 public class Put extends Option {
+    
+    public Put(String name, Stock underlying, double strike, Date maturity) {
+        this.underlying = new ParamStock(underlying);
+        this.strike = new ParamDouble(strike);
+        this.maturity = new ParamDate(maturity);
+        this.name = "Put option on " + underlying.getName();
+    }
+    
     @Override
     public String toString() {
         return "fr.ensimag.projetjava.Put[ id=" + id + " ]";
