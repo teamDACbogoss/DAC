@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,12 +25,24 @@ public class User implements Serializable {
     private String email;
     private boolean isAdmin;
     private Portfolio portfolio;
-    private List<Strategy> strategies;
+    private List<Strategy> personalStrategies;
     private String name;
     private String firstName;
     private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
+
+    public User(String email, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+        this.email = email;
+        this.isAdmin = isAdmin;
+        this.portfolio = new Portfolio();
+        this.personalStrategies = new ArrayList<Strategy>();
+        this.name = name;
+        this.firstName = firstName;
+        this.secretQuestion = secretQuestion;
+        this.secretQuestionAnswer = secretQuestionAnswer;
+        this.isConnected = false;
+    }
     
     public String getEmail() {
         return email;
@@ -39,19 +52,19 @@ public class User implements Serializable {
         this.email = email;
     }
     
-    public List<Strategy> getEmail() {
-        return strategies;
+    public List<Strategy> getPersonalStrategies() {
+        return personalStrategies;
     }
 
-    public void setEmail(List<Strategy> strategies) {
-        this.strategies = strategies;
+    public void setPersonalStrategies(List<Strategy> personalStrategies) {
+        this.personalStrategies = personalStrategies;
     }
     
-    public boolean getPortfolio() {
+    public Portfolio getPortfolio() {
         return portfolio;
     }
 
-    public void setPortfolio(boolean portfolio) {
+    public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
     }
     
@@ -109,23 +122,10 @@ public class User implements Serializable {
         hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
-    
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
-            return false;
-        }
-        return true;
-    }
 
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.User[ id=" + email + " ]";
+        return "fr.ensimag.projetjava.User[ email=" + email + " ]";
     }
     
 }
