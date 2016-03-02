@@ -5,15 +5,85 @@
       xmlns:h="http://java.sun.com/jsf/html">
     
     <h:head>
-        <meta http-equiv="Content-Type" 
-              content="text/html; charset=UTF-8" />
-        <h:outputStylesheet name="resources/css/default.css"/>
+        <meta charset="utf-8"></meta>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+        <meta name="description" content=""></meta>
+        <meta name="author" content=""></meta>
         <title>PigeOption</title>
+        
+        <!-- Bootstrap Core CSS -->
+        <h:outputStylesheet name="css/bootstrap.min.css"/>
+        <!-- Custom CSS -->
+        <h:outputStylesheet name="css/simple-sidebar.css"/>
+        
     </h:head>
     
     <h:body>
-        <div id="content">
-            <ui:insert name="content">Content</ui:insert>
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        <a href="#">
+                            Start Bootstrap
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">Dashboard</a>
+                    </li>
+                    <li>
+                        <a href="#">Shortcuts</a>
+                    </li>
+                    <li>
+                        <a href="#">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Events</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#">Services</a>
+                    </li>
+                    <li>
+                        <a href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- content -->
+            <div id="page-content-wrapper" class="text-center">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h:link outcome="login" >
+                                <h:graphicImage name="img/logo.png" />
+                            </h:link>
+                            <ui:insert name="content">Content</ui:insert>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+        
+        <!-- jQuery -->
+        <h:outputScript name="js/jquery.js"></h:outputScript>
+        <!-- Bootstrap Core JavaScript -->
+        <h:outputScript name="js/bootstrap.js"></h:outputScript>
+
+        <!-- Menu Toggle Script -->
+        <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+        </script>
+        
+        
+        
     </h:body>
+    
 </html>
