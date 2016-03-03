@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -22,36 +23,58 @@ public class User implements Serializable {
     
     @Id
     private String email;
+    private String mdp;
     private boolean isAdmin;
     private Portfolio portfolio;
-    private List<Strategy> strategies;
+    private List<Strategy> personalStrategies;
     private String name;
     private String firstName;
     private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
+
+    public User(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+        this.email = email;
+        this.mdp = mdp;
+        this.isAdmin = isAdmin;
+        this.portfolio = new Portfolio();
+        this.personalStrategies = new ArrayList<Strategy>();
+        this.name = name;
+        this.firstName = firstName;
+        this.secretQuestion = secretQuestion;
+        this.secretQuestionAnswer = secretQuestionAnswer;
+        this.isConnected = false;
+    }
     
     public String getEmail() {
         return email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
     
-    public List<Strategy> getEmail() {
-        return strategies;
-    }
-
-    public void setEmail(List<Strategy> strategies) {
-        this.strategies = strategies;
+    public String getMdp() {
+        return mdp;
     }
     
-    public boolean getPortfolio() {
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
+
+    public List<Strategy> getPersonalStrategies() {
+        return personalStrategies;
+    }
+
+    public void setPersonalStrategies(List<Strategy> personalStrategies) {
+        this.personalStrategies = personalStrategies;
+    }
+    
+    public Portfolio getPortfolio() {
         return portfolio;
     }
 
-    public void setPortfolio(boolean portfolio) {
+    public void setPortfolio(Portfolio portfolio) {
         this.portfolio = portfolio;
     }
     
@@ -109,23 +132,35 @@ public class User implements Serializable {
         hash += (email != null ? email.hashCode() : 0);
         return hash;
     }
-    
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
-            return false;
-        }
-        User other = (User) object;
-        if ((this.email == null && other.email != null) || (this.email != null && !this.email.equals(other.email))) {
-            return false;
-        }
-        return true;
-    }
 
+    
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.User[ id=" + email + " ]";
+        return "fr.ensimag.projetjava.User[ email=" + email + " ]";
     }
     
+    /*
+        //validate login
+    public String validateUsernamePassword() {
+        boolean valid = LoginDAO.validate(user, pwd);
+        if (valid) {
+            HttpSession session = SessionBean.getSession();
+            session.setAttribute("username", user);
+            return "admin";
+        } else {
+            FacesContext.getCurrentInstance().addMessage(
+                    null,
+                    new FacesMessage(FacesMessage.SEVERITY_WARN,
+                            "Incorrect Username and Passowrd",
+                            "Please enter correct username and Password"));
+            return "login";
+        }
+    }
+ 
+    //logout event, invalidate session
+    public String logout() {
+        HttpSession session = SessionBean.getSession();
+        session.invalidate();
+        return "login";
+    }*/
 }
