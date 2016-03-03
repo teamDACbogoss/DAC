@@ -10,13 +10,17 @@
         <!-- Sidebar right -->
         <div id="sidebar-right-wrapper" class="text-center">
             <div id="profile_img">
-                <h:graphicImage name="img/default_profile.gif" class="img-responsive"/>
+                <!--<h:graphicImage name="img/default_profile.gif" class="img-responsive"/>-->
+                <h:link outcome="login" >
+                    <h:graphicImage name="img/logout_dac.png" width="50" height="50" />
+                </h:link>
+                Déconnexion   
             </div>
-            <ul class="list-group">
+            <!--<ul class="list-group">
                 <li class="list-group-item">Jean Didier</li>
                 <li class="list-group-item">Solde :</li>
                 <li class="list-group-item">Equité :</li>
-            </ul>
+            </ul>-->
         </div>
 
         </ui:composition>
