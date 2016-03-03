@@ -65,22 +65,9 @@
         <!-- Bootstrap Core JavaScript -->
         <h:outputScript name="js/bootstrap.js"></h:outputScript>
 
-        <!-- Menu Toggle Script -->
-        <script>
-        $("#menu-toggle").click(function(e) {
-            e.preventDefault();
-            $("#wrapper").toggleClass("toggled");
-        });
-        </script>
         
+        <h:outputScript library="js" name="script.js" target="head" />
 
-        <script type="text/javascript">
-
-            function baduser() {
-                window.alert('Mot de passe ou e-mail incorrect, veuillez recommencer');
-            };
-            
-        </script>
         
     </h:body>
 </html>
