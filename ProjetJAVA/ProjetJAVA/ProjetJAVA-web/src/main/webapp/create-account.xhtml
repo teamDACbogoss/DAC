@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <h:body>
+        
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Inscription</h3>
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Nom: </div>
+                        <div class="col-md-5">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Nom" value="#{User.name}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Prénom: </div>
+                        <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Prénom" value="#{User.firstName}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> E-mail: </div>
+                        <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="E-mail" value="#{User.email}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Mot de passe: </div>
+                        <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <input type="password" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Confirmation: </div>
+                        <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Question secrète: </div>
+                        <div class="col-md-6">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Question secrète" value="#{User.secretQuestion}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-4">  </div>  
+                        <div class="col-md-2"> Réponse: </div>
+                        <div class="col-md-4">
+                        <div class="input-group input-group-sm">
+                            <input type="text" class="form-control" placeholder="Prénom" value="#{User.secretQuestionAnswer}" aria-describedby="sizing-addon3"/>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                    </div>    
+                        
+                    <div class="row">
+                    
+                        <button type="button" onclick="reinitiatePassword()" action="#{login.reintializePassword}" class="btn btn-success" aria-label="Left Align">
+                            <a href="#" >Valider</a>
+                        </button>
+                        
+                        <button type="button" onclick="returnConnection()" action="#{login.returnLogin}" class="btn btn-danger" aria-label="Left Align">
+                            <a href="#" >Annuler</a>
+                        </button>
+
+                    </div>
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        
+        
+    </h:body>
+    
+</html>

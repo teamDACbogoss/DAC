@@ -49,3 +49,7 @@ function reinitiatePassword() {
         window.location = "reinitiate-password.xhtml";
     }
 };
+
+function createAccount() {
+    window.location = "create-account.xhtml";
+};
