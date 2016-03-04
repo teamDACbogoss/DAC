@@ -1,8 +1,3 @@
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
-        
 function baduser() {
     window.alert('Mot de passe ou e-mail incorrect, veuillez recommencer');
 };
@@ -70,3 +65,12 @@ function validationNouvellePosition() {
     window.alert("Vous venez d'acheter ....");
     window.location = "cotations.xhtml";
 };
+
+$(document).ready(function(){
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+});
