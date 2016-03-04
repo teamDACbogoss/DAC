@@ -1,8 +1,3 @@
-$("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-});
-        
 function baduser() {
     window.alert('Mot de passe ou e-mail incorrect, veuillez recommencer');
 };
@@ -53,3 +48,29 @@ function reinitiatePassword() {
 function createAccount() {
     window.location = "create-account.xhtml";
 };
+
+function creationStrategie() {
+    window.location = "creation-strats.xhtml";
+};
+
+function nouvellePosition() {
+    window.location = "nouvelle-position.xhtml";
+};
+
+function returnCotations() {
+    window.location = "cotations.xhtml";
+};
+
+function validationNouvellePosition() {
+    window.alert("Vous venez d'acheter ....");
+    window.location = "cotations.xhtml";
+};
+
+$(document).ready(function(){
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+
+});
