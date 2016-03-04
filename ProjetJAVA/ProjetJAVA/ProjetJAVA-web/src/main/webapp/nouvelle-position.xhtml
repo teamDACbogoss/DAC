@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <h:body>
+        
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Nouvelle Position</h3>      
+                    
+                    <div class="row">
+                        <button type="button" onclick= "validationNouvellePosition()" action="#" class="btn btn-success" aria-label="Left Align">     
+                            <a href="#" >Valider</a>
+                        </button>
+                    
+                        <button type="button" onclick="()" action="#" class="btn btn-warning" aria-label="Left Align">
+                            <a href="#" >Valoriser</a>
+                        </button>
+                                        
+                        <button type="button" onclick="returnCotations()" action="#" class="btn btn-danger" aria-label="Left Align">
+                            <a href="#"  >Annuler</a>
+                        </button> 
+                    </div>
+                </h:form>
+                          
+            </ui:define>
+            
+  
+
+  
+        </ui:composition>
+        
+        
+        
+    </h:body>
+    
+</html>

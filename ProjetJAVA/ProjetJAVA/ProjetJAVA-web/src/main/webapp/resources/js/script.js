@@ -53,3 +53,20 @@ function reinitiatePassword() {
 function createAccount() {
     window.location = "create-account.xhtml";
 };
+
+function creationStrategie() {
+    window.location = "creation-strats.xhtml";
+};
+
+function nouvellePosition() {
+    window.location = "nouvelle-position.xhtml";
+};
+
+function returnCotations() {
+    window.location = "cotations.xhtml";
+};
+
+function validationNouvellePosition() {
+    window.alert("Vous venez d'acheter ....");
+    window.location = "cotations.xhtml";
+};
