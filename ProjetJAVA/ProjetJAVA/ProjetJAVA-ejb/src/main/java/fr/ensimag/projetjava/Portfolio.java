@@ -26,9 +26,7 @@ public class Portfolio implements Serializable {
 
     private Set<Strategy> strategies;
     
-    public Portfolio() {
-
-    }
+    public Portfolio() {}
     
     public Long getId() {
         return id;

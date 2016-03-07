@@ -32,6 +32,8 @@ public class User implements Serializable {
     private String secretQuestionAnswer;
     private boolean isConnected;
 
+    public User() {}
+    
     public User(String email, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
         this.email = email;
         this.isAdmin = isAdmin;

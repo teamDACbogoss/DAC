@@ -19,6 +19,10 @@ import javax.persistence.Id;
 public class ParamStock extends Param {
     Stock value;
     
+    public ParamStock() {
+        super();
+    }
+    
     public ParamStock(Stock p) {
         value = p;
     }

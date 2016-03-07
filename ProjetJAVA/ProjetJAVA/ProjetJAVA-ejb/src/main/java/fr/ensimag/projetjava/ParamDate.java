@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -18,6 +19,7 @@ import javax.persistence.Id;
  */
 @Entity
 public class ParamDate extends Param {
+    @Temporal(javax.persistence.TemporalType.DATE)
     Date value;
     
     public ParamDate(Date p) {
