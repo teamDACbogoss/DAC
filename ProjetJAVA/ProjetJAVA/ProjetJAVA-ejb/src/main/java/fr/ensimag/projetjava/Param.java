@@ -22,7 +22,7 @@ public abstract class Param implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     protected String name;
-
+    
     public Long getId() {
         return id;
     }
