@@ -14,7 +14,6 @@
                 <h:form>
                     <h3>Cotations</h3>      
                     
-                    
     <div class="table-responsive"> 
         <table class="table table-bordered">
             <thead>
@@ -30,51 +29,43 @@
                     <td>Axa</td>
                     <td>32</td>
                     <td>33</td>
-                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></td>
+                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span></td>
                 </tr>
                 <tr>
                     <td>BNP</td>
                     <td>21</td>
                     <td>20</td>
-                    <td><span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></td>
+                    <td><span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span></td>
                 </tr>
                 <tr>
                     <td>Axa</td>
                     <td>32</td>
                     <td>33</td>
-                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></td>
+                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span></td>
                 </tr>
                 <ui:repeat var="o" value="#{order.orderList}" varStatus="status"><!-- TODO -->
                     <tr>
-                            <td>#{o.name}</td>
-                            <td>#{o.bid}</td>
-                            <td>#{o.ask}</td>
-                            <td>
-                                <ui:fragment rendered="#{o.tendancy eq 1}">
-                                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                                </ui:fragment>
-                                <ui:fragment rendered="#{o.tendency eq -1}">
-                                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                                </ui:fragment>
-                            </td>
+                        <td>#{o.name}</td>
+                        <td>#{o.bid}</td>
+                        <td>#{o.ask}</td>
+                        <td>
+                            <ui:fragment rendered="#{o.tendancy eq 1}">
+                                <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{o.tendency eq -1}">
+                                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
+                            </ui:fragment>
+                        </td>
                     </tr>
                </ui:repeat>
             </tbody>
         </table>
 
     </div>
-
-                        <button type="button" onclick= "creationStrategie()" action="{#}" class="btn btn-info" aria-label="Left Align">     
-                            <a href="#">Création Stratégie</a>
-                        </button>
-                    
-                        <button type="button" onclick="nouvellePosition()" action="{#}" class="btn btn-warning" aria-label="Left Align">
-                            <a href="#" >Nouvelle Position</a>
-                        </button>
-                    
+                    <a href="#" onclick="creationStrategie()" class="btn btn-info" aria-label="Left Align" role="button">Création Stratégie</a>
+                    <a href="#" onclick="nouvellePosition()" class="btn btn-warning" aria-label="Left Align" role="button">Nouvelle Position</a>
                 </h:form>
                 
-              
             </ui:define>
             
   
