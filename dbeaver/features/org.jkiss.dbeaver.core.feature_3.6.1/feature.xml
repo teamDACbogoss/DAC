@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+        id="org.jkiss.dbeaver.core.feature"
+        label="%featureName"
+        version="3.6.1"
+        provider-name="%providerName"
+        plugin="org.jkiss.dbeaver.core">
+
+    <description>
+        %description
+    </description>
+
+    <copyright>
+        %copyright
+    </copyright>
+
+    <license url="%licenseURL">
+        %license
+    </license>
+
+    <requires>
+        <import plugin="org.eclipse.core.runtime"/>
+        <import plugin="org.eclipse.core.resources"/>
+        <import plugin="org.eclipse.core.expressions"/>
+        <import plugin="org.eclipse.ui"/>
+        <import plugin="org.eclipse.ui.workbench"/>
+        <import plugin="org.eclipse.ui.workbench.texteditor"/>
+        <import plugin="org.eclipse.swt"/>
+        <import plugin="org.eclipse.jface"/>
+        <import plugin="org.eclipse.jface.text"/>
+        <import plugin="org.eclipse.ui.views"/>
+        <import plugin="org.eclipse.draw2d"/>
+        <import plugin="org.eclipse.gef"/>
+    </requires>
+
+    <plugin
+            id="org.jkiss.dbeaver.model"
+            download-size="855"
+            install-size="1782"
+            version="1.0.15"
+            unpack="false"/>
+
+    <plugin
+            id="org.jkiss.dbeaver.core"
+            download-size="3171"
+            install-size="6671"
+            version="3.6.1"
+            unpack="false"/>
+
+    <plugin
+            id="org.jkiss.dbeaver.ext.erd"
+            download-size="234"
+            install-size="475"
+            version="2.0.28"
+            unpack="false"/>
+
+    <plugin
+            id="org.jkiss.dbeaver.ext.import_config"
+            download-size="34"
+            install-size="55"
+            version="2.0.28"
+            unpack="false"/>
+
+    <plugin
+            id="org.jkiss.utils"
+            download-size="69"
+            install-size="134"
+            version="2.1.9"
+            unpack="false"/>
+
+    <plugin
+            id="com.github.jsqlparser"
+            download-size="274"
+            install-size="636"
+            version="0.9.3"
+            unpack="false"/>
+
+    <plugin
+            id="org.apache.commons.jexl"
+            download-size="261"
+            install-size="564"
+            version="2.1.1"
+            unpack="false"/>
+
+    <plugin
+            id="net.sf.opencsv"
+            download-size="19"
+            install-size="37"
+            version="2.3.0"
+            unpack="false"/>
+
+</feature>

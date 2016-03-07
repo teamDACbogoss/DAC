@@ -25,6 +25,8 @@ public class Strategy implements Serializable {
     private String strategyName;
     private Map<Asset, Integer> assets;
     
+    public Strategy() {}
+    
     public Strategy(String strategyName, Map<Asset, Integer> assets) {
         this.strategyName = strategyName;
         this.assets = assets;

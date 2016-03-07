@@ -19,7 +19,11 @@ import javax.persistence.Id;
 @Entity
 public class Stock extends Asset {
     String stockCode;
-
+    
+    public Stock() {
+        super();
+    }
+    
     public Stock(String name, String stockCode) {
         this.name = name;
         this.stockCode = stockCode;

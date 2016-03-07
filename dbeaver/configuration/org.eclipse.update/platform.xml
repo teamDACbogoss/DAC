@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config transient="false" date="1456695617632">
+	<site enabled="true" updateable="true" policy="USER-EXCLUDE" url="platform:/base/">
+		<feature id="org.jkiss.dbeaver.core.feature" plugin-identifier="org.jkiss.dbeaver.core" url="features/org.jkiss.dbeaver.core.feature_3.6.1/" version="3.6.1">
+		</feature>
+		<feature id="org.jkiss.dbeaver.ext.generic.feature" plugin-identifier="org.jkiss.dbeaver.ext.generic" url="features/org.jkiss.dbeaver.ext.generic.feature_2.1.12/" version="2.1.12">
+		</feature>
+		<feature id="org.jkiss.dbeaver.ext.mysql.feature" plugin-identifier="org.jkiss.dbeaver.ext.mysql" url="features/org.jkiss.dbeaver.ext.mysql.feature_2.1.11/" version="2.1.11">
+		</feature>
+		<feature id="org.jkiss.dbeaver.ext.wmi.feature" plugin-identifier="org.jkiss.dbeaver.ext.wmi" url="features/org.jkiss.dbeaver.ext.wmi.feature_2.0.28/" version="2.0.28">
+		</feature>
+		<feature id="org.jkiss.dbeaver.ext.oracle.feature" plugin-identifier="org.jkiss.dbeaver.ext.oracle" url="features/org.jkiss.dbeaver.ext.oracle.feature_2.1.11/" version="2.1.11">
+		</feature>
+		<feature id="org.jkiss.dbeaver.standalone.feature" plugin-identifier="org.jkiss.dbeaver.core" url="features/org.jkiss.dbeaver.standalone.feature_3.6.1/" version="3.6.1">
+		</feature>
+		<feature id="org.jkiss.dbeaver.rcp.feature" url="features/org.jkiss.dbeaver.rcp.feature_2.1.0/" version="2.1.0">
+		</feature>
+		<feature id="org.jkiss.dbeaver.ext.db2.feature" plugin-identifier="org.jkiss.dbeaver.ext.db2" url="features/org.jkiss.dbeaver.ext.db2.feature_2.1.11/" version="2.1.11">
+		</feature>
+	</site>
+</config>

@@ -19,6 +19,10 @@ import javax.persistence.Id;
 @Entity
 public class Put extends Option {
     
+    public Put() {
+        super();
+    }
+    
     public Put(String name, Stock underlying, double strike, Date maturity) {
         this.underlying = new ParamStock(underlying);
         this.strike = new ParamDouble(strike);
