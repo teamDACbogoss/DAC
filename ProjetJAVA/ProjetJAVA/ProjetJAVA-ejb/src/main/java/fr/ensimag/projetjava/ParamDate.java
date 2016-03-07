@@ -20,6 +20,10 @@ import javax.persistence.Id;
 public class ParamDate extends Param {
     Date value;
     
+    public ParamDate()
+    {
+    }
+    
     public ParamDate(Date p) {
         value = p;
     }

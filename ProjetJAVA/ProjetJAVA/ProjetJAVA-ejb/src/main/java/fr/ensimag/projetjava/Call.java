@@ -18,6 +18,11 @@ import javax.persistence.Id;
  */
 @Entity
 public class Call extends Option {
+    private static final long serialVersionUID = 1L;
+    
+    public Call()
+    {
+    }
     
     public Call(String name, Stock underlying, double strike, Date maturity) {
         this.underlying = new ParamStock(underlying);
@@ -26,7 +31,6 @@ public class Call extends Option {
         this.name = "Call option on " + underlying.getName();
     }
     
-    
     @Override
     public String toString() {
         return "fr.ensimag.projetjava.Call[ id=" + id + " ]";
@@ -34,6 +38,7 @@ public class Call extends Option {
 
     @Override
     public double getPrice(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+    //To change body of generated methods, choose Tools | Templates.
     }
 }

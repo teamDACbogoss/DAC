@@ -19,6 +19,11 @@ import javax.persistence.Id;
 public class ParamDouble extends Param {
     double value;
     
+    public ParamDouble()
+    {
+        
+    }
+    
     public ParamDouble(double p) {
         value = p;
     }
