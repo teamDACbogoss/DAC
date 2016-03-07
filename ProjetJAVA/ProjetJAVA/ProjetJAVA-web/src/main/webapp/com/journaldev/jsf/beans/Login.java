@@ -67,4 +67,8 @@ public class Login implements Serializable {
         session.invalidate();
         return "login";
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 8442c68fdaedbe8f58274eff85a1f5cd4e9d52ae
 }
