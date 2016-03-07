@@ -54,6 +54,5 @@ public class Portfolio implements Serializable {
         for (Strategy strategy : this.strategies)
             result += strategy.getPrice(date);
         return result;
-    }
-    
+    }    
 }

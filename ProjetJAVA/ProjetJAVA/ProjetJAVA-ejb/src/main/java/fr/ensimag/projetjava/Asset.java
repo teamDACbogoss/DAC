@@ -23,7 +23,12 @@ public abstract class Asset implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
     protected String name;
-
+    
+    /*public Asset(String theName)
+    {
+        name = theName;
+    }*/
+    
     public Long getId() {
         return id;
     }

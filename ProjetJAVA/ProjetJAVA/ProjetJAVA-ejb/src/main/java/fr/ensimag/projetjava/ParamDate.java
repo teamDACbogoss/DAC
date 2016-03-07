@@ -22,6 +22,10 @@ public class ParamDate extends Param {
     @Temporal(javax.persistence.TemporalType.DATE)
     Date value;
     
+    public ParamDate()
+    {
+    }
+    
     public ParamDate(Date p) {
         value = p;
     }
