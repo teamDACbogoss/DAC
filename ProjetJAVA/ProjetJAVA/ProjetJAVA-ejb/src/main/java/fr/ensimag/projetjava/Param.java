@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,6 @@ public abstract class Param implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     protected Long id;
-    protected String name;
     
     public Long getId() {
         return id;
@@ -31,14 +31,6 @@ public abstract class Param implements Serializable {
         this.id = id;
     }
     
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
@@ -46,9 +38,13 @@ public abstract class Param implements Serializable {
             return false;
         }
         ParamStock other = (ParamStock) object;
-        if (this.hashCode() != other.hashCode()) {
-            return false;
-        }
-        return true;
+        return this.hashCode() == other.hashCode();
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        return hash;
     }
 }

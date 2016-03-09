@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <h:body>
+        
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Portefeuille</h3>
+                </h:form>
+                
+                <div class="table-responsive"> 
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Stratégie</th>
+                                <th>Nom</th>
+                                <th>Quantité</th>
+                                <th>Prix courant</th>
+                                <th>Prix d'achat</th>
+                                <th>Profit</th>
+                                <th>Date d'émission</th>
+                                <th>Maturité</th>
+                                <th>Clôturer</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </ui:define>
+        </ui:composition>
+        
+        
+        
+    </h:body>
+    
+</html>

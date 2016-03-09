@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <h:body>
+        
+
+        <ui:composition template="./template.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Nouvelle Position</h3>      
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                        <br></br>            
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-3"> </div>
+                        <div class="col-md-3">
+                            Choix de stratégie:
+                            <select class="form-control">
+                                <option>Action</option>
+                                <option>Straddle</option>
+                                <option>Call</option>
+                                <option>Put</option>
+                                <option>Strangle</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            Choix de l'action:
+                            <select class="form-control">
+                                <option>AccorHotels</option>
+                                <option>Airbus</option>
+                                <option>Air Liquide</option>
+                                <option>Alcatel-Lucent</option>
+                                <option>Alstom</option>
+                                <option>ArcelorMittal</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                        <br></br>            
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            K
+                        </div>
+                        <div class="col-md-2">
+                            T
+                        </div>
+                        <div class="col-md-2">
+                            Quantité
+                        </div>
+                        <div class="col-md-2">
+                            Prix
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3" readonly="true"></input>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                        <br></br>            
+                    </div>
+                    
+                    <div class="row">
+                        <button type="button" onclick= "validationNouvellePosition()" action="#" class="btn btn-success" aria-label="Left Align">     
+                            <a href="#" >Valider</a>
+                        </button>
+                    
+                        <button type="button" onclick="()" action="#" class="btn btn-warning" aria-label="Left Align">
+                            <a href="#" >Valoriser</a>
+                        </button>
+                                        
+                        <button type="button" onclick="returnCotations()" action="#" class="btn btn-danger" aria-label="Left Align">
+                            <a href="#"  >Annuler</a>
+                        </button> 
+                    </div>
+                </h:form>
+                          
+            </ui:define>
+            
+  
+
+  
+        </ui:composition>
+        
+        
+        
+    </h:body>
+    
+</html>

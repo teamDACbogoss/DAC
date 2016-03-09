@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 
+import fr.ensimag.projetjava.Client;
 import fr.ensimag.projetjava.SecretQuestion;
-import fr.ensimag.projetjava.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -17,14 +17,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author josib
+ * @author malacarc
  */
-@WebServlet(urlPatterns = {"/Init"})
+@WebServlet(urlPatterns = {"/init"})
 public class Init extends HttpServlet {
-    
-    @EJB
-    private fr.ensimag.projetjava.stateless.UserFacadeLocal userFacade;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -50,7 +47,10 @@ public class Init extends HttpServlet {
             out.println("</html>");
         }
     }
-
+    
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -63,9 +63,16 @@ public class Init extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        User u = new User("test@test.com", true, "test", "test", SecretQuestion.q1, "test");
-        userFacade.create(u);
         processRequest(request, response);
+        Client client;
+        client = new Client("clement@imag.fr", 
+                            "clement", 
+                            true, 
+                            "Malacarne", 
+                            "Clément", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client); 
     }
 
     /**
