@@ -5,26 +5,20 @@
  */
 package fr.ensimag.projetjava;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
  * @author josib
  */
 @Entity
-public class Call extends Option {
+public class VanillaCall extends FinancialOption {
     private static final long serialVersionUID = 1L;
     
-    public Call()
-    {
-    }
+    public VanillaCall(){}
     
-    public Call(String name, Stock underlying, double strike, Date maturity) {
+    public VanillaCall(String name, Stock underlying, double strike, Date maturity) {
         this.underlying = new ParamStock(underlying);
         this.strike = new ParamDouble(strike);
         this.maturity = new ParamDate(maturity);

@@ -6,6 +6,8 @@ package fr.ensimag;
 
 import javax.ejb.Stateless;
 import javax.ejb.LocalBean;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -15,6 +17,9 @@ import javax.ejb.LocalBean;
 @LocalBean
 public class NewSessionBean {
 
+    @PersistenceContext(unitName = "ProjetJAVA_PU")
+    private EntityManager em;
+    
     public void businessMethod() {
     }
 

@@ -5,12 +5,9 @@
  */
 package fr.ensimag.projetjava;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 
 /**
@@ -20,27 +17,44 @@ import javax.persistence.Temporal;
 @Entity
 public class ParamDate extends Param {
     @Temporal(javax.persistence.TemporalType.DATE)
-    Date value;
+    protected Date val;
     
-    public ParamDate()
-    {
-    }
+    public ParamDate() {}
     
     public ParamDate(Date p) {
-        value = p;
+        val = p;
+    }
+
+    public Date getVal() {
+        return val;
+    }
+
+    public void setVal(Date val) {
+        this.val = val;
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (name != null ? name.hashCode() : 0);
-        hash += (value != null ? value.hashCode() : 0);
+        hash += (val != null ? val.hashCode() : 0);
         return hash;
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final ParamDate other = (ParamDate) obj;
+        return Objects.equals(this.val, other.val);
+    }
+
+    @Override
     public String toString() {
-        return "fr.ensimag.projetjava.ParamDate[ value=" + value + " ]";
+        return "fr.ensimag.projetjava.ParamDate[ value=" + val + " ]";
     }
     
 }

@@ -5,19 +5,19 @@
  */
 package fr.ensimag.projetjava;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
  * @author josib
  */
 @Entity
-public abstract class Option extends Asset {
+public abstract class FinancialOption extends Asset {
+    @ManyToOne
     protected ParamDouble strike;
+    @ManyToOne
     protected ParamStock underlying;
+    @ManyToOne
     protected ParamDate maturity;
 }
