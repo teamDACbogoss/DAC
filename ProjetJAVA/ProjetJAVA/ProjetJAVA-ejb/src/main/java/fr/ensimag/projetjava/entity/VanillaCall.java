@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.entity;
+
 import java.util.Date;
 import javax.persistence.Entity;
 
@@ -12,24 +13,26 @@ import javax.persistence.Entity;
  * @author josib
  */
 @Entity
-public class VanillaPut extends FinancialOption {
+public class VanillaCall extends FinancialOption {
+    private static final long serialVersionUID = 1L;
     
-    public VanillaPut() {}
+    public VanillaCall(){}
     
-    public VanillaPut(String name, Stock underlying, double strike, Date maturity) {
+    public VanillaCall(String name, Stock underlying, double strike, Date maturity) {
         this.underlying = new ParamStock(underlying);
         this.strike = new ParamDouble(strike);
         this.maturity = new ParamDate(maturity);
-        this.name = "Put option on " + underlying.getName();
+        this.name = "Call option on " + underlying.getName();
     }
     
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.Put[ id=" + id + " ]";
+        return "fr.ensimag.projetjava.Call[ id=" + id + " ]";
     }
 
     @Override
     public double getPrice(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        throw new UnsupportedOperationException("Not supported yet."); 
+    //To change body of generated methods, choose Tools | Templates.
     }
 }
