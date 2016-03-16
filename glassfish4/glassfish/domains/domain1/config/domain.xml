@@ -463,7 +463,7 @@
       <property name="archiveType" value="ear"></property>
       <property name="isComposite" value="true"></property>
       <property name="appLocation" value="file:/user/4/.base/malacarc/home/ProjetDAC/DAC/ProjetJAVA/ProjetJAVA/ProjetJAVA-ear/target/gfdeploy/ProjetJAVA-ear/"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="95521547408506880"></property>
+      <property name="org.glassfish.ejb.container.application_unique_id" value="95560267296669696"></property>
       <property name="defaultAppName" value="ProjetJAVA-ear"></property>
       <engine sniffer="ear"></engine>
       <module name="ProjetJAVA-ejb-1.0-SNAPSHOT.jar">

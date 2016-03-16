@@ -21,9 +21,11 @@
     
     <dependencies>
         <dependency>
-            <groupId>${project.groupId}</groupId>
+            <groupId>fr.ensimag</groupId>
             <artifactId>ProjetJAVA-ejb</artifactId>
-            <version>${project.version}</version>
+            <version>1.0-SNAPSHOT</version>
+            <type>jar</type>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>javax</groupId>
