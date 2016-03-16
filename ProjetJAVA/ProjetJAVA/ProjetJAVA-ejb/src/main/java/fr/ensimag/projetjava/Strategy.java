@@ -9,9 +9,8 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
@@ -24,6 +23,8 @@ public class Strategy implements Serializable {
     @Id
     private String strategyName;
     private Map<Asset, Integer> assets;
+    
+    public Strategy() {}
     
     public Strategy(String strategyName, Map<Asset, Integer> assets) {
         this.strategyName = strategyName;
@@ -53,10 +54,14 @@ public class Strategy implements Serializable {
             return false;
         }
         Strategy other = (Strategy) object;
-        if ((this.strategyName == null && other.strategyName != null) || (this.strategyName != null && !this.strategyName.equals(other.strategyName))) {
-            return false;
-        }
-        return true;
+        return !((this.strategyName == null && other.strategyName != null) || (this.strategyName != null && !this.strategyName.equals(other.strategyName)));
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.strategyName);
+        return hash;
     }
 
     @Override

@@ -24,11 +24,6 @@ public abstract class Asset implements Serializable {
     protected Long id;
     protected String name;
     
-    /*public Asset(String theName)
-    {
-        name = theName;
-    }*/
-    
     public Long getId() {
         return id;
     }
@@ -58,11 +53,8 @@ public abstract class Asset implements Serializable {
         if (!(object instanceof Asset)) {
             return false;
         }
-        Option other = (Option) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        FinancialOption other = (FinancialOption) object;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
     
     public abstract double getPrice(Date date);

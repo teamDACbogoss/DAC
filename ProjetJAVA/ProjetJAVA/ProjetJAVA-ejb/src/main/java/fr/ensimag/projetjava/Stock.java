@@ -5,12 +5,8 @@
  */
 package fr.ensimag.projetjava;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
@@ -19,7 +15,11 @@ import javax.persistence.Id;
 @Entity
 public class Stock extends Asset {
     String stockCode;
-
+    
+    public Stock() {
+        super();
+    }
+    
     public Stock(String name, String stockCode) {
         this.name = name;
         this.stockCode = stockCode;

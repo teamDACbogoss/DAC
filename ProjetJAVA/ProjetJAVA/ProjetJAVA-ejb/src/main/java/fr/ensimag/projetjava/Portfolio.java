@@ -8,10 +8,12 @@ package fr.ensimag.projetjava;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -26,9 +28,7 @@ public class Portfolio implements Serializable {
 
     private Set<Strategy> strategies;
     
-    public Portfolio() {
-
-    }
+    public Portfolio() {}
     
     public Long getId() {
         return id;
