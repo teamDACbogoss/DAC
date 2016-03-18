@@ -88,3 +88,11 @@ function validerAjout() {
     // To do ajouter dans la liste
     window.location = "creation-strats.xhtml";
 };
+
+function createAccountAdmin() {
+    window.location = "create-account-admin.xhtml";
+};
+
+function pageAdmin() {
+    window.location = "page-admin.xhtml";
+};

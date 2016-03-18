@@ -8,12 +8,17 @@
     <h:body>
         
 
-        <ui:composition template="./template.xhtml">
+        <ui:composition template="./templateAdmin.xhtml">
 
             <ui:define name="content">
                 <h:form>
                     <h3>Gestion des comptes</h3>
                   
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                    </div> 
+                    
                     <div class="table-responsive"> 
                         <table class="table table-bordered">
                             <thead>
@@ -41,7 +46,9 @@
                             
                         </table>
                     </div>
-                    
+                    <div class="row">
+                        <a href="#" onclick="createAccountAdmin()" class="btn btn-success" aria-label="Left Align" role="button">Ajouter un utilisateur</a>
+                    </div>
                 </h:form>
             </ui:define>
         </ui:composition>
