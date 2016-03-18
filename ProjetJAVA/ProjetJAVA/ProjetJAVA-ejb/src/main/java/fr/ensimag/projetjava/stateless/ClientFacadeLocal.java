@@ -5,7 +5,7 @@
  */
 package fr.ensimag.projetjava.stateless;
 
-import fr.ensimag.projetjava.Client;
+import fr.ensimag.projetjava.entity.Client;
 import java.util.List;
 import javax.ejb.Local;
 

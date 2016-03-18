@@ -5,7 +5,7 @@
  */
 package fr.ensimag.projetjava.stateless;
 
-import fr.ensimag.projetjava.Portfolio;
+import fr.ensimag.projetjava.entity.Portfolio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
