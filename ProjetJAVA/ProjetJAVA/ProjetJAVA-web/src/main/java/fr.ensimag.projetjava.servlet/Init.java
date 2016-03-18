@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import fr.ensimag.projetjava.SecretQuestion;
-import fr.ensimag.projetjava.User;
+import fr.ensimag.projetjava.entity.Client;
+import fr.ensimag.projetjava.entity.SecretQuestion;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.ejb.EJB;
@@ -17,14 +11,11 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author josib
+ * @author malacarc
  */
-@WebServlet(urlPatterns = {"/Init"})
+@WebServlet(urlPatterns = {"/init"})
 public class Init extends HttpServlet {
-    
-    @EJB
-    private fr.ensimag.projetjava.stateless.UserFacadeLocal userFacade;
-    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -34,12 +25,13 @@ public class Init extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {*/
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+            /*out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Init</title>");            
@@ -49,8 +41,11 @@ public class Init extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }
-
+    }*/
+    
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -63,9 +58,29 @@ public class Init extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        User u = new User("test@test.com", true, "test", "test", SecretQuestion.q1, "test");
-        userFacade.create(u);
-        processRequest(request, response);
+        //processRequest(request, response);
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) 
+        {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Init</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Init at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>"); 
+        }
+        Client client;
+        client = new Client("clement@imag.fr", 
+                            "clement", 
+                            true, 
+                            "Malacarne", 
+                            "Clément", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client); 
     }
 
     /**

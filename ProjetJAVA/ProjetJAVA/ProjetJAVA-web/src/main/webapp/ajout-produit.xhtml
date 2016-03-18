@@ -12,7 +12,7 @@
 
             <ui:define name="content">
                 <h:form>
-                    <h3>Nouvelle Position</h3>      
+                    <h3>Ajout Produit</h3>      
                     
                     <div class="row">
                         <br></br>
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="10€" aria-describedby="sizing-addon3" readonly="true"></input>
+                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3" readonly="true"></input>
                             </div>
                         </div>
                     </div>
@@ -102,9 +102,17 @@
                     </div>
                     
                     <div class="row">
-                        <a href="#" onclick="validationNouvellePosition()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
-                        <a href="#" onclick="" class="btn btn-warning" aria-label="Left Align" role="button">Valoriser</a>
-                        <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
+                        <button type="button" onclick= "validerAjout()" action="#" class="btn btn-success" aria-label="Left Align">     
+                            <a href="#" >Valider</a>
+                        </button>
+                    
+                        <button type="button" onclick="()" action="#" class="btn btn-warning" aria-label="Left Align">
+                            <a href="#" >Valoriser</a>
+                        </button>
+                                        
+                        <button type="button" onclick="creationStrategie()" action="#" class="btn btn-danger" aria-label="Left Align">
+                            <a href="#"  >Annuler</a>
+                        </button> 
                     </div>
                 </h:form>
                           

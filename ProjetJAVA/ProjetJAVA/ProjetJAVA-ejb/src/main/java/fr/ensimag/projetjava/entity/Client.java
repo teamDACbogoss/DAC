@@ -3,44 +3,45 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
+import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author malacarc
  */
 @Entity
-public class User implements Serializable {
+public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
     private String email;
     private String mdp;
     private boolean isAdmin;
+    @OneToOne
     private Portfolio portfolio;
-    private List<Strategy> personalStrategies;
+    //@OneToMany
+    private Set<Strategy> personalStrategies;
     private String name;
     private String firstName;
     private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
 
-    public User() {}
+    public Client() {}
 
-    public User(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+    public Client(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
         this.email = email;
         this.mdp = mdp;
         this.isAdmin = isAdmin;
         this.portfolio = new Portfolio();
-        this.personalStrategies = new ArrayList<Strategy>();
         this.name = name;
         this.firstName = firstName;
         this.secretQuestion = secretQuestion;
@@ -64,11 +65,11 @@ public class User implements Serializable {
         this.mdp = mdp;
     }
 
-    public List<Strategy> getPersonalStrategies() {
+    public Set<Strategy> getPersonalStrategies() {
         return personalStrategies;
     }
 
-    public void setPersonalStrategies(List<Strategy> personalStrategies) {
+    public void setPersonalStrategies(Set<Strategy> personalStrategies) {
         this.personalStrategies = personalStrategies;
     }
     
@@ -133,6 +134,18 @@ public class User implements Serializable {
         int hash = 0;
         hash += (email != null ? email.hashCode() : 0);
         return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Client other = (Client) obj;
+        return true;
     }
 
     

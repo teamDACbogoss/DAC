@@ -5,7 +5,7 @@
  */
 package fr.ensimag.projetjava.stateless;
 
-import fr.ensimag.projetjava.User;
+import fr.ensimag.projetjava.entity.Client;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -14,19 +14,19 @@ import javax.ejb.Local;
  * @author malacarc
  */
 @Local
-public interface UserFacadeLocal {
+public interface ClientFacadeLocal {
 
-    void create(User user);
+    void create(Client client);
 
-    void edit(User user);
+    void edit(Client client);
 
-    void remove(User user);
+    void remove(Client client);
 
-    User find(Object id);
+    Client find(Object id);
 
-    List<User> findAll();
+    List<Client> findAll();
 
-    List<User> findRange(int[] range);
+    List<Client> findRange(int[] range);
 
     int count();
     

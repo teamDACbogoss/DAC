@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ import javax.persistence.Id;
  * @author josib
  */
 @Entity
-public abstract class Param implements Serializable {
+public abstract class Asset implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,7 +30,7 @@ public abstract class Param implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }   
     
     public String getName() {
         return name;
@@ -40,15 +41,21 @@ public abstract class Param implements Serializable {
     }
     
     @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+    
+    @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ParamStock)) {
+        if (!(object instanceof Asset)) {
             return false;
         }
-        ParamStock other = (ParamStock) object;
-        if (this.hashCode() != other.hashCode()) {
-            return false;
-        }
-        return true;
+        FinancialOption other = (FinancialOption) object;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
+    
+    public abstract double getPrice(Date date);
 }

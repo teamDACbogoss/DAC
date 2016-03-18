@@ -3,13 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.entity;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  *
@@ -17,27 +13,31 @@ import javax.persistence.Id;
  */
 @Entity
 public class ParamDouble extends Param {
-    double value;
+    double val;
     
-    public ParamDouble()
-    {
-        
-    }
+    public ParamDouble(){}
     
     public ParamDouble(double p) {
-        value = p;
+        val = p;
+    }
+    
+    public double getVal() {
+        return val;
+    }
+
+    public void setVal(double val) {
+        this.val = val;
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (name != null ? name.hashCode() : 0);
-        hash += value;
+        hash += val;
         return hash;
     }
 
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.ParamDouble[ value=" + value + " ]";
+        return "fr.ensimag.projetjava.ParamDouble[ value=" + val + " ]";
     }
 }

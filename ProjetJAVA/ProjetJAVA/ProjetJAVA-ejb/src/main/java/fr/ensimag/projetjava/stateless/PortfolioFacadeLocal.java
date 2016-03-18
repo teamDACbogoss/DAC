@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.stateless;
 
+import fr.ensimag.projetjava.entity.Portfolio;
 import java.util.List;
 import javax.ejb.Local;
 
 /**
  *
- * @author josib
+ * @author malacarc
  */
 @Local
 public interface PortfolioFacadeLocal {

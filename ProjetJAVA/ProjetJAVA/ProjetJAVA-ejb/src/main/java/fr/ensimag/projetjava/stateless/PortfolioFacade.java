@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.stateless;
 
+import fr.ensimag.projetjava.entity.Portfolio;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author josib
+ * @author malacarc
  */
 @Stateless
-public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal {
+public class PortfolioFacade extends AbstractFacade<Portfolio> implements PortfolioFacadeLocal {
     @PersistenceContext(unitName = "ProjetJAVA_PU")
     private EntityManager em;
 
@@ -23,8 +24,8 @@ public class UserFacade extends AbstractFacade<User> implements UserFacadeLocal 
         return em;
     }
 
-    public UserFacade() {
-        super(User.class);
+    public PortfolioFacade() {
+        super(Portfolio.class);
     }
     
 }

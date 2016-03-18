@@ -3,13 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package fr.ensimag.projetjava;
+package fr.ensimag.projetjava.entity;
 
-import java.io.Serializable;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -17,25 +14,35 @@ import javax.persistence.Id;
  */
 @Entity
 public class ParamStock extends Param {
-    Stock value;
+    @OneToOne
+    protected Stock val;
+    protected String name;
     
     public ParamStock() {}
     
     public ParamStock(Stock p) {
-        value = p;
+        val = p;
+    }
+    
+    public Stock getVal() {
+        return val;
+    }
+
+    public void setVal(Stock val) {
+        this.val = val;
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
         hash += (name != null ? name.hashCode() : 0);
-        hash += (value != null ? value.hashCode() : 0);
+        hash += (val != null ? val.hashCode() : 0);
         return hash;
     }
 
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.ParamStock[ value=" + value + " ]";
+        return "fr.ensimag.projetjava.ParamStock[ value=" + val + " ]";
     }
     
 }
