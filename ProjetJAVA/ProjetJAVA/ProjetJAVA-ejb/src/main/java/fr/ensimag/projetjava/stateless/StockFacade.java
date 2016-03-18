@@ -5,7 +5,7 @@
  */
 package fr.ensimag.projetjava.stateless;
 
-import fr.ensimag.projetjava.entity.Portfolio;
+import fr.ensimag.projetjava.entity.Stock;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -13,10 +13,10 @@ import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author malacarc
+ * @author lichun
  */
 @Stateless
-public class PortfolioFacade extends AbstractFacade<Portfolio> implements PortfolioFacadeLocal {
+public class StockFacade extends AbstractFacade<Stock> implements StockFacadeLocal {
     @PersistenceContext(unitName = "ProjetJAVA_PU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class PortfolioFacade extends AbstractFacade<Portfolio> implements Portfo
         return em;
     }
 
-    public PortfolioFacade() {
-        super(Portfolio.class);
+    public StockFacade() {
+        super(Stock.class);
     }
 }

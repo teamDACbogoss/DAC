@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+
+    <h:body>
+        
+
+        <ui:composition template="./templateAdmin.xhtml">
+
+            <ui:define name="content">
+                <h:form>
+                    <h3>Gestion des actifs</h3>
+                    
+                    <div class="row">
+                        <br></br>
+                        <br></br>
+                    </div> 
+                    <div class="row">
+                        
+                        <div class="col-md-6">
+                    <div class="table-responsive"> 
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Prix</th>
+                                    <th>Prix Précédent</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                <tr>
+                                   <td>Axa</td>
+                                   <td>20</td>
+                                   <td>23</td>
+                                   <td>
+                                       <a href="#" onclick="()" class="btn btn-xs btn-danger" aria-label="Left Align" role="button">Supprimer</a>
+                                   </td>
+                               </tr>
+                            </thead>
+                        </table>
+                    </div>
+                        </div>                    
+                            
+                        <div class="col-md-6">
+                    <div class="table-responsive"> 
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Nom</th>
+                                    <th>Supprimer</th>
+                                </tr>
+                                <tr>
+                                   <td>Spread</td>
+                                   <td>
+                                       <a href="#" onclick="()" class="btn btn-xs btn-danger" aria-label="Left Align" role="button">Supprimer</a>
+                                   </td>
+                               </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+                    
+                <div class="row">
+                    
+                    <a href="#" onclick="ajoutActionAdmin()" class="btn btn-success" aria-label="Left Align" role="button">Ajouter une action</a>
+                    <a href="#" onclick="notImplemented()" class="btn btn-warning" aria-label="Left Align" role="button">Ajouter une stratégie</a>
+                    
+                    <!--
+                    <button type="button" onclick="()" class="btn btn-warning" aria-label="Left Align">
+                        <a href="#" >Ajouter une stratégie</a>
+                    </button>
+                    -->
+                </div>
+                        
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        
+        
+        
+    </h:body>
+    
+</html>
