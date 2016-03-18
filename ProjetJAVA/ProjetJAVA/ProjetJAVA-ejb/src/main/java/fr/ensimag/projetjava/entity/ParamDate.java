@@ -21,8 +21,10 @@ public class ParamDate extends Param {
     
     public ParamDate() {}
     
-    public ParamDate(Date p) {
+    public ParamDate(Date p, 
+                     String name) {
         val = p;
+        this.name = name;
     }
 
     public Date getVal() {

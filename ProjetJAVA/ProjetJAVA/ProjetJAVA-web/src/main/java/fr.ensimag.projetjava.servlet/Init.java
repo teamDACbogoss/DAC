@@ -1,13 +1,16 @@
 import fr.ensimag.projetjava.entity.Client;
-import fr.ensimag.projetjava.entity.SecretQuestion;
+import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
+import java.util.*;
 
 /**
  *
@@ -17,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Init extends HttpServlet {    
     @EJB
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    private fr.ensimag.projetjava.stateless.ParamDateFacadeLocal paramDateFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,6 +70,13 @@ public class Init extends HttpServlet {
                             SecretQuestion.q1, 
                             "Montmuzard");
         clientFacade.create(client); 
+        
+        Calendar myCalendar = Calendar.getInstance();
+        myCalendar.set(92, 04, 17);
+        Date dateForParamDate;
+        dateForParamDate = myCalendar.getTime();
+        ParamDate paramDate = new ParamDate(dateForParamDate, "Anniv Didier");
+        paramDateFacade.create(paramDate);
     }
 
     /**
