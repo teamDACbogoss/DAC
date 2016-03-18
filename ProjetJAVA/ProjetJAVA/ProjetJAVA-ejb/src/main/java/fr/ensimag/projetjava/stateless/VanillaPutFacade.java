@@ -5,18 +5,18 @@
  */
 package fr.ensimag.projetjava.stateless;
 
-import fr.ensimag.projetjava.entity.Portfolio;
-import java.util.List;
+import fr.ensimag.projetjava.entity.VanillaPut;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
  * @author malacarc
  */
 @Stateless
-public class PortfolioFacade extends AbstractFacade<Portfolio> implements PortfolioFacadeLocal {
+public class VanillaPutFacade extends AbstractFacade<VanillaPut> implements VanillaPutFacadeLocal {
     @PersistenceContext(unitName = "ProjetJAVA_PU")
     private EntityManager em;
 
@@ -25,7 +25,7 @@ public class PortfolioFacade extends AbstractFacade<Portfolio> implements Portfo
         return em;
     }
 
-    public PortfolioFacade() {
-        super(Portfolio.class);
+    public VanillaPutFacade() {
+        super(VanillaPut.class);
     }
 }
