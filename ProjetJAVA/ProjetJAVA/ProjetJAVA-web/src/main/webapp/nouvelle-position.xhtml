@@ -80,7 +80,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" id="T" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control" binding="#{mat}" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -90,7 +90,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <input type="text" class="form-control" value="#{option.prix}" aria-describedby="sizing-addon3" readonly = "true"/>
                             </div>
                         </div>
                     </div>
@@ -102,6 +102,8 @@
                     </div>
                     
                     <div class="row">
+                        <h:commandButton value="Pricing" action="#{option.pricingCall(mat.value)}" class="btn btn-success"></h:commandButton>
+
                         <a href="#" onclick="validationNouvellePosition()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
                         <a href="#" onclick="" class="btn btn-warning" aria-label="Left Align" role="button">Valoriser</a>
                         <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
