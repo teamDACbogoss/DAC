@@ -7,6 +7,7 @@ package fr.ensimag.projetjava;
 
 import java.io.Serializable;
 import java.util.Set;
+import javax.persistence.CascadeType;
 import static javax.persistence.CascadeType.ALL;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -25,10 +26,10 @@ public class Client implements Serializable {
     private String email;
     private String mdp;
     private boolean isAdmin;
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Portfolio portfolio;
     //@OneToMany
-    private Set<Strategy> personalStrategies;
+    //private Set<Strategy> personalStrategies;
     private String name;
     private String firstName;
     private SecretQuestion secretQuestion;
@@ -65,13 +66,13 @@ public class Client implements Serializable {
         this.mdp = mdp;
     }
 
-    public Set<Strategy> getPersonalStrategies() {
+    /*public Set<Strategy> getPersonalStrategies() {
         return personalStrategies;
     }
 
     public void setPersonalStrategies(Set<Strategy> personalStrategies) {
         this.personalStrategies = personalStrategies;
-    }
+    }*/
     
     public Portfolio getPortfolio() {
         return portfolio;

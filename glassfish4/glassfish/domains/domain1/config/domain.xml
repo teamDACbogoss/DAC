@@ -461,10 +461,12 @@
   <applications>
     <application location="file:/user/4/.base/malacarc/home/ProjetDAC/DAC/ProjetJAVA/ProjetJAVA/ProjetJAVA-ear/target/gfdeploy/ProjetJAVA-ear/" name="ProjetJAVA-ear" directory-deployed="true" object-type="user">
       <property name="archiveType" value="ear"></property>
+      <property name="org.glassfish.ejb.startup.keepstate" value="true"></property>
       <property name="isComposite" value="true"></property>
       <property name="appLocation" value="file:/user/4/.base/malacarc/home/ProjetDAC/DAC/ProjetJAVA/ProjetJAVA/ProjetJAVA-ear/target/gfdeploy/ProjetJAVA-ear/"></property>
-      <property name="org.glassfish.ejb.container.application_unique_id" value="95560267296669696"></property>
+      <property name="org.glassfish.ejb.container.application_unique_id" value="95571596819496960"></property>
       <property name="defaultAppName" value="ProjetJAVA-ear"></property>
+      <property name="keepSessions" value="true"></property>
       <engine sniffer="ear"></engine>
       <module name="ProjetJAVA-ejb-1.0-SNAPSHOT.jar">
         <engine sniffer="ejb"></engine>
