@@ -28,39 +28,4 @@ public class VanillaCallFacade extends AbstractFacade<VanillaCall> implements Va
     public VanillaCallFacade() {
         super(VanillaCall.class);
     }
-    
-    @Override
-    public void create(VanillaCall vanillaCall) {
-        super.create(vanillaCall);
-    }
-
-    @Override
-    public void edit(VanillaCall vanillaCall) {
-        super.edit(vanillaCall);
-    }
-
-    @Override
-    public void remove(VanillaCall vanillaCall) {
-        super.remove(vanillaCall);
-    }
-
-    @Override
-    public VanillaCall find(Object id) {
-        return super.find(id);
-    }
-
-    @Override
-    public List<VanillaCall> findAll() {
-        return super.findAll();
-    }
-
-    @Override
-    public List<VanillaCall> findRange(int[] range) {
-        return super.findRange(range);
-    }
-
-    @Override
-    public int count() {
-        return super.count();
-    }
 }
