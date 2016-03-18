@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author malacarc
  */
 @WebServlet(urlPatterns = {"/init"})
-public class Init extends HttpServlet {
-
+public class Init extends HttpServlet {    
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -25,13 +27,12 @@ public class Init extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    /*
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {*/
+        try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            /*out.println("<!DOCTYPE html>");
+            out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet Init</title>");            
@@ -41,10 +42,7 @@ public class Init extends HttpServlet {
             out.println("</body>");
             out.println("</html>");
         }
-    }*/
-    
-    @EJB
-    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    }
     
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -58,20 +56,7 @@ public class Init extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
-        {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Init</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Init at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>"); 
-        }
+        processRequest(request, response);
         Client client;
         client = new Client("clement@imag.fr", 
                             "clement", 

@@ -9,6 +9,7 @@ import fr.ensimag.projetjava.entity.Client;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
@@ -27,5 +28,4 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
     public ClientFacade() {
         super(Client.class);
     }
-    
 }
