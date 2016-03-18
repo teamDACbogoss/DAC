@@ -32,7 +32,7 @@ public class Stock extends Asset {
 
     @Override
     public double getPrice(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return 121.25;
     }
     
 }
