@@ -6,9 +6,8 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -72,7 +71,7 @@ public class Strategy implements Serializable {
         return "fr.ensimag.projetjava.Strategy[ name=" + strategyName + " ]";
     }
     
-    public double getPrice(Date date) {
+    public double getPrice(java.util.Calendar date) {
         double result = 0.0;
         for(ParamAssetInteger assetInt : assets) {
             result += assetInt.asset.getPrice(date) * assetInt.quantity;

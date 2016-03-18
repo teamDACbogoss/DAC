@@ -5,8 +5,9 @@
  */
 package fr.ensimag.projetjava.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -14,14 +15,16 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class ParamStock extends Param {
-    @OneToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     protected Stock val;
-    protected String name;
+    //protected String name;
     
     public ParamStock() {}
     
-    public ParamStock(Stock p) {
+    public ParamStock(Stock p,
+                      String name) {
         val = p;
+        this.name = name;
     }
     
     public Stock getVal() {
