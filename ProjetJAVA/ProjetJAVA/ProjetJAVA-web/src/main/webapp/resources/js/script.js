@@ -1,5 +1,6 @@
-function baduser() {
-    window.alert('Mot de passe ou e-mail incorrect, veuillez recommencer');
+function Administrateur() {
+    // To do ajouter dans la liste
+    window.location = "page-admin.xhtml";
 };
 
 function checkUser() {
