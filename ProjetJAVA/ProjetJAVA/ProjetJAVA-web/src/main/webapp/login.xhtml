@@ -17,6 +17,12 @@
                     <h:outputText value="#{login.msg}"/>
                     
                     <div class="container">
+                        
+                        <form action="j_security_check" method="POST">
+                            Username:<input type="text" name="j_username"></input><br/>
+                                Password:<input type="password" name="j_password"></input>
+                            <input type="submit" value="Login"></input>
+                         </form>
                        
                         <div class="row">
                             <br></br>
