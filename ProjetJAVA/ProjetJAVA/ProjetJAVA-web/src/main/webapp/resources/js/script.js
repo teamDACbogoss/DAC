@@ -63,6 +63,8 @@ function returnCotations() {
 
 function validationNouvellePosition() {
     window.alert("Vous venez d'acheter ....");
+    
+    // TO DO ajout nouvelle position ....
     window.location = "cotations.xhtml";
 };
 
@@ -74,3 +76,14 @@ $(document).ready(function(){
     });
 
 });
+
+function ajouterProduit(){
+    window.location = "ajout-produit.xhtml";
+}
+
+function validerAjout() {
+    window.alert("Vous venez d'acheter ....");
+    
+    // To do ajouter dans la liste
+    window.location = "creation-strats.xhtml";
+};
