@@ -102,6 +102,14 @@ function pageAdmin() {
     window.location = "page-admin.xhtml";
 };
 
+function gestionActif() {
+    window.location = "gestion-actifs.xhtml";
+}
+
+function ajoutActionAdmin() {
+    window.location = "ajout-action-admin.xhtml";
+};
+
 function disableField(val) {
     if (val=="action") {
         document.getElementById("T").disabled = true;
@@ -112,3 +120,11 @@ function disableField(val) {
     }
 };
 
+function ajoutActifAdmin() {
+    window.alert('Josi est  un blaireau');
+    gestionActif();
+}
+
+function notImplemented() {
+    window.location = "not-implemented.xhtml";
+}
