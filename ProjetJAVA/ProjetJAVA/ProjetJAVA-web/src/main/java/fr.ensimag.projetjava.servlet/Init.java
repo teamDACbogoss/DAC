@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
  * @author malacarc
  */
 @WebServlet(urlPatterns = {"/init"})
-public class Init extends HttpServlet {
-
+public class Init extends HttpServlet {    
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -42,9 +44,6 @@ public class Init extends HttpServlet {
         }
     }
     
-    @EJB
-    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
-    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -57,20 +56,7 @@ public class Init extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //processRequest(request, response);
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) 
-        {
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet Init</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet Init at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>"); 
-        }
+        processRequest(request, response);
         Client client;
         client = new Client("clement@imag.fr", 
                             "clement", 
