@@ -6,13 +6,14 @@
 package fr.ensimag.projetjava.stateless;
 
 import fr.ensimag.projetjava.entity.Stock;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
  *
- * @author yeungd
+ * @author lichun
  */
 @Stateless
 public class StockFacade extends AbstractFacade<Stock> implements StockFacadeLocal {
@@ -27,5 +28,4 @@ public class StockFacade extends AbstractFacade<Stock> implements StockFacadeLoc
     public StockFacade() {
         super(Stock.class);
     }
-    
 }

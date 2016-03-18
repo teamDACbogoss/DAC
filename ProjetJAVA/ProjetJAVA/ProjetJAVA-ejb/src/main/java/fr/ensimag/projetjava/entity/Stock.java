@@ -5,7 +5,6 @@
  */
 package fr.ensimag.projetjava.entity;
 
-import java.util.Date;
 import javax.persistence.Entity;
 
 /**
@@ -31,8 +30,8 @@ public class Stock extends Asset {
     }
 
     @Override
-    public double getPrice(Date date) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public double getPrice(java.util.Calendar date) {
+        return 121.25;
     }
     
 }

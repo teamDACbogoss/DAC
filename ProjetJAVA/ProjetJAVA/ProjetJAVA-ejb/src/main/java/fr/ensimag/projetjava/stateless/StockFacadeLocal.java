@@ -11,7 +11,7 @@ import javax.ejb.Local;
 
 /**
  *
- * @author yeungd
+ * @author lichun
  */
 @Local
 public interface StockFacadeLocal {

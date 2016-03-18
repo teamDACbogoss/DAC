@@ -6,10 +6,10 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -24,15 +24,15 @@ public class Client implements Serializable {
     private String email;
     private String mdp;
     private boolean isAdmin;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Portfolio portfolio;
     //@OneToMany
     //private Set<Strategy> personalStrategies;
     private String name;
     private String firstName;
-    private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
+    private SecretQuestion secretQuestion;
 
     public Client() {}
 

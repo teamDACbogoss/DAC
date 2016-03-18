@@ -5,10 +5,9 @@
  */
 package fr.ensimag.projetjava.entity;
 
-import java.util.Date;
 import java.util.Objects;
 import javax.persistence.Entity;
-import javax.persistence.Temporal;
+//import javax.persistence.Temporal;
 
 /**
  *
@@ -16,29 +15,31 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class ParamDate extends Param {
-    @Temporal(javax.persistence.TemporalType.DATE)
-    protected Date val;
+    //@Temporal(javax.persistence.TemporalType.DATE)
+    protected long val;
     
     public ParamDate() {}
     
-    public ParamDate(Date p, 
+    public ParamDate(java.util.Calendar p, 
                      String name) {
-        val = p;
+        val = p.getTimeInMillis();
         this.name = name;
     }
 
-    public Date getVal() {
-        return val;
+    public java.util.Calendar getVal() {
+        java.util.Calendar returnVal = java.util.Calendar.getInstance();
+        returnVal.setTimeInMillis(this.val);
+        return returnVal;
     }
 
-    public void setVal(Date val) {
-        this.val = val;
+    public void setVal(java.util.Calendar val) {
+        this.val = val.getTimeInMillis();
     }
     
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (val != null ? val.hashCode() : 0);
+        hash += val;
         return hash;
     }
 

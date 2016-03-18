@@ -1,4 +1,3 @@
-import fr.ensimag.projetjava.entity.Client;
 import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,8 +8,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Date;
-import java.util.*;
 
 /**
  *
@@ -20,7 +17,14 @@ import java.util.*;
 public class Init extends HttpServlet {    
     @EJB
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    @EJB
     private fr.ensimag.projetjava.stateless.ParamDateFacadeLocal paramDateFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.ParamDoubleFacadeLocal paramDoubleFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.ParamStockFacadeLocal paramStockFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -71,12 +75,24 @@ public class Init extends HttpServlet {
                             "Montmuzard");
         clientFacade.create(client); 
         
+        //Test insertion paramDate
         Calendar myCalendar = Calendar.getInstance();
-        myCalendar.set(92, 04, 17);
-        Date dateForParamDate;
-        dateForParamDate = myCalendar.getTime();
-        ParamDate paramDate = new ParamDate(dateForParamDate, "Anniv Didier");
+        myCalendar.set(1992, 04, 17);
+        ParamDate paramDate = new ParamDate(myCalendar, "Anniv Didier");
         paramDateFacade.create(paramDate);
+        
+        //Test insertion paramDouble
+        ParamDouble paramDouble = new ParamDouble(3.14, "pi");
+        paramDoubleFacade.create(paramDouble);
+        
+        //Test insertion stock
+        Stock stock = new Stock("CAC40", ".FCHI");
+        stockFacade.create(stock);
+        
+        //Test insertion paramStock
+        Stock stock2 = new Stock("DAX", ".TOTO");
+        ParamStock paramStock = new ParamStock(stock2, "stock");
+        paramStockFacade.create(paramStock);
     }
 
     /**
