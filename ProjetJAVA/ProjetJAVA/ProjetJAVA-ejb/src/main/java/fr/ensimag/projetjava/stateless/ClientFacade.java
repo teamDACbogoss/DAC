@@ -9,6 +9,7 @@ import fr.ensimag.projetjava.entity.Client;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  *
@@ -28,4 +29,31 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
         super(Client.class);
     }
     
+    public void create(Client client) {
+        super.create(client);
+    }
+
+    public void edit(Client client) {
+        super.edit(client);
+    }
+
+    public void remove(Client client) {
+        super.remove(client);
+    }
+
+    public Client find(Object id) {
+        return super.find(id);
+    }
+
+    public List<Client> findAll() {
+        return super.findAll();
+    }
+
+    public List<Client> findRange(int[] range) {
+        return super.findRange(range);
+    }
+
+    public int count() {
+        return super.count();
+    }
 }
