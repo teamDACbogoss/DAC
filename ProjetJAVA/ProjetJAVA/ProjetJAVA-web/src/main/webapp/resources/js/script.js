@@ -61,6 +61,10 @@ function returnCotations() {
     window.location = "cotations.xhtml";
 };
 
+function returnPortefeuille() {
+    window.location = "portfolio.xhtml";
+};
+
 function validationNouvellePosition() {
     window.alert("Vous venez d'acheter ....");
     
@@ -79,11 +83,21 @@ $(document).ready(function(){
 
 function ajouterProduit(){
     window.location = "ajout-produit.xhtml";
-}
+};
 
 function validerAjout() {
     window.alert("Vous venez d'acheter ....");
     
     // To do ajouter dans la liste
     window.location = "creation-strats.xhtml";
+};
+
+function disableField(val) {
+    if (val=="action") {
+        document.getElementById("T").disabled = true;
+        document.getElementById("K").disabled = true;
+    } else {
+       document.getElementById("T").disabled = false;
+       document.getElementById("K").disabled = false; 
+    }
 };

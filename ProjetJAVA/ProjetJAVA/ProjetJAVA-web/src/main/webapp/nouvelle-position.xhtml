@@ -24,10 +24,10 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             Choix de stratégie:
-                            <select class="form-control">
-                                <option>Action</option>
-                                <option>Call</option>
-                                <option>Put</option>
+                            <select class="form-control"  onchange="disableField(this.value)">
+                                <option id="call" value="call">Call</option>
+                                <option id="put" value="put">Put</option>
+                                <option id="action" value="action">Action</option>
                                 <!-- <option>Straddle</option>
                                 <option>Strangle</option> -->
                             </select>
@@ -75,7 +75,12 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <input type="text" class="form-control" value="" id="K" aria-describedby="sizing-addon3"/>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" value="" id="T" aria-describedby="sizing-addon3"/>
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -86,11 +91,6 @@
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
-                            </div>
-                        </div>
-                        <div class="col-md-2">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="10€" aria-describedby="sizing-addon3" readonly="true"></input>
                             </div>
                         </div>
                     </div>
