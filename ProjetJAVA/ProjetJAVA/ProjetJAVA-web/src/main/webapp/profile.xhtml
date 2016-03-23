@@ -14,14 +14,16 @@
                 
             </div>
             <ul class="list-group">
-                <li class="list-group-item">Jean Didier</li>
+                <li class="list-group-item">#{sessionBean.name}</li>
                 <li class="list-group-item">Solde :</li>
                 <li class="list-group-item">Equité :</li>
             </ul>
-            <h:link outcome="login" >
+            <h:form>
+                <h:commandLink action="#{sessionBean.logout()}">
                     <h:graphicImage name="img/logout_dac.png" width="50" height="50" />
-            </h:link>
-            Déconnexion   
+                </h:commandLink>
+            </h:form>
+            Déconnexion
         </div>
 
         </ui:composition>

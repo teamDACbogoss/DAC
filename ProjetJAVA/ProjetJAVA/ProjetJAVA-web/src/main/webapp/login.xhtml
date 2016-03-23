@@ -58,15 +58,9 @@
                         </div>    
 
                         <div class="row">
-
                             <h:commandButton value="Connexion" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-success"></h:commandButton>
-
-                            <h:commandButton value="Mot de passe oublié" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-warning"></h:commandButton>
-
-                            <h:commandButton value="Pas de compte?" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-info"></h:commandButton>
-
-                            <h:commandButton value="Test" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-danger"></h:commandButton>
-
+                            <h:button outcome="reinitiate-password" value="Mot de passe oublié" class="btn btn-warning"/>
+                            <h:button outcome="create-account" value="Pas de compte ?" class="btn btn-info"/>
                         </div>
                     </div>
                     <!--
