@@ -46,16 +46,15 @@ public class login implements Serializable {
     public String validateUsernamePassword(String email, String pwd) {
         if (email == null || pwd == null) {
             msg = "Incorrect Username and Password";
-            return "login";
+            return "";
         } else {
-            
             Client cl = clientFacade.find(email);
             FacesContext facesContext = FacesContext.getCurrentInstance();
             sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
             if (cl == null || !cl.getMdp().equals(pwd)) {
                 msg = "Incorrect Username and Password";
-                return "login";
+                return "";
             } else {
                 return session.login(email, cl.getIsAdmin());
             }
