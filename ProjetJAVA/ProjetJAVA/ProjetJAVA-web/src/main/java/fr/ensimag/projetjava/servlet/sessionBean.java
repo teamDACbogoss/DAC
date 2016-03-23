@@ -5,10 +5,12 @@
  */
 package fr.ensimag.projetjava.servlet;
 
+import fr.ensimag.projetjava.entity.Client;
 import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 
@@ -20,9 +22,52 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class sessionBean implements Serializable {
 
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
     private String name;
     private boolean isAdmin;
     private boolean isLogged;
+    private String secretQuestion;
+    private String secretAnswer;
+
+    /**
+     * Get the value of secretAnswer
+     *
+     * @return the value of secretAnswer
+     */
+    public String getSecretAnswer() {
+        return secretAnswer;
+    }
+
+    /**
+     * Set the value of secretAnswer
+     *
+     * @param secretAnswer new value of secretAnswer
+     */
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
+    }
+
+
+    /**
+     * Get the value of secretQuestion
+     *
+     * @return the value of secretQuestion
+     */
+    public String getSecretQuestion() {
+        return secretQuestion;
+    }
+
+    /**
+     * Set the value of secretQuestion
+     *
+     * @param secretQuestion new value of secretQuestion
+     */
+    public void setSecretQuestion(String secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+
 
     /**
      * Get the value of isLogged
@@ -88,16 +133,22 @@ public class sessionBean implements Serializable {
         this.isLogged = false;
         this.isAdmin = false;
         this.name = "";
+        this.secretQuestion = "";
     }
     
-    public String login(String name, boolean isAdmin) {
-        this.name = name;
-        this.isAdmin = isAdmin;
-        this.isLogged = true;
-        if (isAdmin) {
-            return "admin";
+    public String login(String name, String pwd) {
+        Client cl = clientFacade.find(name);
+        if (cl == null || !cl.getMdp().equals(pwd)) {
+            return null;
         } else {
-            return "portfolio";
+            this.name = name;
+            this.isAdmin = cl.getIsAdmin();
+            this.isLogged = true;
+            if (isAdmin) {
+                return "admin";
+            } else {
+                return "portfolio";
+            }
         }
     }
     
@@ -109,11 +160,10 @@ public class sessionBean implements Serializable {
     }
     
     public void checkAdminLogged() throws IOException {
+        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
         if (!isLogged) {
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
         } else if (!isAdmin) {
-            ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
             ec.redirect(ec.getRequestContextPath() + "/portfolio.xhtml");
         }
     }
@@ -124,5 +174,20 @@ public class sessionBean implements Serializable {
         this.name = "";
         return "login";
     }
+    
+    public String setForPwdReinit(String name) {
+        Client cl = clientFacade.find(name);
+        if (cl == null) {
+            return null;
+        } else {
+            this.isLogged = false;
+            this.isAdmin = false;
+            this.name = name;
+            this.secretQuestion = cl.getSecretQuestion().toString();
+            this.secretAnswer = cl.getSecretQuestionAnswer();
+            return "answer-question";
+        }
+    }
+   
     
 }
