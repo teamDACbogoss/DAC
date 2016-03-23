@@ -37,13 +37,13 @@ public class login implements Serializable {
  
     //validate login
     public String validateUsernamePassword(String email, String pwd) {
-        if (email == null || pwd == null) {
+        /*if (email == null || pwd == null) {
             msg = "Incorrect Username and Password";
             return "login";
         } else {
             FacesContext facesContext = FacesContext.getCurrentInstance();
-            sessionBean session = (sessionBean)facesContext.getApplication()
-                    .createValueBinding("#{sessionBean}").getValue(facesContext);
+            /*sessionBean session = (sessionBean)facesContext.getApplication()
+                   .createValueBinding("#{sessionBean}").getValue(facesContext);
             if (email.equals("test") && pwd.equals("test")) {
                 return session.login(email, false);
             } else if (email.equals("admin") && pwd.equals("admin")) {
@@ -51,10 +51,9 @@ public class login implements Serializable {
             } else {
                 msg = "Incorrect Username and Password";
                 return "login";
-            }
-        }
-       
-        
+            }*/
+            return "LoginEnDur";
+                   
         
     }
 }

@@ -2,6 +2,7 @@ import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Calendar;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,16 +68,155 @@ public class Init extends HttpServlet {
         processRequest(request, response);
         Client client;
         client = new Client("clement@imag.fr", 
-                            "clement", 
+                            "mdp", 
                             true, 
                             "Malacarne", 
                             "Clément", 
                             SecretQuestion.q1, 
                             "Montmuzard");
-        clientFacade.create(client); 
+        clientFacade.create(client);
+        client = new Client("didier@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Didier", 
+                            "Yeung", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("baptiste@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Baptiste", 
+                            "Josi", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("johanna@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Johanna", 
+                            "Gogo Dago", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("theophile@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Théophile", 
+                            "Random", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("kevin@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Kevin", 
+                            "Bonkoski", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("chunli@imag.fr", 
+                            "mdp", 
+                            true, 
+                            "Chunli", 
+                            "Li", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        client = new Client("xin@imag.fr", 
+                            "mdp", 
+                            false, 
+                            "Xin", 
+                            "Riu", 
+                            SecretQuestion.q1, 
+                            "Montmuzard");
+        clientFacade.create(client);
+        
+        // Insertion des actifs du CAC40
+        Stock CAC40 = new Stock("Accor", "AC");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Air Liquide", "AI");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Alcatel-Lucent", "ALU");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Alstom", "ALO");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Arcelormital", "MT");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Axa", "CS");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("BNP Paribas", "BNP");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Bouygues", "EN");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Cap Gemini", "CAP");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Carrefour", "CA");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Crédit Agricole", "ACA");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Danone", "BN");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Dexia", "DEXB");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("EADS", "EAD");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("EDF", "EDF");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Essilor", "EI");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("France Telecom", "FTE");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("GDF Suez", "GSZ");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("L'Oréal", "OR");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Lafarge", "LG");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Lagardere", "MMB");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Legrand", "LR");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("LVMH", "MC");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Michelin", "ML");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Pernod Ricard", "RI");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Peugeot", "UG");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("PPR", "PP");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Renault", "RNO");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Saint Gobain", "SGO");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Sanofi", "SAN");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Schneider Electric", "SU");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Société Générale", "GLE");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("STMicroElectronic", "STM");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Technip", "TEC");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("TOTAL", "FP");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Unibail-Rodamco", "UL");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Vallourec", "VK");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Veolio", "VIE");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Vinci", "DG");
+        stockFacade.create(CAC40);
+        CAC40 = new Stock("Vivendi", "VIV");
+        stockFacade.create(CAC40);
+        
         
         //Test insertion paramDate
-        Calendar myCalendar = Calendar.getInstance();
+        /*Calendar myCalendar = Calendar.getInstance();
         myCalendar.set(1992, 04, 17);
         ParamDate paramDate = new ParamDate(myCalendar, "Anniv Didier");
         paramDateFacade.create(paramDate);
@@ -84,15 +224,23 @@ public class Init extends HttpServlet {
         //Test insertion paramDouble
         ParamDouble paramDouble = new ParamDouble(3.14, "pi");
         paramDoubleFacade.create(paramDouble);
+       
         
-        //Test insertion stock
-        Stock stock = new Stock("CAC40", ".FCHI");
-        stockFacade.create(stock);
+        //Test récupération stock
+        Stock stock_test = stockFacade.find(CAC40.getId());
+        System.out.println("Nom : " + stock_test.getName());
         
-        //Test insertion paramStock
-        Stock stock2 = new Stock("DAX", ".TOTO");
-        ParamStock paramStock = new ParamStock(stock2, "stock");
+        ParamStock paramStock = new ParamStock(CAC40, "stock");
         paramStockFacade.create(paramStock);
+        
+        //Test récupération tous les stocks
+        List<Stock> listStocks = stockFacade.findAll();
+        for (Stock stock : listStocks) {
+            System.out.println(stock.getName());
+        }*/
+        
+        //Test insertion 
+        
     }
 
     /**
