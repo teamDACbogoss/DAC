@@ -63,7 +63,14 @@
 
                             <h:commandButton value="Mot de passe oublié" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-warning"></h:commandButton>
 
-                            <h:commandButton value="Pas de compte?" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-info"></h:commandButton>
+                            <button type="button" onclick="createAccount()" class="btn btn-info" aria-label="Left Align">
+                                <a href="#" >Pas de compte?</a>
+                            </button>
+                            
+                            <h:commandButton value="Pas de compte?" onclick="createAccount()" class="btn btn-info"></h:commandButton>
+
+                            
+                           
 
                             <h:commandButton value="Test" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-danger"></h:commandButton>
 
