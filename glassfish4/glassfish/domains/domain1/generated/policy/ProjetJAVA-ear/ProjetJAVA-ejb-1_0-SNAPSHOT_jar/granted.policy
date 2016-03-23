@@ -1,0 +1,35 @@
+/* AUTOMATICALLY GENERATED ON Fri Mar 18 16:36:22 CET 2016*/
+/* DO NOT EDIT */
+
+grant {
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "remove,Local,fr.ensimag.projetjava.entity.Client";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "findRange,Local,int[]";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "findAll,Local,";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "edit,Local,fr.ensimag.projetjava.entity.Asset";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "findRange,Local,int[]";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "find,Local,java.lang.Object";
+  permission javax.security.jacc.EJBMethodPermission "NewSessionBean", "businessMethod,Local,";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "find,Local,java.lang.Object";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "count,Local,";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "remove,Local,fr.ensimag.projetjava.entity.Asset";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "count,Local,";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "edit,Local,fr.ensimag.projetjava.entity.Client";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "edit,Local,fr.ensimag.projetjava.entity.Portfolio";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "findAll,Local,";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "create,Local,fr.ensimag.projetjava.entity.Client";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "findRange,Local,int[]";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "count,Local,";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "find,Local,java.lang.Object";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "remove,Local,fr.ensimag.projetjava.entity.Portfolio";
+  permission javax.security.jacc.EJBMethodPermission "ClientFacade", "findAll,Local,";
+  permission javax.security.jacc.EJBMethodPermission "AssetFacade", "create,Local,fr.ensimag.projetjava.entity.Asset";
+  permission javax.security.jacc.EJBMethodPermission "PortfolioFacade", "create,Local,fr.ensimag.projetjava.entity.Portfolio";
+};
+
+grant      principal * * {
+  permission javax.security.jacc.EJBRoleRefPermission "NewSessionBean", "**";
+  permission javax.security.jacc.EJBRoleRefPermission "AssetFacade", "**";
+  permission javax.security.jacc.EJBRoleRefPermission "ClientFacade", "**";
+  permission javax.security.jacc.EJBRoleRefPermission "PortfolioFacade", "**";
+};
+
