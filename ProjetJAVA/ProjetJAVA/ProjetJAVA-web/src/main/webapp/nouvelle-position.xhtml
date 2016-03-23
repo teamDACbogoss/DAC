@@ -120,11 +120,10 @@
                     
                     <div class="row">
                         
-                        <h:commandButton value="Pricing" action="#{option.pricingCall(strat, k.value, mat.value, quant.value)}" class="btn btn-success"></h:commandButton>
 
                         
                         <a href="#" onclick="validationNouvellePosition()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
-                        <a href="#" onclick="" class="btn btn-warning" aria-label="Left Align" role="button">Valoriser</a>
+                        <h:commandButton value="Valoriser" action="#{option.pricingCall(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
                     </div>
                 </h:form>

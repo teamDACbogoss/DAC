@@ -16,6 +16,17 @@ $(document).ready(function(){
         }
     });
     
+        
+    $("#ajout-produit\\:select_type").change(function() {
+        if ($("#ajout-produit\\:select_type").val()==="action") {
+            $("#ajout-produit\\:id_t").prop('disabled', true);
+            $("#ajout-produit\\:K").prop('disabled', true);
+        } else {
+            $("#ajout-produit\\:id_t").prop('disabled', false);
+            $("#ajout-produit\\:K").prop('disabled', false);
+        }
+    });
+    
 });
 
 
