@@ -107,7 +107,18 @@ public class option {
         
         if (strat.equals("action"))
         {
-            prix = Double.toString(stock.getPrice(today));
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "nouvelle-position";
+
+            }
+            prix = Double.toString(quantite_int * stock.getPrice(today));
         } else {
             double prix_temp;
 
