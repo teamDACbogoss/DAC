@@ -24,6 +24,7 @@ public class login implements Serializable {
      * Creates a new instance of login
      */
     public login() {
+        this.msg = "";
     }
     
     public String getMsg() {
@@ -36,7 +37,7 @@ public class login implements Serializable {
  
     //validate login
     public String validateUsernamePassword(String email, String pwd) {
-        if (email == null || pwd == null) {
+        /*if (email == null || pwd == null) {
             msg = "Incorrect Username and Password";
             return "login";
         } else {
@@ -52,9 +53,7 @@ public class login implements Serializable {
                 return "login";
             }*/
             return "LoginEnDur";
-        }
-       
-        
+                   
         
     }
 }
