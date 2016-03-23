@@ -1,5 +1,6 @@
-function baduser() {
-    window.alert('Mot de passe ou e-mail incorrect, veuillez recommencer');
+function Administrateur() {
+    // To do ajouter dans la liste
+    window.location = "page-admin.xhtml";
 };
 
 function checkUser() {
@@ -61,6 +62,10 @@ function returnCotations() {
     window.location = "cotations.xhtml";
 };
 
+function returnPortefeuille() {
+    window.location = "portfolio.xhtml";
+};
+
 function validationNouvellePosition() {
     window.alert("Vous venez d'acheter ....");
     
@@ -79,7 +84,7 @@ $(document).ready(function(){
 
 function ajouterProduit(){
     window.location = "ajout-produit.xhtml";
-}
+};
 
 function validerAjout() {
     window.alert("Vous venez d'acheter ....");
@@ -87,3 +92,39 @@ function validerAjout() {
     // To do ajouter dans la liste
     window.location = "creation-strats.xhtml";
 };
+
+
+function createAccountAdmin() {
+    window.location = "create-account-admin.xhtml";
+};
+
+function pageAdmin() {
+    window.location = "page-admin.xhtml";
+};
+
+function gestionActif() {
+    window.location = "gestion-actifs.xhtml";
+}
+
+function ajoutActionAdmin() {
+    window.location = "ajout-action-admin.xhtml";
+};
+
+function disableField(val) {
+    if (val=="action") {
+        document.getElementById("T").disabled = true;
+        document.getElementById("K").disabled = true;
+    } else {
+       document.getElementById("T").disabled = false;
+       document.getElementById("K").disabled = false; 
+    }
+};
+
+function ajoutActifAdmin() {
+    window.alert('Josi est  un blaireau');
+    gestionActif();
+}
+
+function notImplemented() {
+    window.location = "not-implemented.xhtml";
+}

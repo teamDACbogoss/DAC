@@ -6,8 +6,8 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
@@ -21,18 +21,23 @@ public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
     
     @Id
+    @Column(unique=true, nullable=false, length=128)
     private String email;
+    
+    @Column(nullable=false, length=128)
     private String mdp;
+    
+    @Column(nullable=false)
     private boolean isAdmin;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private Portfolio portfolio;
     //@OneToMany
     //private Set<Strategy> personalStrategies;
     private String name;
     private String firstName;
-    private SecretQuestion secretQuestion;
     private String secretQuestionAnswer;
     private boolean isConnected;
+    private SecretQuestion secretQuestion;
 
     public Client() {}
 

@@ -10,20 +10,17 @@
         <!-- Sidebar right -->
         <div id="sidebar-right-wrapper" class="text-center">
             <div id="profile_img">
-                <h:graphicImage name="img/default_profile.gif" class="img-responsive"/>
-                
+                <h:graphicImage name="img/admin.gif"  class="img-responsive"/>
+                <!-- class="img-responsive" -->
             </div>
             <ul class="list-group">
                 <li class="list-group-item">#{sessionBean.name}</li>
-                <li class="list-group-item">Solde :</li>
-                <li class="list-group-item">Equité :</li>
+                <li class="list-group-item">Administrateur</li>
             </ul>
-            <h:form>
-                <h:commandLink action="#{sessionBean.logout()}">
+            <h:link outcome="login" >
                     <h:graphicImage name="img/logout_dac.png" width="50" height="50" />
-                </h:commandLink>
-            </h:form>
-            Déconnexion
+            </h:link>
+            Déconnexion   
         </div>
 
         </ui:composition>

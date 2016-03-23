@@ -6,12 +6,13 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.Map;
-import java.util.Map.Entry;
+import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -22,11 +23,12 @@ public class Strategy implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     private String strategyName;
-    private Map<Asset, Integer> assets;
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<ParamAssetInteger> assets;
     
     public Strategy() {}
     
-    public Strategy(String strategyName, Map<Asset, Integer> assets) {
+    public Strategy(String strategyName, List<ParamAssetInteger> assets) {
         this.strategyName = strategyName;
         this.assets = assets;
     }
@@ -39,11 +41,11 @@ public class Strategy implements Serializable {
         this.strategyName = strategyName;
     }
 
-    public Map<Asset, Integer> getAssets() {
+    public  List<ParamAssetInteger> getAssets() {
         return assets;
     }
 
-    public void setAssets(Map<Asset, Integer> assets) {
+    public void setAssets(List<ParamAssetInteger> assets) {
         this.assets = assets;
     }
     
@@ -69,10 +71,10 @@ public class Strategy implements Serializable {
         return "fr.ensimag.projetjava.Strategy[ name=" + strategyName + " ]";
     }
     
-    public double getPrice(Date date) {
+    public double getPrice(java.util.Calendar date) {
         double result = 0.0;
-        for (Entry<Asset, Integer> asset : this.assets.entrySet()) {
-            result += asset.getValue() * asset.getKey().getPrice(date);
+        for(ParamAssetInteger assetInt : assets) {
+            result += assetInt.asset.getPrice(date) * assetInt.quantity;
         }
         return result;
     }
