@@ -1,3 +1,26 @@
+$(document).ready(function(){
+
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    
+    
+    $("#nouvelle-pos\\:select_type").change(function() {
+        if ($("#nouvelle-pos\\:select_type").val()==="action") {
+            $("#nouvelle-pos\\:id_t").prop('disabled', true);
+            $("#nouvelle-pos\\:K").prop('disabled', true);
+        } else {
+            $("#nouvelle-pos\\:id_t").prop('disabled', false);
+            $("#nouvelle-pos\\:K").prop('disabled', false);
+        }
+    });
+    
+});
+
+
+
+
 function Administrateur() {
     // To do ajouter dans la liste
     window.location = "page-admin.xhtml";
@@ -5,7 +28,7 @@ function Administrateur() {
 
 function checkUser() {
     var check_user = true; // récupérer dans le bean bd
-    
+
     if (!check_user)
     {
         window.alert('Josi gros cassos');
@@ -24,7 +47,7 @@ function returnConnection() {
 
 function answerQuestion() {
     var check_user = true; // récupérer dans le bean bd
-    
+
     if (!check_user)
     {
         window.alert('E-mail non connu');
@@ -36,7 +59,7 @@ function answerQuestion() {
 
 function reinitiatePassword() {
     var check_answer = true; // récupérer dans le bean bd
-    
+
     if (!check_answer)
     {
         window.alert('La réponse est erronée');
@@ -68,19 +91,12 @@ function returnPortefeuille() {
 
 function validationNouvellePosition() {
     window.alert("Vous venez d'acheter ....");
-    
+
     // TO DO ajout nouvelle position ....
     window.location = "cotations.xhtml";
 };
 
-$(document).ready(function(){
 
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-});
 
 function ajouterProduit(){
     window.location = "ajout-produit.xhtml";
@@ -88,7 +104,7 @@ function ajouterProduit(){
 
 function validerAjout() {
     window.alert("Vous venez d'acheter ....");
-    
+
     // To do ajouter dans la liste
     window.location = "creation-strats.xhtml";
 };
@@ -110,15 +126,6 @@ function ajoutActionAdmin() {
     window.location = "ajout-action-admin.xhtml";
 };
 
-function disableField(val) {
-    if (val=="action") {
-        document.getElementById("T").disabled = true;
-        document.getElementById("K").disabled = true;
-    } else {
-       document.getElementById("T").disabled = false;
-       document.getElementById("K").disabled = false; 
-    }
-};
 
 function ajoutActifAdmin() {
     window.alert('Josi est  un blaireau');
