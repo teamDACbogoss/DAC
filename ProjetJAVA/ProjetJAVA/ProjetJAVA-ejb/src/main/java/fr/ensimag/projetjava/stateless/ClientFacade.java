@@ -26,6 +26,5 @@ public class ClientFacade extends AbstractFacade<Client> implements ClientFacade
 
     public ClientFacade() {
         super(Client.class);
-    }
-    
+    }    
 }
