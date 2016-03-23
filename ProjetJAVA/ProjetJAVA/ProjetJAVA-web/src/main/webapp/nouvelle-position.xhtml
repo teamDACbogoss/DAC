@@ -36,14 +36,9 @@
                         </div>
                         <div class="col-md-3">
                             Choix de l'action:
-                            <select class="form-control">
-                                <option>AccorHotels</option>
-                                <option>Airbus</option>
-                                <option>Air Liquide</option>
-                                <option>Alcatel-Lucent</option>
-                                <option>Alstom</option>
-                                <option>ArcelorMittal</option>
-                            </select>
+                            <h:selectOneMenu class="form-control" value="#{action}">
+                                <f:selectItems value="#{option.actions}" />
+                            </h:selectOneMenu>
                         </div>
                     </div>
                     
@@ -123,7 +118,7 @@
 
                         
                         <a href="#" onclick="validationNouvellePosition()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
-                        <h:commandButton value="Valoriser" action="#{option.pricingCall(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
+                        <h:commandButton value="Valoriser" action="#{option.pricingCall(strat, action, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
                     </div>
                 </h:form>

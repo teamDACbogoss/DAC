@@ -5,18 +5,16 @@
  */
 package fr.ensimag.projetjava.servlet;
 
-import java.io.Serializable;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Calendar;
-
 import fr.ensimag.projetjava.entity.*;
-import java.util.GregorianCalendar;
+import java.util.LinkedList;
+import java.util.List;
+import javax.ejb.EJB;
 
 /**
  *
@@ -26,11 +24,27 @@ import java.util.GregorianCalendar;
 @RequestScoped
 public class option {
 
+    @EJB
+    private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
+    
     private String prix;
 
     private String msg_maturite;
     private String msg_strike;
     private String msg_quantite;
+    private List<String> actions;
+
+    public List<String> getActions() {
+        actions = new LinkedList<>();
+        for(Stock st : stockFacade.findAll()) {
+            actions.add(st.getName());
+        }
+        return actions;
+    }
+
+    public void setActions(List<String> actions) {
+        this.actions = actions;
+    }
 
     
     
@@ -82,12 +96,18 @@ public class option {
         msg_maturite = "";
     }
     
-    public String pricingCall(String strat, String k, String mat, String quant)
+    public String pricingCall(String strat, String actionName, String k, String mat, String quant)
     {
+        Stock stock = stockFacade.find(actionName);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        
         
         if (strat.equals("action"))
         {
-            prix = "toto";
+            prix = Double.toString(stock.getPrice(today));
         } else {
             double prix_temp;
 
@@ -114,11 +134,6 @@ public class option {
 
             Calendar maturite_cal = Calendar.getInstance();
             maturite_cal.setTime(maturite_Date);
-
-            Calendar today = Calendar.getInstance();
-            today.set(Calendar.HOUR_OF_DAY, 0);
-            today.set(Calendar.MINUTE, 0);
-            today.set(Calendar.SECOND, 0);
 
             int quantite_int; 
             try  
