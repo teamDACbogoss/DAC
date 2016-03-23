@@ -24,6 +24,7 @@ public class login implements Serializable {
      * Creates a new instance of login
      */
     public login() {
+        this.msg = "";
     }
     
     public String getMsg() {
