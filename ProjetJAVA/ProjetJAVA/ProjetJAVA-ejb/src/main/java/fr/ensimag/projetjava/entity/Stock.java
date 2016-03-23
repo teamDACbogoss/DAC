@@ -5,7 +5,6 @@
  */
 package fr.ensimag.projetjava.entity;
 
-import java.util.Date;
 import javax.persistence.Entity;
 
 /**
@@ -31,7 +30,7 @@ public class Stock extends Asset {
     }
 
     @Override
-    public double getPrice(Date date) {
+    public double getPrice(java.util.Calendar date) {
         return 121.25;
     }
     

@@ -23,6 +23,10 @@ public class ParamAssetInteger extends Param implements Serializable {
     protected Asset asset;
     protected int quantity;
     
+    public ParamAssetInteger() {
+        
+    }
+    
     public ParamAssetInteger(Asset asset){
         this.asset = asset;
         this.quantity = 0;

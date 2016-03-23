@@ -10,7 +10,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 /**
@@ -38,7 +37,6 @@ public class Client implements Serializable {
     private String firstName;
     private String secretQuestionAnswer;
     private boolean isConnected;
-    @ManyToOne(cascade = CascadeType.PERSIST)
     private SecretQuestion secretQuestion;
 
     public Client() {}
