@@ -53,27 +53,12 @@ public class login implements Serializable {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
-            
             if (cl == null || !cl.getMdp().equals(pwd)) {
                 msg = "Incorrect Username and Password";
                 return "login";
             } else {
                 return session.login(email, cl.getIsAdmin());
             }
-            
-            /*
-            if (email.equals("test") && pwd.equals("test")) {
-                return session.login(email, false);
-            } else if (email.equals("admin") && pwd.equals("admin")) {
-                return session.login(email, true);
-            } else {
-                msg = "Incorrect Username and Password";
-                return "login";
-            }
-                    */
         }
-       
-        
-        
     }
 }
