@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -11,7 +12,7 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form id = "nouvelle-pos">
                     <h3>Nouvelle Position</h3>      
                     
                     <div class="row">
@@ -24,13 +25,14 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             Choix de stratégie:
-                            <select class="form-control"  onchange="disableField(this.value)">
-                                <option id="call" value="call">Call</option>
-                                <option id="put" value="put">Put</option>
-                                <option id="action" value="action">Action</option>
-                                <!-- <option>Straddle</option>
-                                <option>Strangle</option> -->
-                            </select>
+
+                            <h:selectOneMenu class="form-control" id="select_type" value="#{strat}">
+                                <f:selectItem itemValue="call" itemLabel="Call" />
+                                <f:selectItem itemValue="put" itemLabel="Put" />
+                                <f:selectItem itemValue="action" itemLabel="Action" />
+                            </h:selectOneMenu>	
+                            
+                            
                         </div>
                         <div class="col-md-3">
                             Choix de l'action:
@@ -68,24 +70,39 @@
                     </div>
                     
                     <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_strike}" style="color:red;" />
+                        </div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_maturite}" style="color:red;" />
+                        </div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_quantite}" style="color:red;"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
                         <br></br>
                     </div>
+                    
+                    
                     
                     <div class="row">
                         <div class="col-md-2"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" id="K" aria-describedby="sizing-addon3"/>
+                                <h:inputText id = "K" class="form-control" binding="#{k}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <h:inputText class="form-control" binding="#{mat}" />
+                                <h:inputText class="form-control"  id = "id_t" binding="#{mat}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control" binding="#{quant}" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -102,10 +119,11 @@
                     </div>
                     
                     <div class="row">
-                        <h:commandButton value="Pricing" action="#{option.pricingCall(mat.value)}" class="btn btn-success"></h:commandButton>
+                        
 
+                        
                         <a href="#" onclick="validationNouvellePosition()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
-                        <a href="#" onclick="" class="btn btn-warning" aria-label="Left Align" role="button">Valoriser</a>
+                        <h:commandButton value="Valoriser" action="#{option.pricingCall(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
                     </div>
                 </h:form>
