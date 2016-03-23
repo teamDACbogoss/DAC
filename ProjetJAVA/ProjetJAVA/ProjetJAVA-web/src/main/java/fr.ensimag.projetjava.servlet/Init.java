@@ -1,7 +1,7 @@
-import fr.ensimag.projetjava.entity.Client;
-import fr.ensimag.projetjava.entity.SecretQuestion;
+import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,6 +17,14 @@ import javax.servlet.http.HttpServletResponse;
 public class Init extends HttpServlet {    
     @EJB
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.ParamDateFacadeLocal paramDateFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.ParamDoubleFacadeLocal paramDoubleFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.ParamStockFacadeLocal paramStockFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -66,6 +74,25 @@ public class Init extends HttpServlet {
                             SecretQuestion.q1, 
                             "Montmuzard");
         clientFacade.create(client); 
+        
+        //Test insertion paramDate
+        Calendar myCalendar = Calendar.getInstance();
+        myCalendar.set(1992, 04, 17);
+        ParamDate paramDate = new ParamDate(myCalendar, "Anniv Didier");
+        paramDateFacade.create(paramDate);
+        
+        //Test insertion paramDouble
+        ParamDouble paramDouble = new ParamDouble(3.14, "pi");
+        paramDoubleFacade.create(paramDouble);
+        
+        //Test insertion stock
+        Stock stock = new Stock("CAC40", ".FCHI");
+        stockFacade.create(stock);
+        
+        //Test insertion paramStock
+        Stock stock2 = new Stock("DAX", ".TOTO");
+        ParamStock paramStock = new ParamStock(stock2, "stock");
+        paramStockFacade.create(paramStock);
     }
 
     /**

@@ -17,8 +17,10 @@ public class ParamDouble extends Param {
     
     public ParamDouble(){}
     
-    public ParamDouble(double p) {
+    public ParamDouble(double p,
+                       String name) {
         val = p;
+        this.name = name;
     }
     
     public double getVal() {

@@ -6,7 +6,6 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -57,5 +56,5 @@ public abstract class Asset implements Serializable {
         return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
     
-    public abstract double getPrice(Date date);
+    public abstract double getPrice(java.util.Calendar date);
 }

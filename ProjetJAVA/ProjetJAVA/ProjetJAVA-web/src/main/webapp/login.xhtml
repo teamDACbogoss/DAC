@@ -14,13 +14,11 @@
                 <h:form>
                     <h3>Connexion à PigeOption</h3>
                   
-                    <h:outputText value="#{login.msg}"/>
+                    <h:outputText value="#{login.msg}" style="color:red;"/>
                     
                     <div class="container">
                        
                         <div class="row">
-                            <br></br>
-                            <br></br>
                             <br></br>
                             <br></br>
                         </div> 
@@ -44,7 +42,7 @@
                             <div class="col-md-4">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                                <h:inputText class="form-control" binding="#{pwd}" />
+                                <h:inputSecret class="form-control" binding="#{pwd}" />
                             </div>
                             </div>
                         </div>
@@ -53,26 +51,12 @@
                             <br></br>
                             <br></br>
                             <br></br>
-                            <br></br>
-                            <br></br>
                         </div>    
 
                         <div class="row">
-
                             <h:commandButton value="Connexion" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-success"></h:commandButton>
-
-                            <h:commandButton value="Mot de passe oublié" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-warning"></h:commandButton>
-
-                            <button type="button" onclick="createAccount()" class="btn btn-info" aria-label="Left Align">
-                                <a href="#" >Pas de compte?</a>
-                            </button>
-                            
-                            <h:commandButton value="Pas de compte?" onclick="createAccount()" class="btn btn-info"></h:commandButton>
-
-                            
-                           
-
-                            <h:commandButton value="Test" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-danger"></h:commandButton>
+                            <h:button outcome="reinitiate-password" value="Mot de passe oublié" class="btn btn-warning"/>
+                            <h:button outcome="create-account" value="Pas de compte ?" class="btn btn-info"/>
 
                         </div>
                     </div>

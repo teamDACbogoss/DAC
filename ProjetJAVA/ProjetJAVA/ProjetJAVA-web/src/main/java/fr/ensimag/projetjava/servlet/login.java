@@ -8,6 +8,7 @@ package fr.ensimag.projetjava.servlet;
 import javax.inject.Named;
 import java.io.Serializable;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -23,6 +24,7 @@ public class login implements Serializable {
      * Creates a new instance of login
      */
     public login() {
+        this.msg = "";
     }
     
     public String getMsg() {
@@ -38,13 +40,22 @@ public class login implements Serializable {
         if (email == null || pwd == null) {
             msg = "Incorrect Username and Password";
             return "login";
-        }
-        else if (email.equals("test") && pwd.equals("test")) {
-            return "portfolio";
         } else {
-            msg = "Incorrect Username and Password";
-            return "login";
+            FacesContext facesContext = FacesContext.getCurrentInstance();
+            sessionBean session = (sessionBean)facesContext.getApplication()
+                    .createValueBinding("#{sessionBean}").getValue(facesContext);
+            if (email.equals("test") && pwd.equals("test")) {
+                return session.login(email, false);
+            } else if (email.equals("admin") && pwd.equals("admin")) {
+                return session.login(email, true);
+            } else {
+                msg = "Incorrect Username and Password";
+                return "login";
+            }
         }
+       
+        
+        
     }
     
     //public void createAccount()
