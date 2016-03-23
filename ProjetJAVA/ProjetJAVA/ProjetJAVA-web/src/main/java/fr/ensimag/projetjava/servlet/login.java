@@ -5,8 +5,11 @@
  */
 package fr.ensimag.projetjava.servlet;
 
+import fr.ensimag.projetjava.entity.Client;
+import fr.ensimag.projetjava.stateless.ClientFacade;
 import javax.inject.Named;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 
@@ -17,6 +20,10 @@ import javax.faces.context.FacesContext;
 @Named(value = "login")
 @RequestScoped
 public class login implements Serializable {
+    
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    
 
     private String msg;
     
@@ -41,9 +48,20 @@ public class login implements Serializable {
             msg = "Incorrect Username and Password";
             return "login";
         } else {
+            
+            Client cl = clientFacade.find(email);
             FacesContext facesContext = FacesContext.getCurrentInstance();
             sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
+            
+            if (cl == null || !cl.getMdp().equals(pwd)) {
+                msg = "Incorrect Username and Password";
+                return "login";
+            } else {
+                return session.login(email, cl.getIsAdmin());
+            }
+            
+            /*
             if (email.equals("test") && pwd.equals("test")) {
                 return session.login(email, false);
             } else if (email.equals("admin") && pwd.equals("admin")) {
@@ -52,6 +70,7 @@ public class login implements Serializable {
                 msg = "Incorrect Username and Password";
                 return "login";
             }
+                    */
         }
        
         
