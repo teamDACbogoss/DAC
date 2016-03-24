@@ -145,7 +145,7 @@ public class sessionBean implements Serializable {
             this.isAdmin = cl.getIsAdmin();
             this.isLogged = true;
             if (isAdmin) {
-                return "admin";
+                return "gestion-comptes";
             } else {
                 return "portfolio";
             }
