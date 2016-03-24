@@ -1,6 +1,8 @@
 import fr.ensimag.projetjava.entity.*;
+import fr.ensimag.projetjava.stateless.StrategyFacade;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.ejb.EJB;
@@ -26,6 +28,8 @@ public class Init extends HttpServlet {
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
     @EJB
     private fr.ensimag.projetjava.stateless.ParamStockFacadeLocal paramStockFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.StrategyFacadeLocal strategyFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -214,7 +218,11 @@ public class Init extends HttpServlet {
         CAC40 = new Stock("Vivendi", "VIV");
         stockFacade.create(CAC40);
         
-        
+        List<ParamAssetInteger> stocks = new ArrayList<>();
+        ParamAssetInteger param = new ParamAssetInteger(new Stock("Google", "GOO"), 1);
+        stocks.add(param);
+        Strategy strategy = new Strategy("Stratégie 1", stocks);
+        strategyFacade.create(strategy);
         //Test insertion paramDate
         /*Calendar myCalendar = Calendar.getInstance();
         myCalendar.set(1992, 04, 17);
