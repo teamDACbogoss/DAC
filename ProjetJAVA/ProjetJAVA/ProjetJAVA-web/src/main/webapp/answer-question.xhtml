@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
 
     <h:body>
@@ -16,9 +17,10 @@
                   
                     <div class="row">
                         <br></br>
+                        <h:outputText value="#{answerQuestion.msg}" style="color:red;"/>
                         <br></br>
-                        <br>E-mail :</br> <!--Printer l'e-mail-->
-                        <br>Question :</br> <!--Printer la question-->
+                        <br>E-mail : <h:outputText value="#{sessionBean.name}"/></br> <!--Printer l'e-mail-->
+                        <br>Question : <h:outputText value="#{sessionBean.secretQuestion}"/></br> <!--Printer la question-->
                         <br></br>
                         <br></br>
                     </div> 
@@ -28,7 +30,7 @@
                         <div class="col-md-4">
                         <div class="input-group input-group-sm">
                             <span class="input-group-addon" id="basic-addon1"><span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
-                            <input type="text" class="form-control" placeholder="Réponse à la question" value="#{User.answer}" aria-describedby="sizing-addon3"/>
+                            <h:inputText class="form-control" binding="#{answer}" />
                         </div>
                         </div>
                     </div>
@@ -42,19 +44,12 @@
                     </div>    
                         
                     <div class="row">
-                    
-                        <button type="button" onclick="reinitiatePassword()" action="#{login.reintializePassword}" class="btn btn-success" aria-label="Left Align">
-                            <a href="#" >Valider</a>
-                        </button>
-                        
-                        <button type="button" onclick="returnConnection()" action="#{login.returnLogin}" class="btn btn-danger" aria-label="Left Align">
-                            <a href="#" >Annuler</a>
-                        </button>
-                    
-                        
+
+                        <h:commandButton value="Valider" action="#{answerQuestion.validAnswer(answer.value)}" class="btn btn-success"></h:commandButton>
+                        <h:button outcome="login" value="Annuler" class="btn btn-danger"/>
 
                     </div>
-                    
+                                        
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -19,17 +19,19 @@ import javax.persistence.Id;
 public abstract class Asset implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    protected Long id;
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+    //protected Long id;
     protected String name;
     
+    /*
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }   
+    }
+    */
     
     public String getName() {
         return name;
@@ -42,7 +44,7 @@ public abstract class Asset implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (name != null ? name.hashCode() : 0);
         return hash;
     }
     
@@ -53,7 +55,7 @@ public abstract class Asset implements Serializable {
             return false;
         }
         FinancialOption other = (FinancialOption) object;
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+        return !((this.name == null && other.name != null) || (this.name != null && !this.name.equals(other.name)));
     }
     
     public abstract double getPrice(java.util.Calendar date);

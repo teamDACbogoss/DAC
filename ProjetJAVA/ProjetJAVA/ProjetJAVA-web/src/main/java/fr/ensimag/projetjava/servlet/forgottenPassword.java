@@ -6,28 +6,24 @@
 package fr.ensimag.projetjava.servlet;
 
 import fr.ensimag.projetjava.entity.Client;
-import javax.inject.Named;
-import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
  * @author josib
  */
-@Named(value = "login")
+@Named(value = "forgottenPassword")
 @RequestScoped
-public class login implements Serializable {
+public class forgottenPassword {
     
+    @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+
     private String msg;
-    
-    /**
-     * Creates a new instance of login
-     */
-    public login() {
-        this.msg = "";
-    }
-    
+
     public String getMsg() {
         return msg;
     }
@@ -35,19 +31,26 @@ public class login implements Serializable {
     public void setMsg(String msg) {
         this.msg = msg;
     }
- 
-    //validate login
-    public String validateUsernamePassword(String email, String pwd) {
-        if (email == null || pwd == null) {
-            msg = "Incorrect Username and Password";
+
+    /**
+     * Creates a new instance of forgottenPassword
+     */
+    public forgottenPassword() {
+        msg = "";
+    }
+    
+    public String validEmail(String email) {
+        Client cl = clientFacade.find(email);
+        if (cl == null) {
+            msg = "Adresse e-mail inconnue";
             return "";
         } else {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
-            String page = session.login(email, pwd);
+            String page = session.setForPwdReinit(email);
             if (page == null) {
-                msg = "Incorrect Username and Password";
+                msg = "Adresse e-mail inconnue";
                 return "";
             } else {
                 return page;

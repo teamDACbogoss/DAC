@@ -26,7 +26,7 @@ public class Stock extends Asset {
     
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.Stock[ id=" + id + " ]";
+        return "fr.ensimag.projetjava.Stock[ id=" + name + " ]";
     }
 
     @Override
