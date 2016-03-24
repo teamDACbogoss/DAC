@@ -10,13 +10,26 @@
         <!-- Sidebar right -->
         <div id="sidebar-right-wrapper" class="text-center">
             <div id="profile_img">
-                <h:graphicImage name="img/default_profile.gif" class="img-responsive"/>
-                
+                <ui:fragment rendered="#{sessionBean.profile_pic eq 0}">
+                    <h:graphicImage name="img/default_profile_0.gif" class="img-responsive"/>
+                </ui:fragment>
+                <ui:fragment rendered="#{sessionBean.profile_pic eq 1}">
+                    <h:graphicImage name="img/default_profile_1.gif" class="img-responsive"/>
+                </ui:fragment>
+                <ui:fragment rendered="#{sessionBean.profile_pic eq 2}">
+                    <h:graphicImage name="img/default_profile_2.gif" class="img-responsive"/>
+                </ui:fragment>
+                <ui:fragment rendered="#{sessionBean.profile_pic eq 3}">
+                    <h:graphicImage name="img/default_profile_3.gif" class="img-responsive"/>
+                </ui:fragment>
+                <ui:fragment rendered="#{sessionBean.profile_pic eq 4}">
+                    <h:graphicImage name="img/default_profile_4.gif" class="img-responsive"/>
+                </ui:fragment>
             </div>
             <ul class="list-group">
                 <li class="list-group-item">#{sessionBean.name}</li>
-                <li class="list-group-item">Solde :</li>
-                <li class="list-group-item">Equité :</li>
+                <li class="list-group-item">Solde : #{sessionBean.solde}</li>
+                <li class="list-group-item">Valeur totale du compte : #{sessionBean.totalValue}</li>
             </ul>
             <h:form>
                 <h:commandLink action="#{sessionBean.logout()}">

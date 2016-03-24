@@ -1,8 +1,8 @@
+package fr.ensimag.projetjava.servlet;
+
 import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -74,7 +74,8 @@ public class Init extends HttpServlet {
                             "Clément", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("didier@imag.fr", 
                             "mdp", 
@@ -83,7 +84,8 @@ public class Init extends HttpServlet {
                             "Yeung", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("baptiste@imag.fr", 
                             "mdp", 
@@ -92,7 +94,8 @@ public class Init extends HttpServlet {
                             "Josi", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000000.0);
+                            1000000.0,
+                            1);
         clientFacade.create(client);
         client = new Client("johanna@imag.fr", 
                             "mdp", 
@@ -101,7 +104,8 @@ public class Init extends HttpServlet {
                             "Gogo Dago", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("theophile@imag.fr", 
                             "mdp", 
@@ -110,7 +114,8 @@ public class Init extends HttpServlet {
                             "Random", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("kevin@imag.fr", 
                             "mdp", 
@@ -119,7 +124,8 @@ public class Init extends HttpServlet {
                             "Bonkoski", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            2);
         clientFacade.create(client);
         client = new Client("chunli@imag.fr", 
                             "mdp", 
@@ -128,7 +134,8 @@ public class Init extends HttpServlet {
                             "Li", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("xin@imag.fr", 
                             "mdp", 
@@ -137,7 +144,8 @@ public class Init extends HttpServlet {
                             "Riu", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            3);
         clientFacade.create(client);
         
         // Insertion des actifs du CAC40
