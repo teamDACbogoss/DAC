@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import fr.ensimag.projetjava.entity.*;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -34,6 +35,21 @@ public class option {
     private String msg_quantite;
     private List<String> actions;
 
+    private ArrayList<Stock> listStock;
+
+   
+   public ArrayList<Stock> getListStock() {
+       ArrayList<Stock> list_temp = new ArrayList<>();
+       for(Stock st : stockFacade.findAll()) {
+           list_temp.add(st);
+        }
+        return list_temp;
+   }
+
+   public void setListStock(ArrayList<Stock> listStock) {
+      this.listStock = listStock;
+   }
+    
     public List<String> getActions() {
         actions = new LinkedList<>();
         for(Stock st : stockFacade.findAll()) {
@@ -96,7 +112,7 @@ public class option {
         msg_maturite = "";
     }
     
-    public String pricingCall(String strat, String actionName, String k, String mat, String quant)
+    public String pricing(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
         Calendar today = Calendar.getInstance();
@@ -118,7 +134,7 @@ public class option {
                 return "nouvelle-position";
 
             }
-            prix = Double.toString(quantite_int * stock.getPrice(today));
+            prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
         } else {
             double prix_temp;
 
@@ -158,20 +174,91 @@ public class option {
 
             }
 
-            Stock asset = new Stock("apple", "apple");
-
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", asset, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
                 prix_temp = option.getPrice(today);
             } else {
-                VanillaPut option = new VanillaPut("toto", asset, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
                 prix_temp = option.getPrice(today);
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp);
+                prix = Double.toString(prix_temp).substring(0, 5); ;
         }
                 
         return "nouvelle-position"; 
+    }
+    
+    public String achat(String strat, String actionName, String k, String mat, String quant)
+    {
+        Stock stock = stockFacade.find(actionName);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        
+        
+        if (strat.equals("action"))
+        {
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "cotations";
+            }
+        } else {
+            double prix_temp;
+
+            double k_double; 
+            try  
+            {  
+                k_double = Double.parseDouble(k);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_strike = "Mauvais strike";
+                return "cotations";
+            }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date maturite_Date;
+            try {
+                maturite_Date = formatter.parse(mat);
+            } catch (ParseException e) {
+                msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
+                return "cotations";
+            }
+
+            Calendar maturite_cal = Calendar.getInstance();
+            maturite_cal.setTime(maturite_Date);
+
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "cotations";
+            }
+
+            if (strat.equals("call")){
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            } else {
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            }
+            
+                prix_temp *= quantite_int;
+                prix = Double.toString(prix_temp).substring(0, 5);  
+;
+        }
+        return "cotations";
     }
 }
