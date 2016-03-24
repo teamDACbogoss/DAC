@@ -2,7 +2,7 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
 
 
     <h:body>
@@ -66,6 +66,7 @@
                                     <th>Delta</th>
                                     <th>Theta</th>
                                     <th>Gamma</th>
+                                    <th>Prix</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -78,6 +79,7 @@
                                     <td>0,33</td>
                                     <td>0,33</td>
                                     <td>0,33</td>
+                                    <td>65</td>
                                 </tr>
                                 <ui:repeat var="o" value="#{order.orderList}" varStatus="status"><!-- TODO -->
                                     <tr>

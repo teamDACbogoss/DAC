@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -11,7 +12,7 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+                <h:form id = "ajout-produit">
                     <h3>Ajout Produit</h3>      
                     
                     <div class="row">
@@ -24,13 +25,14 @@
                         <div class="col-md-3"> </div>
                         <div class="col-md-3">
                             Choix de stratégie:
-                            <select class="form-control">
-                                <option>Action</option>
-                                <option>Call</option>
-                                <option>Put</option>
-                                <!-- <option>Straddle</option>
-                                <option>Strangle</option> -->
-                            </select>
+                            
+                            <h:selectOneMenu class="form-control" id="select_type" value="#{strat}">
+                                <f:selectItem itemValue="call" itemLabel="Call" />
+                                <f:selectItem itemValue="put" itemLabel="Put" />
+                                <f:selectItem itemValue="action" itemLabel="Action" />
+                            </h:selectOneMenu>	
+                            
+                            
                         </div>
                         <div class="col-md-3">
                             Choix de l'action:
@@ -68,6 +70,19 @@
                     </div>
                     
                     <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_strike}" style="color:red;" />
+                        </div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_maturite}" style="color:red;" />
+                        </div>
+                        <div class="col-md-2">
+                            <h:outputText value="#{option.msg_quantite}" style="color:red;"/>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
                         <br></br>
                     </div>
                     
@@ -75,22 +90,22 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText id = "K" class="form-control" binding="#{k}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control"  id = "id_t" binding="#{mat}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control" binding="#{quant}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3" readonly="true"></input>
+                                <input type="text" class="form-control" value="#{option.prix}" aria-describedby="sizing-addon3" readonly = "true"/>
                             </div>
                         </div>
                     </div>
@@ -106,9 +121,8 @@
                             <a href="#" >Valider</a>
                         </button>
                     
-                        <button type="button" onclick="()" action="#" class="btn btn-warning" aria-label="Left Align">
-                            <a href="#" >Valoriser</a>
-                        </button>
+                        <h:commandButton value="Valoriser" action="#{option.pricing(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
+
                                         
                         <button type="button" onclick="creationStrategie()" action="#" class="btn btn-danger" aria-label="Left Align">
                             <a href="#"  >Annuler</a>

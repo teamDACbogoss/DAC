@@ -48,7 +48,7 @@ public class createaccount implements Serializable {
         
         String userName = name;
         
-        msg = name;
+        msg = "gfdfgh" + name;
         return "create-account";
         
         //prix = Float.toString(prix_double); 

@@ -38,10 +38,12 @@ public class Client implements Serializable {
     private String secretQuestionAnswer;
     private boolean isConnected;
     private SecretQuestion secretQuestion;
+    private double cash;
+
 
     public Client() {}
 
-    public Client(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer) {
+    public Client(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer, double cash) {
         this.email = email;
         this.mdp = mdp;
         this.isAdmin = isAdmin;
@@ -51,6 +53,7 @@ public class Client implements Serializable {
         this.secretQuestion = secretQuestion;
         this.secretQuestionAnswer = secretQuestionAnswer;
         this.isConnected = false;
+        this.cash = cash;
     }
     
     public String getEmail() {
@@ -131,6 +134,14 @@ public class Client implements Serializable {
 
     public void setSecretQuestionAnswer(String secretQuestionAnswer) {
         this.secretQuestionAnswer = secretQuestionAnswer;
+    }
+    
+    public double getCash() {
+        return cash;
+    }
+
+    public void setCash(double cash) {
+        this.cash = cash;
     }
     
     @Override

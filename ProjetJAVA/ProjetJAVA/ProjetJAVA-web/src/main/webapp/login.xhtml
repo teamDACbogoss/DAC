@@ -55,9 +55,23 @@
 
                         <div class="row">
                             <h:commandButton value="Connexion" action="#{login.validateUsernamePassword(email.value, pwd.value)}" class="btn btn-success"></h:commandButton>
-                            <h:button outcome="reinitiate-password" value="Mot de passe oublié" onclick="redirectAccount()" class="btn btn-warning"/>
+
+                            <h:button outcome="forgotten-password" value="Mot de passe oublié" class="btn btn-warning"/>
+
                             <h:button outcome="create-account" value="Pas de compte ?" class="btn btn-info"/>
 
+                        </div>
+                        
+                        <div class="row">
+                            <br></br>
+                            <br></br>
+                            <br></br>
+                        </div>    
+
+                        <div class="row">
+                            <button type="button" onclick="Init()" action="#" class="btn btn-danger" aria-label="Left Align">
+                                <a href="#"  >Initialisation BD</a>
+                            </button> 
                         </div>
                     </div>
                     <!--

@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -15,38 +16,57 @@
                     <h3>Portefeuille</h3>
                 </h:form>
                 
-                <div class="table-responsive"> 
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Stratégie</th>
-                                <th>Nom</th>
-                                <th>Quantité</th>
-                                <th>Prix courant</th>
-                                <th>Prix d'achat</th>
-                                <th>Profit</th>
-                                <th>Date d'émission</th>
-                                <th>Maturité</th>
-                                <th>Clôturer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Straddle</td>
-                                <td>Axa</td>
-                                <td>10</td>
-                                <td>24.3</td>
-                                <td>25.3</td>
-                                <td>-1.0</td>
-                                <td>10/10/15</td>
-                                <td>10/03/16</td>
-                                <td>
-                                    <a href="#" onclick="returnPortefeuille()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Clôturer</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                <div class="row">
+                    <br></br>
+                    <br></br>
                 </div>
+
+                <div id="table-40">
+                <div class="table-responsive">
+                    <h:dataTable value="#{option.listStock}" var="action"
+                                 styleClass="employeeTable"
+                                 headerClass="employeeTableHeader"
+                                 rowClasses="employeeTableOddRow,employeeTableEvenRow"
+                                 class="table table-bordered">
+                        <h:column>    				
+                            <f:facet name="header">Stratégie</f:facet>    				
+                               #{action.name}
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Nom</f:facet>
+                               #{action.name}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Quantité</f:facet>
+                               #{1}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Prix courant</f:facet>
+                               #{action.stockPrice}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Prix d'achat</f:facet>
+                               #{action.stockPricePrevious}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Profit</f:facet>
+                               #{action.stockPricePrevious}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date d'émission</f:facet>
+                                #{"01-01-2010"}                           </h:column>
+                        <h:column>
+                            <f:facet name="header">Maturité</f:facet>
+                                #{"01-01-2010"}               
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Clôturité</f:facet>
+                                <a href="#" onclick="returnPortefeuille()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Clôturer</a>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+                </div>
+
             </ui:define>
         </ui:composition>
         
