@@ -21,7 +21,7 @@ import javax.ejb.EJB;
  *
  * @author bonkoskk
  */
-@Named(value = "option")
+@Named(value = "portfolio")
 @RequestScoped
 public class portfolio {
 
