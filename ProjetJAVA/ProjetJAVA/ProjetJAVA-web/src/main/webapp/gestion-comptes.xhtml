@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -16,39 +17,56 @@
                   
                     <div class="row">
                         <br></br>
+                            <h:outputText value="#{gestionComptes.msgok}" style="color:green;"/>
+                            <h:outputText value="#{gestionComptes.msgerr}" style="color:red;"/>
                         <br></br>
-                    </div> 
+                    </div>
                     
-                    <div class="table-responsive"> 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prénom</th>
-                                    <th>Adresse email</th>
-                                    <th>Solde</th>
-                                    <th>Gérer</th>
-                                    <th>Consulter</th>
-                                </tr>
-                                <tr>
-                                   <td>Bonkoski</td>
-                                   <td>Kévin</td>
-                                   <td>bonkoski.kevin@gmail.com</td>
-                                   <td>223</td>
-                                   <td>
-                                       <a href="#" onclick="()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Gérer</a>
-                                   </td>
-                                   <td>
-                                       <a href="#" onclick="()" class="btn btn-xs btn-info" aria-label="Left Align" role="button">Consulter</a>
-                                   </td>
-                               </tr>
-                            </thead>
-                            
-                        </table>
+                    <div id="table-40">
+                        <div class="table-responsive">
+                            <h:dataTable value="#{gestionComptes.listClients}" var="client"
+                                class="table table-bordered">
+                                <h:column>    				
+                                   <f:facet name="nom">Nom</f:facet>    				
+                                   #{client.name}
+                                </h:column>
+                                <h:column>
+                                   <f:facet name="prenom">Prénom</f:facet>
+                                   #{client.firstName}
+                                </h:column>
+                                <h:column>
+                                   <f:facet name="email">Adresse email</f:facet>
+                                   #{client.email}
+                                </h:column>
+                                <h:column>
+                                   <f:facet name="argent">Argent</f:facet>
+                                   #{client.cash} €
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="crediter">Créditer</f:facet>
+                                    <h:commandButton value="Créditer 1000€" action="#{gestionComptes.crediter(client.email)}" class="btn btn-xs btn-info"></h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="emprunter">Emprunter</f:facet>
+                                    <h:commandButton value="Emprunter 1000€" action="#{gestionComptes.emprunter(client.email)}" class="btn btn-xs btn-info"></h:commandButton>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="admin">Admin</f:facet>
+                                    <ui:fragment rendered="#{!client.isAdmin}">
+                                        <h:commandButton value="Rendre Admin" action="#{gestionComptes.rendreAdmin(client.email)}" class="btn btn-xs btn-warning"></h:commandButton>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{client.isAdmin}">
+                                        <h:commandButton value="Retirer Admin" action="#{gestionComptes.rendreNonAdmin(client.email)}" class="btn btn-xs btn-info"></h:commandButton>
+                                    </ui:fragment>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="supprimer compte">Supprimer</f:facet>
+                                    <h:commandButton value="Supprimer" action="#{gestionComptes.supprimerCompte(client.email)}" class="btn btn-xs btn-info"></h:commandButton>
+                                </h:column>
+                             </h:dataTable>
+                        </div>
                     </div>
-                    <div class="row">
-                        <a href="#" onclick="createAccountAdmin()" class="btn btn-success" aria-label="Left Align" role="button">Ajouter un utilisateur</a>
-                    </div>
+                       
                 </h:form>
             </ui:define>
         </ui:composition>

@@ -7,29 +7,35 @@ $(document).ready(function(){
     
     
     $("#nouvelle-pos\\:select_type").change(function() {
-        if ($("#nouvelle-pos\\:select_type").val()==="action") {
+        updateDisabledTrucsNouvellePos();
+    });
+    updateDisabledTrucsNouvellePos();
+        
+    $("#ajout-produit\\:select_type").change(function() {
+        updateDisabledTrucs();
+    });
+    updateDisabledTrucs();
+});
+
+function updateDisabledTrucsNouvellePos(){
+            if ($("#nouvelle-pos\\:select_type").val()==="action") {
             $("#nouvelle-pos\\:id_t").prop('disabled', true);
             $("#nouvelle-pos\\:K").prop('disabled', true);
         } else {
             $("#nouvelle-pos\\:id_t").prop('disabled', false);
             $("#nouvelle-pos\\:K").prop('disabled', false);
         }
-    });
-    
-        
-    $("#ajout-produit\\:select_type").change(function() {
-        if ($("#ajout-produit\\:select_type").val()==="action") {
-            $("#ajout-produit\\:id_t").prop('disabled', true);
-            $("#ajout-produit\\:K").prop('disabled', true);
-        } else {
-            $("#ajout-produit\\:id_t").prop('disabled', false);
-            $("#ajout-produit\\:K").prop('disabled', false);
-        }
-    });
-    
-});
+}
 
-
+function updateDisabledTrucs() {
+    if ($("#ajout-produit\\:select_type").val()==="action") {
+        $("#ajout-produit\\:id_t").prop('disabled', true);
+        $("#ajout-produit\\:K").prop('disabled', true);
+    } else {
+        $("#ajout-produit\\:id_t").prop('disabled', false);
+        $("#ajout-produit\\:K").prop('disabled', false);
+    }
+}
 
 
 function Administrateur() {
@@ -145,4 +151,8 @@ function ajoutActifAdmin() {
 
 function notImplemented() {
     window.location = "not-implemented.xhtml";
+}
+
+function Init() {
+    window.location = "http://localhost:8080/ProjetJAVA-web/init";
 }

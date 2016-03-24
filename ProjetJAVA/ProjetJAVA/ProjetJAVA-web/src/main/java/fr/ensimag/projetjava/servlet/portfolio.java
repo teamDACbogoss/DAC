@@ -23,7 +23,7 @@ import javax.ejb.EJB;
  */
 @Named(value = "option")
 @RequestScoped
-public class option {
+public class portfolio {
 
     @EJB
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
@@ -108,7 +108,7 @@ public class option {
     /**
      * Creates a new instance of option
      */
-    public option() {
+    public portfolio() {
         msg_maturite = "";
     }
     

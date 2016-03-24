@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -11,61 +12,53 @@
         <ui:composition template="./template.xhtml">
 
             <ui:define name="content">
-                <h:form>
-                    <h3>Cotations</h3>      
-                    
-    <div class="table-responsive"> 
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th>Nom</th>
-                    <th>Prix</th>
-                    <th>Prix Précédent</th>
-                    <th>Tendance</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Axa</td>
-                    <td>32</td>
-                    <td>33</td>
-                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span></td>
-                </tr>
-                <tr>
-                    <td>BNP</td>
-                    <td>21</td>
-                    <td>20</td>
-                    <td><span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span></td>
-                </tr>
-                <tr>
-                    <td>Axa</td>
-                    <td>32</td>
-                    <td>33</td>
-                    <td><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span></td>
-                </tr>
-                <ui:repeat var="o" value="#{order.orderList}" varStatus="status"><!-- TODO -->
-                    <tr>
-                        <td>#{o.name}</td>
-                        <td>#{o.bid}</td>
-                        <td>#{o.ask}</td>
-                        <td>
-                            <ui:fragment rendered="#{o.tendancy eq 1}">
-                                <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
-                            </ui:fragment>
-                            <ui:fragment rendered="#{o.tendency eq -1}">
-                                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
-                            </ui:fragment>
-                        </td>
-                    </tr>
-               </ui:repeat>
-            </tbody>
-        </table>
-
-    </div>
-                    <a href="#" onclick="creationStrategie()" class="btn btn-info" aria-label="Left Align" role="button">Création Stratégie</a>
-                    <a href="#" onclick="nouvellePosition()" class="btn btn-warning" aria-label="Left Align" role="button">Nouvelle Position</a>
-                </h:form>
+                <h3>Cotations</h3> 
                 
+                <div class="row">
+                    <br></br>
+                    <br></br>
+                </div>
+
+                <div id="table-40">
+                    <div class="table-responsive">
+                        <h:dataTable value="#{option.listStock}" var="action"
+                            styleClass="employeeTable"
+                            headerClass="employeeTableHeader"
+                            rowClasses="employeeTableOddRow,employeeTableEvenRow"
+                            class="table table-bordered">
+                            <h:column>    				
+                               <f:facet name="header">Nom</f:facet>    				
+                               #{action.name}
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Prix</f:facet>
+                               #{action.stockPrice}                    
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Prix Précédent</f:facet>
+                               #{action.stockPricePrevious}                    
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Tendance</f:facet>
+                               <ui:fragment rendered="#{action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
+                               </ui:fragment>
+                               <ui:fragment rendered="#{!action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
+                               </ui:fragment>
+                            </h:column>
+                         </h:dataTable>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <br></br>
+                    <br></br>
+                </div>
+
+                <a href="#" onclick="creationStrategie()" class="btn btn-info" aria-label="Left Align" role="button">Création Stratégie</a>
+                <a href="#" onclick="nouvellePosition()" class="btn btn-warning" aria-label="Left Align" role="button">Nouvelle Position</a>
+
             </ui:define>
             
   
