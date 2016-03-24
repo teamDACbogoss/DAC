@@ -23,24 +23,26 @@
                         <div class="col-md-4">  </div>  
                         <div class="col-md-2"> Nom: </div>
                         <div class="col-md-5">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Nom" value="#{User.name}" binding="#{name}" aria-describedby="sizing-addon3"/>
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" placeholder="Nom"  binding="#{name}" aria-describedby="sizing-addon3"/>
+                                <h:outputText value="#{createaccount.msg}" style="color:red;"/>
+                            </div>
                         </div>
-                        </div>
+                        
                     </div>
                     
                     <div class="row">
                         <br></br>
                     </div>
                     
-                    SecretQuestion secretQuestion, String secretQuestionAnswer
+                    
                     
                     <div class="row">
                         <div class="col-md-4">  </div>  
                         <div class="col-md-2"> Prénom: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Prénom" value="#{User.firstName}" binding="#{firstName}" aria-describedby="sizing-addon3"/>
+                            <input type="text" class="form-control" placeholder="Prénom" binding="#{firstName}" aria-describedby="sizing-addon3"/>
                         </div>
                         </div>
                     </div>
@@ -54,7 +56,7 @@
                         <div class="col-md-2"> E-mail: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="E-mail" value="#{User.email}" binding="#{email}" aria-describedby="sizing-addon3"/>
+                            <input type="text" class="form-control" placeholder="E-mail" binding="#{email}" aria-describedby="sizing-addon3"/>
                         </div>
                         </div>
                     </div>
@@ -68,7 +70,7 @@
                         <div class="col-md-2"> Mot de passe: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="password" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" binding="#{mdp}" aria-describedby="sizing-addon3"/>
+                            <input type="password" class="form-control" placeholder="Mot de passe" binding="#{mdp}" aria-describedby="sizing-addon3"/>
                         </div>
                         </div>
                     </div>
@@ -82,7 +84,7 @@
                         <div class="col-md-2"> Confirmation: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="password" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" binding="#{mdp}" aria-describedby="sizing-addon3"/>
+                            <input type="password" class="form-control" placeholder="Mot de passe" binding="#{cmdp}" aria-describedby="sizing-addon3"/>
                         </div>
                         </div>
                     </div>
@@ -135,7 +137,7 @@
                         <div class="col-md-2"> Réponse: </div>
                         <div class="col-md-4">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Réponse" value="#{User.secretQuestionAnswer}" binding="#{secretQuestionAnswer}" aria-describedby="sizing-addon3"/>
+                            <input type="text" class="form-control" placeholder="Réponse" binding="#{secretQuestionAnswer}" aria-describedby="sizing-addon3"/>
                         </div>
                         </div>
                     </div>
@@ -153,12 +155,9 @@
                     </div>    
                         
                     <div class="row">
-                    
-                        <button type="button" onclick="returnConnection()" action="#{login.createAccount()}" class="btn btn-success" aria-label="Left Align">
-                            <a href="#" >Valider</a>
-                        </button>
+                    <h:commandButton value="Valider" action="#{createaccount.createMember(name.value, firstName.value, email.value, mdp.value, cmdp.value, secretQuestionAnswer.value)}" class="btn btn-success"></h:commandButton>
                         
-                        <button type="button" onclick="returnConnection()" action="#{login.returnLogin}" class="btn btn-danger" aria-label="Left Align">
+                        <button type="button" onclick="returnConnection()" action="" class="btn btn-danger" aria-label="Left Align">
                             <a href="#" >Annuler</a>
                         </button>
 
