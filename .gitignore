@@ -11,3 +11,6 @@ src/modules/
 /ProjetJAVA/ProjetJAVA/ProjetJAVA-web/target/
 /ProjetJAVA/ProjetJAVA/ProjetJAVA-ejb/target/
 ProjetJAVA/ProjetJAVA/ProjetJAVA-ear/target/
+glassfish4/
+.gitignore
+
