@@ -26,7 +26,7 @@ public class VanillaPut extends FinancialOption {
     
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.Put[ id=" + id + " ]";
+        return "fr.ensimag.projetjava.Put[ id=" + name + " ]";
     }
 
     @Override

@@ -28,7 +28,7 @@ public class VanillaCall extends FinancialOption {
     
     @Override
     public String toString() {
-        return "fr.ensimag.projetjava.Call[ id=" + id + " ]";
+        return "fr.ensimag.projetjava.Call[ id=" + name + " ]";
     }
 
     @Override
