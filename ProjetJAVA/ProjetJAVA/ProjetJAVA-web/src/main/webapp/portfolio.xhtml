@@ -21,6 +21,7 @@
                     <br></br>
                 </div>
 
+                <div id="table-40">
                 <div class="table-responsive">
                     <h:dataTable value="#{option.listStock}" var="action"
                                  styleClass="employeeTable"
@@ -40,49 +41,32 @@
                                #{1}                    
                         </h:column>
                         <h:column>
-                            <f:facet name="header">Tendance</f:facet>
-                            <ui:fragment rendered="#{action.bool}">
-                                <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
-                            </ui:fragment>
-                            <ui:fragment rendered="#{!action.bool}">
-                                <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
-                            </ui:fragment>
+                            <f:facet name="header">Prix courant</f:facet>
+                               #{action.stockPrice}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Prix d'achat</f:facet>
+                               #{action.stockPricePrevious}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Profit</f:facet>
+                               #{action.stockPricePrevious}                    
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Date d'émission</f:facet>
+                                #{"01-01-2010"}                           </h:column>
+                        <h:column>
+                            <f:facet name="header">Maturité</f:facet>
+                                #{"01-01-2010"}               
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">Clôturité</f:facet>
+                                <a href="#" onclick="returnPortefeuille()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Clôturer</a>
                         </h:column>
                     </h:dataTable>
                 </div>
-
-                <div class="table-responsive"> 
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Stratégie</th>
-                                <th>Nom</th>
-                                <th>Quantité</th>
-                                <th>Prix courant</th>
-                                <th>Prix d'achat</th>
-                                <th>Profit</th>
-                                <th>Date d'émission</th>
-                                <th>Maturité</th>
-                                <th>Clôturer</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Straddle</td>
-                                <td>Axa</td>
-                                <td>10</td>
-                                <td>24.3</td>
-                                <td>25.3</td>
-                                <td>-1.0</td>
-                                <td>10/10/15</td>
-                                <td>10/03/16</td>
-                                <td>
-                                    <a href="#" onclick="returnPortefeuille()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Clôturer</a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
+
             </ui:define>
         </ui:composition>
         
