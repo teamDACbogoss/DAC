@@ -39,11 +39,12 @@ public class Client implements Serializable {
     private boolean isConnected;
     private SecretQuestion secretQuestion;
     private double cash;
+    private int profilePic;
 
 
     public Client() {}
 
-    public Client(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer, double cash) {
+    public Client(String email, String mdp, boolean isAdmin, String name, String firstName, SecretQuestion secretQuestion, String secretQuestionAnswer, double cash, int profilePic) {
         this.email = email;
         this.mdp = mdp;
         this.isAdmin = isAdmin;
@@ -54,6 +55,7 @@ public class Client implements Serializable {
         this.secretQuestionAnswer = secretQuestionAnswer;
         this.isConnected = false;
         this.cash = cash;
+        this.profilePic = profilePic;
     }
     
     public String getEmail() {
@@ -143,6 +145,15 @@ public class Client implements Serializable {
     public void setCash(double cash) {
         this.cash = cash;
     }
+
+    public int getProfilePic() {
+        return profilePic;
+    }
+
+    public void setProfilePic(int profilePic) {
+        this.profilePic = profilePic;
+    }
+    
     
     @Override
     public int hashCode() {
