@@ -2,8 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <h:body>
         
@@ -14,6 +14,8 @@
                 <h:form>
                     <h3>Inscription</h3>
                     
+                    <h:outputText value="#{createaccount.msg_general}" style="color:red;"/>
+                    
                     <div class="row">
                         <br></br>
                         <br></br>
@@ -22,10 +24,12 @@
                     <div class="row">
                         <div class="col-md-4">  </div>  
                         <div class="col-md-2"> Nom: </div>
-                        <div class="col-md-5">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Nom" value="#{User.name}" aria-describedby="sizing-addon3"/>
-                        </div>
+                        <div class="col-md-6">
+                            <div class="input-group input-group-sm">
+                                <h:outputText value="#{createaccount.msg_n}" style="color:red;"/>
+                                <h:inputText class="form-control" binding="#{name}" />
+                                
+                            </div>
                         </div>
                     </div>
                     
@@ -33,13 +37,16 @@
                         <br></br>
                     </div>
                     
+                    
+                    
                     <div class="row">
                         <div class="col-md-4">  </div>  
                         <div class="col-md-2"> Prénom: </div>
                         <div class="col-md-6">
-                        <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Prénom" value="#{User.firstName}" aria-describedby="sizing-addon3"/>
-                        </div>
+                            <div class="input-group input-group-sm">
+                                <h:outputText value="#{createaccount.msg_fn}" style="color:red;"/>
+                                <h:inputText class="form-control" binding="#{firstName}" />
+                            </div>
                         </div>
                     </div>
                     
@@ -52,7 +59,8 @@
                         <div class="col-md-2"> E-mail: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="E-mail" value="#{User.email}" aria-describedby="sizing-addon3"/>
+                            <h:outputText value="#{createaccount.msg_email}" style="color:red;"/>
+                            <h:inputText class="form-control" binding="#{email}" />
                         </div>
                         </div>
                     </div>
@@ -66,7 +74,8 @@
                         <div class="col-md-2"> Mot de passe: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="password" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" aria-describedby="sizing-addon3"/>
+                            <h:outputText value="#{createaccount.msg_mdp}" style="color:red;"/>
+                            <h:inputSecret class="form-control" binding="#{mdp}" />
                         </div>
                         </div>
                     </div>
@@ -80,7 +89,8 @@
                         <div class="col-md-2"> Confirmation: </div>
                         <div class="col-md-6">
                         <div class="input-group input-group-sm">
-                            <input type="password" class="form-control" placeholder="Mot de passe" value="#{User.mdp}" aria-describedby="sizing-addon3"/>
+                            <h:outputText value="#{createaccount.msg_cmdp}" style="color:red;"/>
+                            <h:inputSecret class="form-control" binding="#{cmdp}" />
                         </div>
                         </div>
                     </div>
@@ -89,36 +99,18 @@
                         <br></br>
                     </div>
                     
-                    <!--
-                    <div class="row">
-                        <div class="col-md-4">  </div> 
-                        <div class="col-md-2"> Question secrète: </div>
-                        <div class="col-md-1">
-                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Question 1
-                            <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#">Question 2</a></li>
-                            <li><a href="#">Question 3</a></li>
-                            <li><a href="#">Question 4</a></li>
-                        </ul>
-                        </div>
-                    </div>
-                    -->
                     
                     <div class="row">
                         <div class="col-md-4">  </div> 
                         <div class="col-md-2"> Question secrète: </div>
                         <div class="col-md-2">
-                            <select class="form-control">
-                                <option>Quel est le nom de votre première école ? </option>
-                                <option>Quel est le nom de votre premier animal domestique ? </option>
-                                <option>Quel est le nom de l'hôpital dans lequel vous êtes né ? </option>
-                                <option>Quel est le nom de votre premier enfant ? </option>
-                                <option>Quel est le nom de votre meilleur ami d'enfance ? </option>
-                                <option>Quel est votre animal de compagnie ? </option>
-                            </select>
+                            <h:selectOneMenu class="form-control" id="select_type" value="#{secretQuestion}">
+                                <f:selectItem itemValue="ecole" itemLabel="Quel est le nom de votre première école ?" />
+                                <f:selectItem itemValue="animal" itemLabel="Quel est le nom de votre premier animal domestique ?" />
+                                <f:selectItem itemValue="hopital" itemLabel="Quel est le nom de l'hôpital dans lequel vous êtes né ?" />
+                                <f:selectItem itemValue="enfant" itemLabel="Quel est le nom de votre premier enfant ?" />
+                                <f:selectItem itemValue="ami" itemLabel="Quel est le nom de votre meilleur ami d'enfance ?"/>
+                            </h:selectOneMenu>
                         </div>
                         
                     </div>
@@ -133,7 +125,8 @@
                         <div class="col-md-2"> Réponse: </div>
                         <div class="col-md-4">
                         <div class="input-group input-group-sm">
-                            <input type="text" class="form-control" placeholder="Réponse" value="#{User.secretQuestionAnswer}" aria-describedby="sizing-addon3"/>
+                            <h:outputText value="#{createaccount.msg_sqa}" style="color:red;"/>
+                            <h:inputText class="form-control" binding="#{secretQA}" />
                         </div>
                         </div>
                     </div>
@@ -151,15 +144,8 @@
                     </div>    
                         
                     <div class="row">
-                    
-                        <button type="button" onclick="returnConnection()" action="#{login.reintializePassword}" class="btn btn-success" aria-label="Left Align">
-                            <a href="#" >Valider</a>
-                        </button>
-                        
-                        <button type="button" onclick="returnConnection()" action="#{login.returnLogin}" class="btn btn-danger" aria-label="Left Align">
-                            <a href="#" >Annuler</a>
-                        </button>
-
+                        <h:commandButton value="Valider" action="#{createaccount.createMember(name.value, firstName.value, email.value, mdp.value, cmdp.value, secretQuestion, secretQA.value)}" class="btn btn-success"></h:commandButton>
+                        <h:commandButton value="Annuler" onclick="returnConnection()" class="btn btn-danger"></h:commandButton>
                     </div>
                     
                 </h:form>

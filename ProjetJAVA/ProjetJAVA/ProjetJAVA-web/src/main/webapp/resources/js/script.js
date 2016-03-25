@@ -86,7 +86,7 @@ function reinitiatePassword() {
     }
 };
 
-function createAccount() {
+function redirectAccount() {
     window.location = "create-account.xhtml";
 };
 

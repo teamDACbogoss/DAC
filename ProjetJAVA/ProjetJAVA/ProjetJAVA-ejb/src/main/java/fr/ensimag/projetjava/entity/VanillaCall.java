@@ -34,8 +34,8 @@ public class VanillaCall extends FinancialOption {
     @Override
     public double getPrice(java.util.Calendar date) {
         NormalDistribution dis = new NormalDistribution(0,1);
-        double S = 100;//this.underlying.val.getPrice(date);
-        double K = 100;//this.strike.val;
+        double S = this.underlying.val.getPrice(date);
+        double K = this.strike.val;
         double r = 0.02;
         double T = 1;
         double vol = 0.02;
