@@ -237,9 +237,14 @@ public class createaccount implements Serializable {
         }
 
         
-        //Creation du client et retour sur page d'accueil*/
+        //Creation du client et retour sur page d'accueil
         Client membre = new Client(email, mdp, false, name, firstName, secretQuestion, secretQA, 10000.0, 1);
-        clientFacade.create(membre);
+        try {
+            clientFacade.create(membre);
+        } catch (Exception e) {
+            this.msg_general ="Ce compte existe déjà";
+            return "creation-account";
+        }
         return "login";
 
     }
