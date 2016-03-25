@@ -126,7 +126,7 @@
                         <div class="col-md-4">
                         <div class="input-group input-group-sm">
                             <h:outputText value="#{createaccount.msg_sqa}" style="color:red;"/>
-                            <h:inputText class="form-control" binding="#{secretQuestionAnswer}" />
+                            <h:inputText class="form-control" binding="#{secretQA}" />
                         </div>
                         </div>
                     </div>
@@ -144,8 +144,8 @@
                     </div>    
                         
                     <div class="row">
-                        <h:commandButton value="Valider" action="#{createaccount.createMember(name.value, firstName.value, email.value, mdp.value, cmdp.value, secretQ, secretQA.value)}" class="btn btn-success"></h:commandButton>
-                        <h:commandButton value="Annuler" onclick="returnConnection()" class="btn btn-success"></h:commandButton>
+                        <h:commandButton value="Valider" action="#{createaccount.createMember(name.value, firstName.value, email.value, mdp.value, cmdp.value, secretQuestion, secretQA.value)}" class="btn btn-success"></h:commandButton>
+                        <h:commandButton value="Annuler" onclick="returnConnection()" class="btn btn-danger"></h:commandButton>
                     </div>
                     
                 </h:form>

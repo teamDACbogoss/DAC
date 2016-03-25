@@ -204,35 +204,43 @@ public class createaccount implements Serializable {
             return "create-account";
         } 
         
-        /*if (secretQA.equals("")) {
+       if (secretQA.equals("")) {
             this.msg_sqa = "Entrez une réponse!";
             return "create-account" ;
         }
         if (secretQA.length() > 256) {
             this.msg_sqa = "Moins de 256 caractères!";
             return "create-account";
-        }*/
+        }
         SecretQuestion secretQuestion;
         if (secretQ.equals("ecole")) {
             secretQuestion= SecretQuestion.q1;
-        }
-        if (secretQ.equals("animal")) {
-            secretQuestion = SecretQuestion.q2;
-        }
-        if (secretQ.equals("hopital")) {
-            secretQuestion = SecretQuestion.q3;
-        }
-        if (secretQ.equals("enfant")) {
-            secretQuestion = SecretQuestion.q4;
         } else {
-            secretQuestion = SecretQuestion.q5;
+            if (secretQ.equals("animal")) {
+                secretQuestion = SecretQuestion.q2;
+            } else {
+                if (secretQ.equals("hopital")) {
+                    secretQuestion = SecretQuestion.q3;
+                } else {
+                    if (secretQ.equals("enfant")) {
+                        secretQuestion = SecretQuestion.q4;
+                    } else {
+                       if (secretQ.equals("ami")) {
+                           secretQuestion = SecretQuestion.q5;
+                       } else {
+                           this.msg_general ="probleme";
+                           return "creation-account";
+                       }
+                    }
+                }
+            }
         }
-        this.msg_general = secretQuestion.toString();
-        return "creation-account";
+
+        
         //Creation du client et retour sur page d'accueil*/
-        /*Client membre = new Client(email, mdp, false, name, firstName, secretQuestion, secretQA, 10000);
+        Client membre = new Client(email, mdp, false, name, firstName, secretQuestion, secretQA, 10000.0, 1);
         clientFacade.create(membre);
-        return "login";*/
+        return "login";
 
     }
 }
