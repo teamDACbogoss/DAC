@@ -1,7 +1,9 @@
+package fr.ensimag.projetjava.servlet;
+
 import fr.ensimag.projetjava.entity.*;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -9,6 +11,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Calendar;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  *
@@ -26,6 +31,12 @@ public class Init extends HttpServlet {
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
     @EJB
     private fr.ensimag.projetjava.stateless.ParamStockFacadeLocal paramStockFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.StrategyFacadeLocal strategyFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.VanillaPutFacadeLocal vanillaPutFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.PortfolioFacadeLocal portfolioFacade;
     
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,7 +85,8 @@ public class Init extends HttpServlet {
                             "Clément", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("didier@imag.fr", 
                             "mdp", 
@@ -83,7 +95,8 @@ public class Init extends HttpServlet {
                             "Yeung", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("baptiste@imag.fr", 
                             "mdp", 
@@ -92,7 +105,8 @@ public class Init extends HttpServlet {
                             "Josi", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000000.0);
+                            1000000.0,
+                            1);
         clientFacade.create(client);
         client = new Client("johanna@imag.fr", 
                             "mdp", 
@@ -101,7 +115,8 @@ public class Init extends HttpServlet {
                             "Gogo Dago", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("theophile@imag.fr", 
                             "mdp", 
@@ -110,7 +125,8 @@ public class Init extends HttpServlet {
                             "Random", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("kevin@imag.fr", 
                             "mdp", 
@@ -119,7 +135,8 @@ public class Init extends HttpServlet {
                             "Bonkoski", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            2);
         clientFacade.create(client);
         client = new Client("chunli@imag.fr", 
                             "mdp", 
@@ -128,7 +145,8 @@ public class Init extends HttpServlet {
                             "Li", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            0);
         clientFacade.create(client);
         client = new Client("xin@imag.fr", 
                             "mdp", 
@@ -137,7 +155,8 @@ public class Init extends HttpServlet {
                             "Riu", 
                             SecretQuestion.q1, 
                             "Montmuzard",
-                            1000.0);
+                            1000.0,
+                            3);
         clientFacade.create(client);
         
         // Insertion des actifs du CAC40
@@ -222,6 +241,84 @@ public class Init extends HttpServlet {
         CAC40 = new Stock("Vivendi", "VIV");
         stockFacade.create(CAC40);
         
+        /* //Test insertion d'une stratégie dont le sous-jacent est une stock
+        List<ParamAssetInteger> stocks = new ArrayList<>();
+        Stock stockInStrategy = stockFacade.find("TOTAL");
+        ParamAssetInteger param = new ParamAssetInteger(stockInStrategy, 1);
+        stocks.add(param);
+        Strategy strategy = new Strategy("Stratégie Avec Stock En Base", stocks);
+        strategyFacade.create(strategy);
+        
+        //Test récupération de la stratégie créer précédemment
+        Strategy retrievedStrategy = strategyFacade.find(strategy.getName());
+        System.out.println("Stratégie récupérée : " + retrievedStrategy.getAssets().get(0).getAsset().getName());
+        
+        //Test insertion d'une stratégie dont le sous-jacent est un put
+        Stock stockInStrategy2 = stockFacade.find("Vallourec");
+        if (stockInStrategy2 == null)
+            System.out.println("vallourec non trouvé");
+        Calendar maturityPutInStrategy2 = Calendar.getInstance();
+        maturityPutInStrategy2.set(1992, 4, 17);
+        VanillaPut vanillaPutInStrategy = new VanillaPut("Vanilla put in strategy", stockInStrategy2, 100.0, maturityPutInStrategy2);
+        vanillaPutFacade.create(vanillaPutInStrategy);
+        ParamAssetInteger param = new ParamAssetInteger(vanillaPutInStrategy, 2);
+        List<ParamAssetInteger> params = new ArrayList<>();
+        params.add(param);
+        Strategy strategy2 = new Strategy("Strategie avec Put", params);
+        strategyFacade.create(strategy2);
+        
+        //Test récupération de la stratégie créer précédemment
+        Strategy retrievedStrategy2 = strategyFacade.find(strategy2.getName());
+        System.out.println("Sous jacent de stratégie récupérée : " + retrievedStrategy2.getAssets().get(0).getAsset().getName());*/
+       
+        /* //Test création d'un portfolio contenant deux stratégies
+        //Ajout de la première stratégie
+        Portfolio portfolio = new Portfolio();
+        List<ParamAssetInteger> stocks = new ArrayList<>();
+        Stock stockInStrategy = stockFacade.find("TOTAL");
+        ParamAssetInteger param = new ParamAssetInteger(stockInStrategy, 1);
+        stocks.add(param);
+        Strategy strategy = new Strategy("Stratégie1", stocks);
+        strategyFacade.create(strategy);
+        portfolio.getStrategies().add(strategy);
+        
+        //Ajout de la deuxième stratégie
+        stocks = new ArrayList<>();
+        stockInStrategy = stockFacade.find("Essilor");
+        param = new ParamAssetInteger(stockInStrategy, 1);
+        stocks.add(param);
+        strategy = new Strategy("Stratégie2", stocks);
+        strategyFacade.create(strategy);
+        portfolio.getStrategies().add(strategy);
+        portfolioFacade.create(portfolio);
+        
+        //Test récupération Portfolio
+        Portfolio retrievedPortfolio = portfolioFacade.find(portfolio.getId());
+        if (retrievedPortfolio == null)
+        {
+            System.out.println("Portfolio null !");
+        }
+        for (Strategy strategyPort : retrievedPortfolio.getStrategies())
+        {
+            System.out.println("Stratégie récupérée : " + strategyPort.getName());
+        }*/
+    
+        //Test insertion dans un portfolio chez un client    
+        List<ParamAssetInteger> stocks = new ArrayList<>();
+        Stock stockInStrategy = stockFacade.find("TOTAL");
+        ParamAssetInteger param = new ParamAssetInteger(stockInStrategy, 1);
+        stocks.add(param);
+        Strategy strategy = new Strategy("Stratégie1", stocks);
+        strategyFacade.create(strategy);
+        client.getPortfolio().getStrategies().add(strategy);
+        clientFacade.edit(client);
+        
+        //Test récupération dans un portfolio chez un client
+        Client retrievedClient = clientFacade.find(client.getEmail());
+        for (Strategy strategyPort : retrievedClient.getPortfolio().getStrategies())
+        {
+            System.out.println("Stratégie récupérée : " + strategyPort.getName());
+        }
         
         //Test insertion paramDate
         /*Calendar myCalendar = Calendar.getInstance();

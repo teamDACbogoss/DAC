@@ -30,6 +30,51 @@ public class sessionBean implements Serializable {
     private boolean isLogged;
     private String secretQuestion;
     private String secretAnswer;
+    private String solde;
+    private String totalValue;
+    private int profile_pic;
+    private Client client;
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
+    }
+
+    public int getProfile_pic() {
+        if (client != null && isLogged) {
+            this.profile_pic = client.getProfilePic();
+        }
+        return profile_pic;
+    }
+
+    public void setProfile_pic(int profile_pic) {
+        this.profile_pic = profile_pic;
+    }
+
+    public String getSolde() {
+        if (client != null && isLogged) {
+            solde = Double.toString(client.getCash());
+        }
+        return solde;
+    }
+
+    public void setSolde(String solde) {
+        this.solde = solde;
+    }
+
+    public String getTotalValue() {
+        if (client == null && isLogged) {
+            totalValue = Double.toString(client.getCash());
+        }
+        return totalValue;
+    }
+
+    public void setTotalValue(String totalValue) {
+        this.totalValue = totalValue;
+    }
 
     /**
      * Get the value of secretAnswer
@@ -134,15 +179,19 @@ public class sessionBean implements Serializable {
         this.isAdmin = false;
         this.name = "";
         this.secretQuestion = "";
+        this.solde = "";
+        this.totalValue = "";
+        this.profile_pic = 0;
+        this.client = null;
     }
     
     public String login(String name, String pwd) {
-        Client cl = clientFacade.find(name);
-        if (cl == null || !cl.getMdp().equals(pwd)) {
+        this.client = clientFacade.find(name);
+        if (client == null || !client.getMdp().equals(pwd)) {
             return null;
         } else {
             this.name = name;
-            this.isAdmin = cl.getIsAdmin();
+            this.isAdmin = client.getIsAdmin();
             this.isLogged = true;
             if (isAdmin) {
                 return "gestion-comptes";

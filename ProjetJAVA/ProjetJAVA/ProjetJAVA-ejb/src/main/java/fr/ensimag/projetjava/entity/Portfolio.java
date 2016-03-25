@@ -6,11 +6,14 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -23,9 +26,17 @@ public class Portfolio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Set<Strategy> strategies;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private List<Strategy> strategies;
     
-    public Portfolio() {}
+    public Portfolio() {
+        this.strategies = new ArrayList<>();
+    }
+    
+    public Portfolio(List<Strategy> strategies)
+    {
+        this.strategies = strategies;
+    }
     
     public Long getId() {
         return id;
@@ -35,11 +46,11 @@ public class Portfolio implements Serializable {
         this.id = id;
     }
 
-    public Set<Strategy> getStrategies() {
+    public List<Strategy> getStrategies() {
         return strategies;
     }
 
-    public void setStrategies(Set<Strategy> strategies) {
+    public void setStrategies(List<Strategy> strategies) {
         this.strategies = strategies;
     }
 
