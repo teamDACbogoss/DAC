@@ -36,14 +36,9 @@
                         </div>
                         <div class="col-md-3">
                             Choix de l'action:
-                            <select class="form-control">
-                                <option>AccorHotels</option>
-                                <option>Airbus</option>
-                                <option>Air Liquide</option>
-                                <option>Alcatel-Lucent</option>
-                                <option>Alstom</option>
-                                <option>ArcelorMittal</option>
-                            </select>
+                            <h:selectOneMenu class="form-control" value="#{action}">
+                                <f:selectItems value="#{option.actions}" />
+                            </h:selectOneMenu>
                         </div>
                     </div>
                     
@@ -117,13 +112,8 @@
                     </div>
                     
                     <div class="row">
-                        <button type="button" onclick= "validerAjout()" action="#" class="btn btn-success" aria-label="Left Align">     
-                            <a href="#" >Valider</a>
-                        </button>
-                    
-                        <h:commandButton value="Valoriser" action="#{option.pricing(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
-
-                                        
+                        <h:commandButton value="Valider" action="#{option.achat_ajout(strat, actionName, k, mat, quant)}" class="btn btn-info"></h:commandButton>
+                        <h:commandButton value="Valoriser" action="#{option.pricing_ajout(strat, actionName, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <button type="button" onclick="creationStrategie()" action="#" class="btn btn-danger" aria-label="Left Align">
                             <a href="#"  >Annuler</a>
                         </button> 

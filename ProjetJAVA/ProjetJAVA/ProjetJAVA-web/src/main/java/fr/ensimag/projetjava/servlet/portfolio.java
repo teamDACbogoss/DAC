@@ -21,7 +21,7 @@ import javax.ejb.EJB;
  *
  * @author bonkoskk
  */
-@Named(value = "option")
+@Named(value = "portfolio")
 @RequestScoped
 public class portfolio {
 
@@ -183,7 +183,7 @@ public class portfolio {
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5); ;
+                prix = Double.toString(prix_temp).substring(0, 5);
         }
                 
         return "nouvelle-position"; 
@@ -256,8 +256,7 @@ public class portfolio {
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5);  
-;
+                prix = Double.toString(prix_temp).substring(0, 5);
         }
         return "cotations";
     }
