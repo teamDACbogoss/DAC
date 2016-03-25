@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -11,71 +12,67 @@
         <ui:composition template="./templateAdmin.xhtml">
 
             <ui:define name="content">
+                <h3>Gestion des actifs</h3>
                 <h:form>
-                    <h3>Gestion des actifs</h3>
-                    
                     <div class="row">
                         <br></br>
+                        <h:outputText value="#{gestionActifs.msgerr}" style="color:red;"/>
+                        <h:outputText value="#{gestionActifs.msgok}" style="color:green;"/>
                         <br></br>
                     </div> 
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div id="table-40">
+                                    <div class="table-responsive">
+                                        <h:dataTable value="#{option.listStock}" var="action"
+                                            class="table table-bordered">
+                                            <h:column>    				
+                                               <f:facet name="nom">Nom</f:facet>    				
+                                               #{action.name}
+                                            </h:column>
+                                            <h:column>
+                                               <f:facet name="supprimer">Supprimer</f:facet>
+                                               <h:commandButton value="Supprimer" action="#{gestionActifs.deleteAsset(action.name)}" class="btn btn-xs btn-success"></h:commandButton>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="table-40">
+                                    <div class="table-responsive">
+                                        <h:dataTable value="#{gestionActifs.listStrategy}" var="strat"
+                                            class="table table-bordered">
+                                            <h:column>    				
+                                               <f:facet name="nom">Nom</f:facet>    				
+                                               #{strat.name}
+                                            </h:column>
+                                            <h:column>
+                                               <f:facet name="supprimer">Supprimer</f:facet>
+                                               <h:commandButton value="Supprimer" action="#{gestionActifs.deleteStrategy(strat.name)}" class="btn btn-xs btn-success"></h:commandButton>
+                                            </h:column>
+                                        </h:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div class="row">
-                        
-                        <div class="col-md-6">
-                    <div class="table-responsive"> 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Prix</th>
-                                    <th>Prix Précédent</th>
-                                    <th>Supprimer</th>
-                                </tr>
-                                <tr>
-                                   <td>Axa</td>
-                                   <td>20</td>
-                                   <td>23</td>
-                                   <td>
-                                       <a href="#" onclick="()" class="btn btn-xs btn-danger" aria-label="Left Align" role="button">Supprimer</a>
-                                   </td>
-                               </tr>
-                            </thead>
-                        </table>
+                            <br/>
+                            <br/>
+
+                            <h:button outcome="ajout-action-admin" value="Ajouter une action" class="btn btn-success"/>
+                            <!--
+                            <button type="button" onclick="()" class="btn btn-warning" aria-label="Left Align">
+                                <a href="#" >Ajouter une stratégie</a>
+                            </button>
+                            -->
+
                     </div>
-                        </div>                    
-                            
-                        <div class="col-md-6">
-                    <div class="table-responsive"> 
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Supprimer</th>
-                                </tr>
-                                <tr>
-                                   <td>Spread</td>
-                                   <td>
-                                       <a href="#" onclick="()" class="btn btn-xs btn-danger" aria-label="Left Align" role="button">Supprimer</a>
-                                   </td>
-                               </tr>
-                            </thead>
-                        </table>
-                    </div>
-                    </div>
-                </div>
-                    
-                <div class="row">
-                    
-                    <a href="#" onclick="ajoutActionAdmin()" class="btn btn-success" aria-label="Left Align" role="button">Ajouter une action</a>
-                    <a href="#" onclick="notImplemented()" class="btn btn-warning" aria-label="Left Align" role="button">Ajouter une stratégie</a>
-                    
-                    <!--
-                    <button type="button" onclick="()" class="btn btn-warning" aria-label="Left Align">
-                        <a href="#" >Ajouter une stratégie</a>
-                    </button>
-                    -->
-                </div>
-                        
-                    
+
                 </h:form>
             </ui:define>
         </ui:composition>
