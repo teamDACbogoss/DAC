@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class ParamStock extends Param {
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     protected Stock val;
     //protected String name;
     

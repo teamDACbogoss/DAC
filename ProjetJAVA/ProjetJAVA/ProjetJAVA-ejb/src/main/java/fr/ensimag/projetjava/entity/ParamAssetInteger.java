@@ -19,7 +19,7 @@ import javax.persistence.ManyToOne;
  */
 @Entity
 public class ParamAssetInteger extends Param implements Serializable {
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne
     protected Asset asset;
     protected int quantity;
     
@@ -35,6 +35,16 @@ public class ParamAssetInteger extends Param implements Serializable {
     public ParamAssetInteger(Asset asset, int quantity) {
         this.asset = asset;
         this.quantity = quantity;
+    }
+    
+    public Asset getAsset() 
+    {
+        return this.asset;
+    }
+    
+    public void setAsset(Asset asset)
+    {
+        this.asset = asset;
     }
     
     public double getQuantity() {
