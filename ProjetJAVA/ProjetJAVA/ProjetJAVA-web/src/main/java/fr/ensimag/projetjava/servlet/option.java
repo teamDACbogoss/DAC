@@ -145,7 +145,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "nouvelle-position";
+                return "";
 
             }
             prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
@@ -160,7 +160,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_strike = "Mauvais strike";
-                return "nouvelle-position";
+                return "";
 
             }
 
@@ -170,7 +170,7 @@ public class option {
                 maturite_Date = formatter.parse(mat);
             } catch (ParseException e) {
                 msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
-                return "nouvelle-position";
+                return "";
             }
 
             Calendar maturite_cal = Calendar.getInstance();
@@ -184,7 +184,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "nouvelle-position";
+                return "";
 
             }
 
@@ -200,7 +200,7 @@ public class option {
                 prix = Double.toString(prix_temp).substring(0, 5);
         }
                 
-        return "nouvelle-position"; 
+        return ""; 
     }
     
     public String achat(String strat, String actionName, String k, String mat, String quant)
@@ -226,7 +226,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "cotations";
+                return "";
             }
         } else {
             double prix_temp;
@@ -239,7 +239,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_strike = "Mauvais strike";
-                return "cotations";
+                return "";
             }
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -248,7 +248,7 @@ public class option {
                 maturite_Date = formatter.parse(mat);
             } catch (ParseException e) {
                 msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
-                return "cotations";
+                return "";
             }
 
             Calendar maturite_cal = Calendar.getInstance();
@@ -262,7 +262,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "cotations";
+                return "";
             }
 
             if (strat.equals("call")){
@@ -277,9 +277,9 @@ public class option {
                 prix = Double.toString(prix_temp).substring(0, 5);  
 
         }
-        return "cotations";
+        return "";
     }
-    
+    /*
     public String pricing_ajout(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
@@ -437,4 +437,5 @@ public class option {
         }
         return "creation-strats";
     }
+    */
 }

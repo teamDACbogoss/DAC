@@ -273,8 +273,8 @@ public class strategy implements Serializable {
         
         return "creation-strats";
     }
-}
-    /*
+    
+    
     
     //public getAssetList
     //validate login
@@ -318,4 +318,5 @@ public class strategy implements Serializable {
             msgok = "";
             return "";
         }
-    }*/
+    }
+}

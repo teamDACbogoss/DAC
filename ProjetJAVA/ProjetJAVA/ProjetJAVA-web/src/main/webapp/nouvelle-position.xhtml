@@ -118,7 +118,7 @@
                     <div class="row">
                         
 
-                        <h:commandButton value="Valider" action="#{option.achat(strat, actionName, k, mat, quant)}" class="btn btn-info"></h:commandButton>
+                        <h:commandButton value="Valider" action="#{option.achat(strat, action, k.value, mat.value, quant.value)}" class="btn btn-info"></h:commandButton>
                         <h:commandButton value="Valoriser" action="#{option.pricing(strat, action, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <a href="#" onclick="returnCotations()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
                     </div>
