@@ -63,17 +63,18 @@ public class portfolio {
         java.util.Calendar todayCal = java.util.Calendar.getInstance();
         todayCal.set(Calendar.HOUR_OF_DAY, 0);
         todayCal.set(Calendar.MINUTE, 0);
-        todayCal.set(Calendar.SECOND, 0);        
+        todayCal.set(Calendar.SECOND, 0);      
+
         for(Strategy s : client.getPortfolio().getStrategies()){
+
             if(s.getName().equals(name)){
+                client.setCash(client.getCash() + s.getPrice(todayCal));
                 client.getPortfolio().getStrategies().remove(s);
+                //portfolioFacade.edit(client.getPortfolio());
+                clientFacade.edit(client);
+                return;
             }
-            
-            client.setCash(client.getCash() + s.getPrice(todayCal));
-            clientFacade.edit(client);
-            return;
         }
-        //portfolioFacade.edit(client.getPortfolio());
     }
 
     public List<Strategy> getListPortfolio() {
