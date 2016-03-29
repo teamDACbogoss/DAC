@@ -87,6 +87,8 @@ public class strategy implements Serializable {
         return currentStrat;
     }
     
+    /*
+    
     public void computePrice() {
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
@@ -138,7 +140,5 @@ public class strategy implements Serializable {
             return "";
         }
     }
-    
-
-    
+    */
 }

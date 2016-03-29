@@ -30,6 +30,7 @@ public class option {
     
     private String prix;
 
+    private String msg_stock;
     private String msg_maturite;
     private String msg_strike;
     private String msg_quantite;
@@ -63,9 +64,12 @@ public class option {
     }
 
     
-    
     public String getMsg_maturite() {
         return msg_maturite;
+    }
+    
+    public String getMsg_stock() {
+        return msg_stock;
     }
     
     public String getMsg_strike() {
@@ -87,6 +91,11 @@ public class option {
     public void setMsg_quantite(String msg_quantite) {
         this.msg_quantite = msg_quantite;
     }
+    
+    public void setMsg_stock(String msg_stock) {
+        this.msg_stock = msg_stock;
+    }
+    
     /**
      * Get the value of prix
      *
@@ -115,6 +124,11 @@ public class option {
     public String pricing(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue princing";
+            return "";
+        }
+        
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -183,7 +197,7 @@ public class option {
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5); ;
+                prix = Double.toString(prix_temp).substring(0, 5);
         }
                 
         return "nouvelle-position"; 
@@ -192,6 +206,10 @@ public class option {
     public String achat(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue achat";
+            return "";
+        }
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -257,8 +275,166 @@ public class option {
             
                 prix_temp *= quantite_int;
                 prix = Double.toString(prix_temp).substring(0, 5);  
-;
+
         }
         return "cotations";
+    }
+    
+    public String pricing_ajout(String strat, String actionName, String k, String mat, String quant)
+    {
+        Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue ajout";
+            return "";
+        }
+
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        
+        
+        if (strat.equals("action"))
+        {
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "ajout-produit";
+
+            }
+            prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
+        } else {
+            double prix_temp;
+
+            double k_double; 
+            try  
+            {  
+                k_double = Double.parseDouble(k);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_strike = "Mauvais strike";
+                return "ajout-produit";
+            }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date maturite_Date;
+            try {
+                maturite_Date = formatter.parse(mat);
+            } catch (ParseException e) {
+                msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
+                return "ajout-produit";
+            }
+
+            Calendar maturite_cal = Calendar.getInstance();
+            maturite_cal.setTime(maturite_Date);
+
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "ajout-produit";
+
+            }
+
+            if (strat.equals("call")){
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            } else {
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            }
+            
+                prix_temp *= quantite_int;
+                prix = Double.toString(prix_temp).substring(0, 5);
+        }
+                
+        return "ajout-produit";
+    }
+    
+    public String achat_ajout(String strat, String actionName, String k, String mat, String quant)
+    {
+        Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue ajout achat";
+            return "";
+        }
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        
+        
+        if (strat.equals("action"))
+        {
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "creation-strats";
+            }
+        } else {
+            double prix_temp;
+
+            double k_double; 
+            try  
+            {  
+                k_double = Double.parseDouble(k);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_strike = "Mauvais strike";
+                return "creation-strats";
+            }
+
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date maturite_Date;
+            try {
+                maturite_Date = formatter.parse(mat);
+            } catch (ParseException e) {
+                msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
+                return "creation-strats";
+            }
+
+            Calendar maturite_cal = Calendar.getInstance();
+            maturite_cal.setTime(maturite_Date);
+
+            int quantite_int; 
+            try  
+            {  
+                quantite_int = Integer.parseInt(quant);
+            }  
+            catch(NumberFormatException e)  
+            {  
+                msg_quantite = "Mauvaise quantité";
+                return "creation-strats";
+            }
+
+            if (strat.equals("call")){
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            } else {
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                prix_temp = option.getPrice(today);
+            }
+            
+                prix_temp *= quantite_int;
+                prix = Double.toString(prix_temp).substring(0, 5);  
+
+        }
+        return "creation-strats";
     }
 }
