@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Calendar;
 import javax.ejb.EJB;
 import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
@@ -70,8 +71,15 @@ public class sessionBean implements Serializable {
     }
 
     public String getTotalValue() {
-        if (client == null && isLogged) {
-            totalValue = Double.toString(client.getCash());
+        double temp = 0.;
+        java.util.Calendar todayCal = java.util.Calendar.getInstance();
+        todayCal.set(Calendar.HOUR_OF_DAY, 0);
+        todayCal.set(Calendar.MINUTE, 0);
+        todayCal.set(Calendar.SECOND, 0);      
+        if (client != null && isLogged) {
+            Client clientFromDB = clientFacade.find(client.getEmail());
+            temp += clientFromDB.getPortfolio().getValue(todayCal);
+            totalValue = Double.toString(clientFromDB.getCash() + temp);
         }
         return totalValue;
     }
