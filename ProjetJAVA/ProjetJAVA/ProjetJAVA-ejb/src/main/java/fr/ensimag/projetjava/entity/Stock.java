@@ -31,8 +31,10 @@ public class Stock extends Asset {
         super();
         Random r;
         r = new Random();
-        this.stockPrice = Double.toString(100*r.nextDouble()).substring(0, 5);
-        this.stockPricePrevious = Double.toString(100*r.nextDouble()).substring(0, 5);        
+        Double st = 100*r.nextDouble();
+        this.stockPrice = Double.toString(st).substring(0, Math.min(Double.toString(st).length(), 5));
+        Double st1 = 100*r.nextDouble();
+        this.stockPricePrevious = Double.toString(st1).substring(0, Math.min(Double.toString(st1).length(), 5));       
         this.bool = (Double.parseDouble(this.stockPrice) > Double.parseDouble(this.stockPricePrevious));  
     }
     
@@ -41,8 +43,10 @@ public class Stock extends Asset {
         this.stockCode = stockCode;
         Random r;
         r = new Random();
-        this.stockPrice = Double.toString(100*r.nextDouble()).substring(0, 5);
-        this.stockPricePrevious = Double.toString(100*r.nextDouble()).substring(0, 5);        
+        Double st = 100*r.nextDouble();
+        this.stockPrice = Double.toString(st).substring(0, Math.min(Double.toString(st).length(), 5));
+        Double st1 = 100*r.nextDouble();
+        this.stockPricePrevious = Double.toString(st1).substring(0, Math.min(Double.toString(st1).length(), 5));
         this.bool = (Double.parseDouble(this.stockPrice) > Double.parseDouble(this.stockPricePrevious));    
     }
     

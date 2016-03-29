@@ -5,6 +5,7 @@
  */
 package fr.ensimag.projetjava.entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import javax.persistence.Entity;
 import org.apache.commons.math3.distribution.NormalDistribution;
@@ -18,9 +19,20 @@ import org.apache.commons.math3.util.FastMath;
 public class VanillaCall extends FinancialOption {
     private static final long serialVersionUID = 1L;
     
-    public VanillaCall(){}
+    public VanillaCall() {};
     
-    public VanillaCall(String name, Stock underlying, double strike, java.util.Calendar maturity) {
+    public VanillaCall(String maturityDate,
+                       java.util.Calendar emissionDateCal){
+        super(maturityDate, emissionDateCal);
+    }
+    
+    public VanillaCall(String name, 
+                       Stock underlying, 
+                       double strike, 
+                       java.util.Calendar maturity,
+                       java.util.Calendar emissionDateCal,
+                       String maturityStr) {
+        super(maturityStr, emissionDateCal);
         this.underlying = new ParamStock(underlying, "underlying");
         this.strike = new ParamDouble(strike, "strike");
         this.maturity = new ParamDate(maturity, "maturity");

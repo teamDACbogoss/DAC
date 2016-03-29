@@ -18,7 +18,18 @@ public class VanillaPut extends FinancialOption {
     
     public VanillaPut() {}
  
-    public VanillaPut(String name, Stock underlying, double strike, java.util.Calendar maturity) {
+    public VanillaPut(String maturityDate,
+                      java.util.Calendar emissionDateCal){
+        super(maturityDate, emissionDateCal);
+    }
+    
+    public VanillaPut(String name, 
+                      Stock underlying, 
+                      double strike, 
+                      java.util.Calendar maturity,
+                      java.util.Calendar emissionDateCal,
+                      String maturityStr) {
+        super(maturityStr, emissionDateCal);
         this.underlying = new ParamStock(underlying, "underlying");
         this.strike = new ParamDouble(strike, "strike");
         this.maturity = new ParamDate(maturity, "maturity");
