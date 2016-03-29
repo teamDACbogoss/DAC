@@ -7,6 +7,7 @@ package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -62,12 +63,15 @@ public class Strategy implements Serializable {
     private String assetEmission;
 
     public String getAssetPriceProfit() {
-        
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
         String st = "";
         double temp = 0;
         for (ParamAssetInteger pai : this.assets)
         {
-            temp += pai.getAsset().getPrice(null) - pai.getAsset().getPricePrevious(null);
+            temp += pai.getAsset().getPrice(today) - pai.getAsset().getPricePrevious(today);
         }
         st = Double.toString(temp);
         this.assetPrice = st.substring(0, Math.min(Double.toString(temp).length(), 5));        
@@ -96,10 +100,14 @@ public class Strategy implements Serializable {
     }
 
     public String getAssetPrice() {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
         String st = "";
         for (ParamAssetInteger pai : this.assets)
         {
-            st = st + pai.getAsset().getPrice(null)+ ";" + "\r\n";
+            st = st + pai.getAsset().getPrice(today)+ ";" + "\r\n";
         }
         this.assetPrice = st;
         return st;
@@ -110,10 +118,14 @@ public class Strategy implements Serializable {
     }
 
     public String getAssetPricePrevious() {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
         String st = "";
         for (ParamAssetInteger pai : this.assets)
         {
-            st = st + pai.getAsset().getPricePrevious(null)+ ";" + "\r\n";
+            st = st + pai.getAsset().getPricePrevious(today)+ ";" + "\r\n";
         }
         this.assetPricePrevious = st;
         return st;

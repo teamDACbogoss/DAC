@@ -168,7 +168,14 @@ public class option {
                 return "";
 
             }
+            if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
+            
             prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, Math.min(5, Double.toString(quantite_int * stock.getPrice(today)).length()));
+
+
         } else {
             double prix_temp;
 
@@ -183,7 +190,10 @@ public class option {
                 return "";
 
             }
-
+            if (k_double <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date maturite_Date;
             try {
@@ -207,10 +217,16 @@ public class option {
                 return "";
 
             }
+            
+            if (quantite_int <= 0) {
+                msg_quantite = "Mauvaise quantité";
+                return "";
+            }
 
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
 
             String formatted = format1.format(maturite_cal.getTime());
+
             if (strat.equals("call")){
                 VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
@@ -257,7 +273,10 @@ public class option {
                 msg_quantite = "Mauvaise quantité";
                 return "nouvelle-position";
             }
-            
+            if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "nouvelle-position";
+            }            
             List<ParamAssetInteger> stocks = new ArrayList<>();
             ParamAssetInteger param = new ParamAssetInteger(stock, quantite_int);
             stocks.add(param);
@@ -282,7 +301,10 @@ public class option {
                 msg_strike = "Mauvais strike";
                 return "nouvelle-position";
             }
-
+            if (k_double <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date maturite_Date;
             try {
@@ -304,6 +326,10 @@ public class option {
             {  
                 msg_quantite = "Mauvaise quantité";
                 return "nouvelle-position";
+            }
+             if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
             }
 
             SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");

@@ -40,6 +40,8 @@ public class strategy implements Serializable {
  @EJB
     private fr.ensimag.projetjava.stateless.StrategyFacadeLocal strategyFacade;
  @EJB
+    private fr.ensimag.projetjava.stateless.AssetFacadeLocal assetFacade;
+ @EJB
     private fr.ensimag.projetjava.stateless.PortfolioFacadeLocal portfolioFacade;
   @EJB
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
@@ -109,6 +111,7 @@ public class strategy implements Serializable {
     
     public strategy(){
         strategyName = "strategie sans titre";
+        listAsset = new ArrayList<ParamAssetInteger>();
         totalValue = 0.0;
         msgerr = "";
         msgok = "";
@@ -163,6 +166,65 @@ public class strategy implements Serializable {
         }
     }
     
+    public String getNameofUnderlying(Asset asset){
+        if (asset instanceof VanillaCall) {
+            return ((VanillaCall)asset).getUnderlying().getVal().getName();
+        } else {
+            if (asset instanceof VanillaPut) {
+                return ((VanillaPut)asset).getUnderlying().getVal().getName();
+            } else {
+                if (asset instanceof Stock) {
+                    return ((Stock)asset).getName();
+                } else {
+                    return "pb";
+                }                   
+            }
+        }
+    }
+    
+    public String getStrikeOfAsset(Asset asset){
+        if (asset instanceof VanillaCall) {
+            return Double.toString(((VanillaCall)asset).getStrike().getVal());
+        } else {
+            if (asset instanceof VanillaPut) {
+                return Double.toString(((VanillaPut)asset).getStrike().getVal());
+            } else {
+                if (asset instanceof Stock) {
+                    return "-";
+                } else {
+                    return "pb";
+                }                   
+            }
+        }
+    }
+    
+    public String getMaturityOfAsset(Asset asset){
+        SimpleDateFormat formatter=new SimpleDateFormat("yyyy-MM-DD");  
+        if (asset instanceof VanillaCall) {
+            return formatter.format(((VanillaCall)asset).getMaturity().getVal().getTime());
+        } else {
+            if (asset instanceof VanillaPut) {
+                return formatter.format(((VanillaPut)asset).getMaturity().getVal().getTime());
+            } else {
+                if (asset instanceof Stock) {
+                    return "-";
+                } else {
+                    return "pb";
+                }                   
+            }
+        }
+    }
+    
+    public String getPriceOfAsset(Asset asset) {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        return Double.toString(asset.getPrice(today));
+    }
+    
+    
+    
     /*public double computePrice(Asset asset) {
         if (asset instanceof Stock) {
             
@@ -186,7 +248,7 @@ public class strategy implements Serializable {
             {  
                 quantite_int = Integer.parseInt(quant);
             }  
-            catch(NumberFormatException e)  
+            catch(NumberFormatException e)
             {  
                 msg_quantite = "Mauvaise quantité";
                 return "ajout-produit";
@@ -258,6 +320,23 @@ public class strategy implements Serializable {
     }
     
     
+    public String delete(String name) {
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        today.set(Calendar.MINUTE, 0);
+        today.set(Calendar.SECOND, 0);
+        for(ParamAssetInteger p : listAsset) {
+            if (p.getAsset().getName().equals(name)) {
+                listAsset.remove(p);
+                totalValue -= p.getQuantity() * p.getAsset().getPrice(today);
+                prix = Double.toString(totalValue).substring(0, 5);
+                break;
+            }
+        }
+        msgerr = "";
+        msgok = "";
+        return "";
+    }
     
     //public getAssetList
     //validate login
@@ -286,13 +365,21 @@ public class strategy implements Serializable {
                 msgok = "";
                 return "";
             }
-            Strategy currentStrat = new Strategy(name, listAsset);
-            
-            if (currentStrat.getAssets().isEmpty()) {
+            if (listAsset.isEmpty()) {
                 msgerr = "The strategy is empty";
                 msgok = "";
                 return "";
             }
+            for(ParamAssetInteger p : listAsset) {
+                if (!(p.getAsset() instanceof Stock)) {
+                    if (assetFacade.find(p.getAsset().getName()) == null) {
+                        assetFacade.create(p.getAsset());
+                    } else {
+                        assetFacade.edit(p.getAsset());
+                    }
+                }
+            }
+            Strategy currentStrat = new Strategy(name, listAsset);
             Portfolio port = cl.getPortfolio();
             List<Strategy> listStrat = port.getStrategies();
             listStrat.add(currentStrat);

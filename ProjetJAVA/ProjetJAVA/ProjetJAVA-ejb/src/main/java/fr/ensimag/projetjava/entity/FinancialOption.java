@@ -17,9 +17,9 @@ import javax.persistence.ManyToOne;
 @Entity
 public abstract class FinancialOption extends Asset {
     @ManyToOne(cascade = CascadeType.PERSIST)
-    protected ParamDouble strike;
+    public ParamDouble strike;
     @ManyToOne(cascade = CascadeType.PERSIST)
-    protected ParamStock underlying;
+    public ParamStock underlying;
     @ManyToOne(cascade = CascadeType.PERSIST)
     protected ParamDate maturity;
     
@@ -31,4 +31,31 @@ public abstract class FinancialOption extends Asset {
         super(emissionDate);
         this.maturityDate = maturityDate;
     }
+
+
+    public ParamDouble getStrike() {
+        return strike;
+    }
+
+    public void setStrike(ParamDouble strike) {
+        this.strike = strike;
+    }
+
+    public ParamStock getUnderlying() {
+        return underlying;
+    }
+
+    public void setUnderlying(ParamStock underlying) {
+        this.underlying = underlying;
+    }
+
+    public ParamDate getMaturity() {
+        return maturity;
+    }
+
+    public void setMaturity(ParamDate maturity) {
+        this.maturity = maturity;
+    }
+    
+    
 }
