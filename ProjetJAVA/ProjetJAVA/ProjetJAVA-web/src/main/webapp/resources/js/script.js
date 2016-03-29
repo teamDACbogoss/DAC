@@ -1,23 +1,35 @@
 $(document).ready(function(){
+    
+    $("#nouvelle-pos\\:select_type").change(function() {
+    //$("#nouvelle-pos").change(function() {
+        updateDisabledTrucsNouvellePos();
+    });
+    updateDisabledTrucsNouvellePos();
+        
+    $("#ajout-produit\\:select_type2").change(function() {
+        updateDisabledTrucs();
+    });
+    updateDisabledTrucs();
+
 
     $("select.image-picker").imagepicker({
-      hide_select:  false,
+      hide_select:  false
     });
 
     $("select.image-picker.show-labels").imagepicker({
       hide_select:  false,
-      show_label:   true,
+      show_label:   true
     });
 
     $("select.image-picker.limit_callback").imagepicker({
-      limit_reached:  function(){alert('We are full!')},
+      limit_reached:  function(){alert("We are full!");},
       hide_select:    false
     });
 
     var container = $("select.image-picker.masonry").next("ul.thumbnails");
     container.imagesLoaded(function(){
       container.masonry({
-        itemSelector:   "li",
+        itemSelector:   "li"
       });
     });
 
@@ -27,20 +39,10 @@ $(document).ready(function(){
         $("#wrapper").toggleClass("toggled");
     });
     
-    
-    $("#nouvelle-pos\\:select_type").change(function() {
-        updateDisabledTrucsNouvellePos();
-    });
-    updateDisabledTrucsNouvellePos();
-        
-    $("#ajout-produit\\:select_type2").change(function() {
-        updateDisabledTrucs();
-    });
-    updateDisabledTrucs();
 });
 
 function updateDisabledTrucsNouvellePos(){
-            if ($("#nouvelle-pos\\:select_type").val()==="action") {
+        if ($("#nouvelle-pos\\:select_type").val()==="action") {
             $("#nouvelle-pos\\:id_t").prop('disabled', true);
             $("#nouvelle-pos\\:K").prop('disabled', true);
         } else {
