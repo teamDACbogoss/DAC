@@ -23,6 +23,7 @@ public abstract class Asset implements Serializable {
     //protected Long id;
     protected String name;
     
+    //private int quantite
     /*
     public Long getId() {
         return id;
