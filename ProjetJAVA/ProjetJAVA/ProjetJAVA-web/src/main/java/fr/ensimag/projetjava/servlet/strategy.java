@@ -368,6 +368,10 @@ public class strategy implements Serializable {
                 return "";
             }
             for(ParamAssetInteger p : listAsset) {
+                String nameAsset = p.getAsset().getName() + assetFacade.findAll().size();
+                Asset ass = p.getAsset();
+                ass.setName(nameAsset);
+                p.setAsset(ass);
                 if (!(p.getAsset() instanceof Stock)) {
                     if (assetFacade.find(p.getAsset().getName()) == null) {
                         assetFacade.create(p.getAsset());
