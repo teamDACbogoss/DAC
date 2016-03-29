@@ -148,6 +148,10 @@ public class option {
                 return "";
 
             }
+            if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
         } else {
             double prix_temp;
@@ -163,7 +167,10 @@ public class option {
                 return "";
 
             }
-
+            if (k_double <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date maturite_Date;
             try {
@@ -187,7 +194,10 @@ public class option {
                 return "";
 
             }
-
+            if (quantite_int <= 0) {
+                msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             if (strat.equals("call")){
                 VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
                 prix_temp = option.getPrice(today);
@@ -228,6 +238,10 @@ public class option {
                 msg_quantite = "Mauvaise quantité";
                 return "";
             }
+            if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
         } else {
             double prix_temp;
 
@@ -241,7 +255,10 @@ public class option {
                 msg_strike = "Mauvais strike";
                 return "";
             }
-
+            if (k_double <= 0) {
+                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
             Date maturite_Date;
             try {
@@ -262,6 +279,10 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
+                return "";
+            }
+             if (quantite_int <= 0) {
+                 msg_quantite = "Mauvaise quantité";
                 return "";
             }
 
