@@ -36,7 +36,7 @@ public class VanillaCall extends FinancialOption {
         this.underlying = new ParamStock(underlying, "underlying");
         this.strike = new ParamDouble(strike, "strike");
         this.maturity = new ParamDate(maturity, "maturity");
-        this.name = "Call option on " + underlying.getName();
+        this.name = name;
     }
     
     @Override
