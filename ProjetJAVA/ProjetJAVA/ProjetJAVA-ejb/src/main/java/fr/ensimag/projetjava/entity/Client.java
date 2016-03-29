@@ -7,9 +7,9 @@ package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Column;
 import javax.persistence.OneToOne;
 
 /**
