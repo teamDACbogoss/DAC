@@ -26,7 +26,7 @@ public class Portfolio implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.ALL)
     private List<Strategy> strategies;
     
     public Portfolio() {

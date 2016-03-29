@@ -56,12 +56,16 @@ public class sessionBean implements Serializable {
 
     public String getSolde() {
         if (client != null && isLogged) {
-            solde = Double.toString(client.getCash());
+            Client clientFromDB = clientFacade.find(client.getEmail());
+            solde = Double.toString(clientFromDB.getCash());
         }
         return solde;
     }
 
     public void setSolde(String solde) {
+        Client clientFromDB = clientFacade.find(client.getEmail());
+        clientFromDB.setCash(Double.parseDouble(solde));
+        clientFacade.edit(clientFromDB);
         this.solde = solde;
     }
 
