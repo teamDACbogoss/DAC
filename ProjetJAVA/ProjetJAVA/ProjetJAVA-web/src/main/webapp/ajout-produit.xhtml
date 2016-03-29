@@ -26,25 +26,20 @@
                         <div class="col-md-3">
                             Choix de stratégie:
                             
-                            <h:selectOneMenu class="form-control" id="select_type" value="#{strat}">
+                            <h:selectOneMenu class="form-control" id="select_type2" value="#{strat}">
                                 <f:selectItem itemValue="call" itemLabel="Call" />
                                 <f:selectItem itemValue="put" itemLabel="Put" />
                                 <f:selectItem itemValue="action" itemLabel="Action" />
-                            </h:selectOneMenu>	
-                            
-                            
+                            </h:selectOneMenu>	   
                         </div>
+                        
                         <div class="col-md-3">
                             Choix de l'action:
-                            <select class="form-control">
-                                <option>AccorHotels</option>
-                                <option>Airbus</option>
-                                <option>Air Liquide</option>
-                                <option>Alcatel-Lucent</option>
-                                <option>Alstom</option>
-                                <option>ArcelorMittal</option>
-                            </select>
+                            <h:selectOneMenu class="form-control" value="#{action}">
+                                <f:selectItems value="#{option.actions}" />
+                            </h:selectOneMenu>
                         </div>
+                        
                     </div>
                     
                     <div class="row">
@@ -90,12 +85,12 @@
                         <div class="col-md-2"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <h:inputText id = "K" class="form-control" binding="#{k}" />
+                                <h:inputText id = "K2" class="form-control" binding="#{k}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <h:inputText class="form-control"  id = "id_t" binding="#{mat}" />
+                                <h:inputText class="form-control"  id = "id_t2" binding="#{mat}" />
                             </div>
                         </div>
                         <div class="col-md-2">
@@ -117,11 +112,9 @@
                     </div>
                     
                     <div class="row">
-                        <button type="button" onclick= "validerAjout()" action="#" class="btn btn-success" aria-label="Left Align">     
-                            <a href="#" >Valider</a>
-                        </button>
-                    
-                        <h:commandButton value="Valoriser" action="#{option.pricing(strat, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
+                        
+                    <h:commandButton value="Valider" action="#{strategy.ajouter(strat, action.value, k.value, mat.value, quant.value)}" class="btn btn-success"></h:commandButton>
+                     <h:commandButton value="Valoriser" action="#{option.pricing(strat, action.value, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
 
                                         
                         <button type="button" onclick="creationStrategie()" action="#" class="btn btn-danger" aria-label="Left Align">

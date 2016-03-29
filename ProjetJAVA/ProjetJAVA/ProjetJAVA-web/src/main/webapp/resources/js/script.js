@@ -11,7 +11,7 @@ $(document).ready(function(){
     });
     updateDisabledTrucsNouvellePos();
         
-    $("#ajout-produit\\:select_type").change(function() {
+    $("#ajout-produit\\:select_type2").change(function() {
         updateDisabledTrucs();
     });
     updateDisabledTrucs();
@@ -28,12 +28,12 @@ function updateDisabledTrucsNouvellePos(){
 }
 
 function updateDisabledTrucs() {
-    if ($("#ajout-produit\\:select_type").val()==="action") {
-        $("#ajout-produit\\:id_t").prop('disabled', true);
-        $("#ajout-produit\\:K").prop('disabled', true);
+    if ($("#ajout-produit\\:select_type2").val()==="action") {
+        $("#ajout-produit\\:id_t2").prop('disabled', true);
+        $("#ajout-produit\\:K2").prop('disabled', true);
     } else {
-        $("#ajout-produit\\:id_t").prop('disabled', false);
-        $("#ajout-produit\\:K").prop('disabled', false);
+        $("#ajout-produit\\:id_t2").prop('disabled', false);
+        $("#ajout-produit\\:K2").prop('disabled', false);
     }
 }
 
