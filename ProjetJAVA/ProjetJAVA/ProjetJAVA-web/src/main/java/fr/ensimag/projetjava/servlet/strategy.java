@@ -47,7 +47,6 @@ public class strategy implements Serializable {
     
     private String strategyName; 
     private double totalValue;
-    private Strategy currentStrat;
     private String msgerr;
     private String msgok;
 
@@ -57,7 +56,6 @@ public class strategy implements Serializable {
     
     
     private String msg_quantite;
-    private List<String> actions;
     private ArrayList<Asset> listAsset;
 
     public PortfolioFacadeLocal getPortfolioFacade() {
@@ -99,17 +97,7 @@ public class strategy implements Serializable {
     public void setMsg_quantite(String msg_quantite) {
         this.msg_quantite = msg_quantite;
     }
-
-    public List<String> getActions() {
-        return actions;
-    }
-
-    public void setActions(List<String> actions) {
-        this.actions = actions;
-    }
-
-  
-
+    
     public ArrayList<Asset> getListAsset() {
         return listAsset;
     }
@@ -121,7 +109,6 @@ public class strategy implements Serializable {
     public strategy(){
         strategyName = "strategie sans titre";
         totalValue = 0.0;
-        currentStrat = null; //new Strategy();
         msgerr = "";
         msgok = "";
     }
@@ -150,9 +137,6 @@ public class strategy implements Serializable {
         this.totalValue = totalValue;
     }
 
-    public void setCurrentStrat(Strategy currentStrat) {
-        this.currentStrat = currentStrat;
-    }
 
     public String getStrategyName() {
         return strategyName;
@@ -160,10 +144,6 @@ public class strategy implements Serializable {
 
     public double getTotalValue() {
         return totalValue;
-    }
-
-    public Strategy getCurrentStrat() {
-        return currentStrat;
     }
     
     public String getNameofAsset(Asset asset){
@@ -195,7 +175,6 @@ public class strategy implements Serializable {
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
-        currentStrat.getPrice(today);
 
         String prix_asset;
         
@@ -302,6 +281,8 @@ public class strategy implements Serializable {
                 msgok = "";
                 return "";
             }
+            Strategy currentStrat = new Strategy(name, listAsset);
+            
             if (currentStrat.getAssets().isEmpty()) {
                 msgerr = "The strategy is empty";
                 msgok = "";

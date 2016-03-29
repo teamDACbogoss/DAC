@@ -65,63 +65,40 @@
                             headerClass="employeeTableHeader"
                             rowClasses="employeeTableOddRow,employeeTableEvenRow"
                             class="table table-bordered">
-                            <h:column>    				
-                               <f:facet name="header">Nom</f:facet>    				
-                               #{asset.name}
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Sous-Jacent</f:facet>
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Strike</f:facet>
-                                                  
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Maturité</f:facet>
-                               <ui:fragment rendered="#{action.bool}">
-                                   <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
-                               </ui:fragment>
-                               <ui:fragment rendered="#{!action.bool}">
-                                   <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
-                               </ui:fragment>
-                            </h:column>
+                                <h:column>    				
+                                   <f:facet name="header">Nom</f:facet>    				
+                                   #{asset.name}
+                                </h:column>
                                 <h:column>
-                               <f:facet name="header">Quantité</f:facet>
-                                                   
-                            </h:column>
+                                   <f:facet name="header">Sous-Jacent</f:facet>
+                                </h:column>
                                 <h:column>
-                               <f:facet name="header">Prix</f:facet>
-                                                   
-                            </h:column>
-                         </h:dataTable>
-                    </div>
-               
-                            
-                    
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th>Nom</th>
-                                    <th>Sous-jacent</th>
-                                    <th>Strike</th>
-                                    <th>Maturité</th>
-                                    <th>Quantité</th>
-                                    <th>Delta</th>
-                                    <th>Theta</th>
-                                    <th>Gamma</th>
-                                    <th>Prix</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                
-                            </tbody>
-                        </table>
+                                   <f:facet name="header">Strike</f:facet>
+
+                                </h:column>
+                                <h:column>
+                                   <f:facet name="header">Maturité</f:facet>
+                                   <ui:fragment rendered="#{action.bool}">
+                                       <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
+                                   </ui:fragment>
+                                   <ui:fragment rendered="#{!action.bool}">
+                                       <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
+                                   </ui:fragment>
+                                </h:column>
+                                    <h:column>
+                                   <f:facet name="header">Quantité</f:facet>
+
+                                </h:column>
+                                    <h:column>
+                                   <f:facet name="header">Prix</f:facet>
+
+                                </h:column>
+                            </h:dataTable>
+                        </div>
                      </div>
                   <!--  </div>      -->
             
-                        
-                    
-                    
+                                        
                     
                     <div class="row">
                         <br></br>
