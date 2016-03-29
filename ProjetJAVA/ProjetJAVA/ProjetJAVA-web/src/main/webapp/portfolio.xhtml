@@ -20,51 +20,58 @@
                     <br></br>
                     <br></br>
                 </div>
+                
+                <div class="col-md-2">
+                    <h:outputText value="#{portfolio.msg}" style="color:red;"/>
+                </div>
 
                 <div id="table-40">
+                    <h:form>
                 <div class="table-responsive">
-                    <h:dataTable value="#{option.listStock}" var="action"
+                    <h:dataTable value="#{portfolio.listPortfolio}" var="strat"
                                  styleClass="employeeTable"
                                  headerClass="employeeTableHeader"
                                  rowClasses="employeeTableOddRow,employeeTableEvenRow"
                                  class="table table-bordered">
                         <h:column>    				
                             <f:facet name="header">Stratégie</f:facet>    				
-                               #{action.name}
+                               #{strat.name}
                         </h:column>
                         <h:column>
                             <f:facet name="header">Nom</f:facet>
-                               #{action.name}                    
+                               #{strat.assetNames}                    
                         </h:column>
                         <h:column>
                             <f:facet name="header">Quantité</f:facet>
-                               #{1}                    
+                               #{strat.assetQuantity}                    
                         </h:column>
                         <h:column>
                             <f:facet name="header">Prix courant</f:facet>
-                               #{action.stockPrice}                    
+                               #{strat.assetPrice}                    
                         </h:column>
                         <h:column>
                             <f:facet name="header">Prix d'achat</f:facet>
-                               #{action.stockPricePrevious}                    
+                               #{strat.assetPricePrevious}                    
                         </h:column>
                         <h:column>
                             <f:facet name="header">Profit</f:facet>
-                               #{action.stockPricePrevious}                    
+                               #{strat.assetPriceProfit}                    
                         </h:column>
                         <h:column>
                             <f:facet name="header">Date d'émission</f:facet>
-                                #{"01-01-2010"}                           </h:column>
+                                #{strat.assetEmission}                           </h:column>
                         <h:column>
                             <f:facet name="header">Maturité</f:facet>
-                                #{"01-01-2010"}               
+                                #{strat.assetMaturity}               
                         </h:column>
                         <h:column>
                             <f:facet name="header">Clôturité</f:facet>
-                                <a href="#" onclick="returnPortefeuille()" class="btn btn-xs btn-warning" aria-label="Left Align" role="button">Clôturer</a>
+                            <h:commandButton value="Cloturer" action="#{portfolio.clotureStrat(strat.name)}" class="btn btn-warning"></h:commandButton>
                         </h:column>
                     </h:dataTable>
                 </div>
+                                            </h:form>
+
                 </div>
 
             </ui:define>

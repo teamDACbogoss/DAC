@@ -72,6 +72,8 @@ public class strategy implements Serializable {
         return currentStrat;
     }
     
+    /*
+    
     public void computePrice() {
         currentStrat.getPrice(timestamp.getTime());
     }
@@ -95,4 +97,5 @@ public class strategy implements Serializable {
             }
         }
     }
+    */
 }

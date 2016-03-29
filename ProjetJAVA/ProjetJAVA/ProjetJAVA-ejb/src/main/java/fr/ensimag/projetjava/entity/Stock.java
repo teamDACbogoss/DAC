@@ -76,6 +76,7 @@ public class Stock extends Asset {
         return Double.parseDouble(stockPrice);
     }
     
+    @Override
     public double getPricePrevious(java.util.Calendar date) {
         return Double.parseDouble(stockPricePrevious);
     }
