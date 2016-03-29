@@ -310,8 +310,10 @@ public class strategy implements Serializable {
             Portfolio port = cl.getPortfolio();
             List<Strategy> listStrat = port.getStrategies();
             listStrat.add(currentStrat);
+            strategyFacade.create(currentStrat);
             port.setStrategies(listStrat);
             cl.setPortfolio(port);
+            clientFacade.edit(cl);
             currentStrat.setAssets(null);
             msgerr = "";
             msgok = "";
