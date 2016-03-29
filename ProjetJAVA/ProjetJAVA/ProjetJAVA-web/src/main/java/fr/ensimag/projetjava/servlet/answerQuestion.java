@@ -81,7 +81,7 @@ public class answerQuestion {
             return "login";
         } else if (answer == null || !session.getSecretAnswer().equals(answer)) {
             msg = "Mauvaise réponse a la question secrète ";
-            msg = msg + "." + session.getSecretAnswer() + "!=" + answer + ".";
+            //msg = msg + "." + session.getSecretAnswer() + "!=" + answer + ".";
             return "";
         } else {
             return "reinitiate-password";
