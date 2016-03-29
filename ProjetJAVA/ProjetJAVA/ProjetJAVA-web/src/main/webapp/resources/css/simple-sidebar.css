@@ -4,6 +4,11 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.image_picker_image {
+    height: 100px;
+    width: 100px;
+}
+
 #table-40 {
     position: relative;
     left: 0px;
