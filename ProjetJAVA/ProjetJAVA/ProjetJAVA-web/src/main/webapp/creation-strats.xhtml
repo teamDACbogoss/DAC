@@ -17,6 +17,8 @@
                     
                     <div class="row">
                         <br></br>
+                        <h:outputText value="#{strategy.msgerr}" style="color:red;"/>
+                        <h:outputText value="#{strategy.msgok}" style="color:green;"/>
                         <br></br>
                         <br></br>            
                     </div>        
@@ -67,31 +69,31 @@
                             class="table table-bordered">
                                 <h:column>    				
                                    <f:facet name="header">Nom</f:facet>    				
-                                   #{asset.name}
+                                   #{strategy.getNameofAsset(asset.asset)}
                                 </h:column>
                                 <h:column>
                                    <f:facet name="header">Sous-Jacent</f:facet>
+                                   #{strategy.getNameofUnderlying(asset.asset)}
                                 </h:column>
                                 <h:column>
                                    <f:facet name="header">Strike</f:facet>
-
+                                   #{strategy.getStrikeOfAsset(asset.asset)}
                                 </h:column>
                                 <h:column>
                                    <f:facet name="header">Maturité</f:facet>
-                                   <ui:fragment rendered="#{action.bool}">
-                                       <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
-                                   </ui:fragment>
-                                   <ui:fragment rendered="#{!action.bool}">
-                                       <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
-                                   </ui:fragment>
+                                    #{strategy.getMaturityOfAsset(asset.asset)}
                                 </h:column>
                                     <h:column>
                                    <f:facet name="header">Quantité</f:facet>
-
+                                   #{asset.quantity}
                                 </h:column>
                                     <h:column>
                                    <f:facet name="header">Prix</f:facet>
-
+                                    #{strategy.getPriceOfAsset(asset.asset)}
+                                </h:column>
+                                <h:column>
+                                   <f:facet name="header">Delete</f:facet>
+                                    <h:commandButton value="Supprimer" action="#{strategy.delete(asset.asset.name)}" class="btn btn-xs btn-danger"></h:commandButton>
                                 </h:column>
                             </h:dataTable>
                         </div>
@@ -101,23 +103,16 @@
                                         
                     
                     <div class="row">
-                        <br></br>
-                        <br></br>
-                        <br></br>            
+                        <br></br>         
                     </div>
                     
                     <div class="row">
-                        <button type="button" onclick= "()" action="#" class="btn btn-success" aria-label="Left Align">     
-                            <a href="#" >Valider</a>
-                        </button>
-                    
-                        <button type="button" onclick="ajouterProduit()" action="#" class="btn btn-warning" aria-label="Left Align">
-                            <a href="#" >Ajouter</a>
-                        </button>
-                                        
-                        <button type="button" onclick="returnCotations()" action="#" class="btn btn-danger" aria-label="Left Align">
-                            <a href="#"  >Annuler</a>
-                        </button> 
+                        <h:commandButton value="Valider" action="#{strategy.validateStrategyCreation(strategyName.value)}" class="btn btn-success"></h:commandButton>
+                        
+                        <h:button outcome="ajout-produit" value="Ajouter" class="btn btn-warning"/>
+                                       
+                        <h:button outcome="cotations" value="Annuler" class="btn btn-danger"/>
+                        
                     </div>
 
                 </h:form>
