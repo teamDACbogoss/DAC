@@ -54,7 +54,7 @@ public class reinitiatePassword {
             cl.setMdp(pwd);
             clientFacade.edit(cl);
             msg = "Password reinitialized";
-            return "";
+            return "login";
         }
     }
     

@@ -59,6 +59,7 @@ public abstract class Asset implements Serializable {
         this.maturityDate = maturityDate;
     }
     
+    //private int quantite
     /*
     public Long getId() {
         return id;

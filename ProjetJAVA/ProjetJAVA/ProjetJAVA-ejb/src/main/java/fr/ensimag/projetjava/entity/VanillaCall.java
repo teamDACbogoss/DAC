@@ -50,9 +50,11 @@ public class VanillaCall extends FinancialOption {
         double S = this.underlying.val.getPrice(date);
         double K = this.strike.val;
         double r = 0.02;
-        double T = 1;
-        double vol = 0.02;
-        
+        double T = (this.maturity.val - date.getTimeInMillis()) / (1000 * 60 * 60 * 24 * 365);
+        if (T < 0) {
+            return 0;
+        }
+        double vol = 0.2;
         double volSqrt = vol * FastMath.sqrt(T);
         double d1 = (FastMath.log(S / K) + (r + vol * vol / 2) * T)/volSqrt;
         double d2 = d1 - volSqrt;
@@ -67,9 +69,11 @@ public class VanillaCall extends FinancialOption {
         double S = this.underlying.val.getPrice(date);
         double K = this.strike.val;
         double r = 0.02;
-        double T = 1;
-        double vol = 0.02;
-        
+        double T = (this.maturity.val - date.getTimeInMillis()) / (1000 * 60 * 60 * 24 * 365) - 1/365;
+        if (T < 0) {
+            return 0;
+        }
+        double vol = 0.2;
         double volSqrt = vol * FastMath.sqrt(T);
         double d1 = (FastMath.log(S / K) + (r + vol * vol / 2) * T)/volSqrt;
         double d2 = d1 - volSqrt;
