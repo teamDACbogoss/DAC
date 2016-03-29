@@ -7,6 +7,7 @@ package fr.ensimag.projetjava.servlet;
 
 import fr.ensimag.projetjava.entity.Asset;
 import fr.ensimag.projetjava.entity.Client;
+import fr.ensimag.projetjava.entity.ParamAssetInteger;
 import fr.ensimag.projetjava.entity.Portfolio;
 import fr.ensimag.projetjava.entity.Stock;
 import fr.ensimag.projetjava.entity.Strategy;
@@ -56,7 +57,7 @@ public class strategy implements Serializable {
     
     
     private String msg_quantite;
-    private ArrayList<Asset> listAsset;
+    private ArrayList<ParamAssetInteger> listAsset;
 
     public PortfolioFacadeLocal getPortfolioFacade() {
         return portfolioFacade;
@@ -98,11 +99,11 @@ public class strategy implements Serializable {
         this.msg_quantite = msg_quantite;
     }
     
-    public ArrayList<Asset> getListAsset() {
+    public ArrayList<ParamAssetInteger> getListAsset() {
         return listAsset;
     }
 
-    public void setListAsset(ArrayList<Asset> listAsset) {
+    public void setListAsset(ArrayList<ParamAssetInteger> listAsset) {
         this.listAsset = listAsset;
     }
     
@@ -192,7 +193,8 @@ public class strategy implements Serializable {
 
             }
             prix_asset = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
-            listAsset.add(stock);
+            ParamAssetInteger param =  new ParamAssetInteger(stock, quantite_int);
+            listAsset.add(param);
             totalValue += quantite_int * stock.getPrice(today);
             prix = Double.toString(totalValue).substring(0, 5);
         } else {
@@ -235,19 +237,19 @@ public class strategy implements Serializable {
             }
 
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("call", stock, k_double, maturite_cal);
                 prix_temp = option.getPrice(today);
-                listAsset.add(option);
+                ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
+                listAsset.add(param);
             } else {
-                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("put", stock, k_double, maturite_cal);
                 prix_temp = option.getPrice(today);
-                listAsset.add(option);
+                 ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
+                listAsset.add(param);
             }
                 prix_temp *= quantite_int;
                 totalValue += prix_temp;
                 prix = Double.toString(totalValue).substring(0, 5);
-                
-                
         }  
         return "creation-strats";
     }
