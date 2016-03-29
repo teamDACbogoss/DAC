@@ -1,5 +1,27 @@
 $(document).ready(function(){
 
+    $("select.image-picker").imagepicker({
+      hide_select:  false,
+    });
+
+    $("select.image-picker.show-labels").imagepicker({
+      hide_select:  false,
+      show_label:   true,
+    });
+
+    $("select.image-picker.limit_callback").imagepicker({
+      limit_reached:  function(){alert('We are full!')},
+      hide_select:    false
+    });
+
+    var container = $("select.image-picker.masonry").next("ul.thumbnails");
+    container.imagesLoaded(function(){
+      container.masonry({
+        itemSelector:   "li",
+      });
+    });
+
+
     $("#menu-toggle").click(function(e) {
         e.preventDefault();
         $("#wrapper").toggleClass("toggled");

@@ -15,7 +15,7 @@
                     <h3>Ajout Action</h3>      
                     
                     <div class="row">
-                        <br></br>
+                        <h:outputText value="#{gestionActifs.msgerr}" style="color:red;"/>
                         <br></br>
                         <br></br>            
                     </div>
@@ -24,7 +24,7 @@
                         <div class="col-md-5">
                         </div>
                         <div class="col-md-2">
-                            Choix de l'action:
+                            Nom de l'action:
                         </div>
                     </div>
                     
@@ -32,7 +32,7 @@
                         <div class="col-md-5"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control" binding="#{name}" />
                             </div>
                         </div>
                     </div>
@@ -53,49 +53,7 @@
                         <div class="col-md-5"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <br></br>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-md-5">
-                        </div>
-                        <div class="col-md-2">
-                            Cotation du jour :
-                        </div>
-                    </div>
-                    
-                   <div class="row">
-                        <div class="col-md-5"></div>
-                        <div class="col-md-2">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <br></br>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-5">
-                        </div>
-                        <div class="col-md-2">
-                            Volatilité :
-                        </div>
-                    </div>
-                    
-                   <div class="row">
-                        <div class="col-md-5"></div>
-                        <div class="col-md-2">
-                            <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <h:inputText class="form-control" binding="#{symbol}" />
                             </div>
                         </div>
                     </div>
@@ -107,8 +65,8 @@
                     </div>
                     
                     <div class="row">
-                        <a href="#" onclick="ajoutActifAdmin()" class="btn btn-info" aria-label="Left Align" role="button">Valider</a>
-                        <a href="#" onclick="gestionActif()" class="btn btn-danger" aria-label="Left Align" role="button">Annuler</a>               
+                        <h:commandButton value="Ajouter" action="#{gestionActifs.addAsset(name.value, symbol.value)}" class="btn btn-success"></h:commandButton>
+                        <h:button outcome="gestion-actifs" value="Annuler" class="btn btn-danger"/>
                     </div>
                 </h:form>
                           

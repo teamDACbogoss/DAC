@@ -30,6 +30,7 @@ public class option {
     
     private String prix;
 
+    private String msg_stock;
     private String msg_maturite;
     private String msg_strike;
     private String msg_quantite;
@@ -63,9 +64,12 @@ public class option {
     }
 
     
-    
     public String getMsg_maturite() {
         return msg_maturite;
+    }
+    
+    public String getMsg_stock() {
+        return msg_stock;
     }
     
     public String getMsg_strike() {
@@ -87,6 +91,11 @@ public class option {
     public void setMsg_quantite(String msg_quantite) {
         this.msg_quantite = msg_quantite;
     }
+    
+    public void setMsg_stock(String msg_stock) {
+        this.msg_stock = msg_stock;
+    }
+    
     /**
      * Get the value of prix
      *
@@ -115,6 +124,11 @@ public class option {
     public String pricing(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue princing";
+            return "";
+        }
+        
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -131,7 +145,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "nouvelle-position";
+                return "";
 
             }
             prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
@@ -146,7 +160,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_strike = "Mauvais strike";
-                return "nouvelle-position";
+                return "";
 
             }
 
@@ -156,7 +170,7 @@ public class option {
                 maturite_Date = formatter.parse(mat);
             } catch (ParseException e) {
                 msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
-                return "nouvelle-position";
+                return "";
             }
 
             Calendar maturite_cal = Calendar.getInstance();
@@ -170,7 +184,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "nouvelle-position";
+                return "";
 
             }
 
@@ -186,12 +200,16 @@ public class option {
                 prix = Double.toString(prix_temp).substring(0, 5);
         }
                 
-        return "nouvelle-position"; 
+        return ""; 
     }
     
     public String achat(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue achat";
+            return "";
+        }
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -208,7 +226,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "cotations";
+                return "";
             }
         } else {
             double prix_temp;
@@ -221,7 +239,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_strike = "Mauvais strike";
-                return "cotations";
+                return "";
             }
 
             SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -230,7 +248,7 @@ public class option {
                 maturite_Date = formatter.parse(mat);
             } catch (ParseException e) {
                 msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
-                return "cotations";
+                return "";
             }
 
             Calendar maturite_cal = Calendar.getInstance();
@@ -244,7 +262,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "cotations";
+                return "";
             }
 
             if (strat.equals("call")){
@@ -259,12 +277,17 @@ public class option {
                 prix = Double.toString(prix_temp).substring(0, 5);  
 
         }
-        return "cotations";
+        return "";
     }
-    
+    /*
     public String pricing_ajout(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue ajout";
+            return "";
+        }
+
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -341,6 +364,10 @@ public class option {
     public String achat_ajout(String strat, String actionName, String k, String mat, String quant)
     {
         Stock stock = stockFacade.find(actionName);
+        if (stock == null) {
+            msg_stock = "action inconnue ajout achat";
+            return "";
+        }
         Calendar today = Calendar.getInstance();
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
@@ -410,4 +437,5 @@ public class option {
         }
         return "creation-strats";
     }
+    */
 }

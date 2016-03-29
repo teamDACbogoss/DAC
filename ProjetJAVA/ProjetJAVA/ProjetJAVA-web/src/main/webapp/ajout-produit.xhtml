@@ -35,6 +35,8 @@
                         
                         <div class="col-md-3">
                             Choix de l'action:
+                            <br/>
+                            <h:outputText value="#{option.msg_stock}" style="color:red;" />
                             <h:selectOneMenu class="form-control" value="#{action}">
                                 <f:selectItems value="#{option.actions}" />
                             </h:selectOneMenu>
@@ -66,6 +68,7 @@
                     
                     <div class="row">
                         <div class="col-md-2"></div>
+                            
                         <div class="col-md-2">
                             <h:outputText value="#{option.msg_strike}" style="color:red;" />
                         </div>
@@ -112,11 +115,10 @@
                     </div>
                     
                     <div class="row">
-     
-                    <h:commandButton value="Valider" action="#{strategy.ajouter(strat, action.value, k.value, mat.value, quant.value)}" class="btn btn-success"></h:commandButton>
-                     <h:commandButton value="Valoriser" action="#{option.pricing(strat, action.value, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
+                    <h:commandButton value="Valider" action="#{strategy.ajouter(strat, action, k.value, mat.value, quant.value)}" class="btn btn-success"></h:commandButton>
+                     <h:commandButton value="Valoriser" action="#{option.pricing(strat, action, k.value, mat.value, quant.value)}" class="btn btn-warning"></h:commandButton>
                         <button type="button" onclick="creationStrategie()" action="#" class="btn btn-danger" aria-label="Left Align">
-                            <a href="#"  >Annuler</a>
+                            <a href="#">Annuler</a>
                         </button> 
                     </div>
                 </h:form>

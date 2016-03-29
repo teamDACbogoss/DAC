@@ -7,6 +7,7 @@ package fr.ensimag.projetjava.servlet;
 
 import fr.ensimag.projetjava.entity.Asset;
 import fr.ensimag.projetjava.entity.Client;
+import fr.ensimag.projetjava.entity.Portfolio;
 import fr.ensimag.projetjava.entity.Stock;
 import fr.ensimag.projetjava.entity.Strategy;
 import fr.ensimag.projetjava.entity.VanillaCall;
@@ -16,6 +17,7 @@ import java.io.IOException;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -38,14 +40,17 @@ public class strategy implements Serializable {
     private fr.ensimag.projetjava.stateless.StrategyFacadeLocal strategyFacade;
  @EJB
     private fr.ensimag.projetjava.stateless.PortfolioFacadeLocal portfolioFacade;
+  @EJB
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
  @EJB
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
     
     private String strategyName; 
     private double totalValue;
     private Strategy currentStrat;
-    private String msg;
-    
+    private String msgerr;
+    private String msgok;
+
     private String prix;
     private String msg_maturite;
     private String msg_strike;
@@ -117,15 +122,24 @@ public class strategy implements Serializable {
         strategyName = "strategie sans titre";
         totalValue = 0.0;
         currentStrat = null; //new Strategy();
-        msg = "";
+        msgerr = "";
+        msgok = "";
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMsgok() {
+        return msgok;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMsgok(String msgok) {
+        this.msgok = msgok;
+    }
+    
+    public String getMsgerr() {
+        return msgerr;
+    }
+
+    public void setMsgerr(String msg) {
+        this.msgerr = msg;
     }
 
     public void setStrategyName(String strategyName) {
@@ -181,6 +195,8 @@ public class strategy implements Serializable {
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
+        currentStrat.getPrice(today);
+
         String prix_asset;
         
         if (strat.equals("action"))
@@ -256,27 +272,50 @@ public class strategy implements Serializable {
         }  
         return "creation-strats";
     }
-}
-    /*public void computePrice() {
-        currentStrat.getPrice(timestamp.getTime());
-    }
+    
+    
     
     //public getAssetList
     //validate login
     public String validateStrategyCreation(String name) {
         if (name == null) {
-            msg = "Incorrect strategy name";
+            msgerr = "Incorrect strategy name";
+            msgok = "";
             return "";
         } else {
             FacesContext facesContext = FacesContext.getCurrentInstance();
             sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
-            String page = session.login(email, pwd);
-            if (page == null) {
-                msg = "Incorrect Username and Password";
+            if (name == null || name.equals("")) {
+                msgerr = "The strategy must have a name";
+                msgok = "";
                 return "";
-            } else {
-                return page;
             }
+            if (strategyFacade.find(name) != null) {
+                msgerr = "There is already a strategy with the same name";
+                msgok = "";
+                return "";
+            }
+            Client cl = clientFacade.find(session.getName());
+            if (cl == null) {
+                msgerr = "The account is not connected";
+                msgok = "";
+                return "";
+            }
+            if (currentStrat.getAssets().isEmpty()) {
+                msgerr = "The strategy is empty";
+                msgok = "";
+                return "";
+            }
+            Portfolio port = cl.getPortfolio();
+            List<Strategy> listStrat = port.getStrategies();
+            listStrat.add(currentStrat);
+            port.setStrategies(listStrat);
+            cl.setPortfolio(port);
+            currentStrat.setAssets(null);
+            msgerr = "";
+            msgok = "";
+            return "";
         }
-    }*/
+    }
+}
