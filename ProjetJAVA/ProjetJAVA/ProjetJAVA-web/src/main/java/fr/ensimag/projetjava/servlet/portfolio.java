@@ -33,6 +33,8 @@ public class portfolio {
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
     @EJB
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.PortfolioFacadeLocal portfolioFacade;
 
     public portfolio() {
         msg = "";
@@ -56,26 +58,34 @@ public class portfolio {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
-        ListPortfolio = session.getClient().getPortfolio().getStrategies();
-        for(Strategy s : ListPortfolio){
+        //ListPortfolio = session.getClient().getPortfolio().getStrategies();
+        Client client = clientFacade.find(session.getClient().getEmail());
+        java.util.Calendar todayCal = java.util.Calendar.getInstance();
+        todayCal.set(Calendar.HOUR_OF_DAY, 0);
+        todayCal.set(Calendar.MINUTE, 0);
+        todayCal.set(Calendar.SECOND, 0);        
+        for(Strategy s : client.getPortfolio().getStrategies()){
             if(s.getName().equals(name)){
-                ListPortfolio.remove(s);
+                client.getPortfolio().getStrategies().remove(s);
             }
+            
+            client.setCash(client.getCash() + s.getPrice(todayCal));
+            clientFacade.edit(client);
             return;
         }
-        clientFacade.edit(session.getClient());
+        //portfolioFacade.edit(client.getPortfolio());
     }
 
     public List<Strategy> getListPortfolio() {
         FacesContext facesContext = FacesContext.getCurrentInstance();
         sessionBean session = (sessionBean)facesContext.getApplication()
                     .createValueBinding("#{sessionBean}").getValue(facesContext);
-        ListPortfolio = session.getClient().getPortfolio().getStrategies();
-        //Client myClient = clientFacade.find(session.getClient().getEmail());
+        //ListPortfolio = session.getClient().getPortfolio().getStrategies();
+        Client myClient = clientFacade.find(session.getClient().getEmail());
         
         //msg = Integer.toString(myClient.getPortfolio().getStrategies().size());
         //        msg = Integer.toString(ListPortfolio.size());
-        return ListPortfolio;
+        return myClient.getPortfolio().getStrategies();
 
         //return myClient.getPortfolio().getStrategies();
     }
