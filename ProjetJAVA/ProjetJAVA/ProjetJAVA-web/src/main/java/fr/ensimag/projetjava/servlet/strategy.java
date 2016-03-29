@@ -47,6 +47,10 @@ public class strategy implements Serializable {
     private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
  @EJB
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
+ @EJB
+    private fr.ensimag.projetjava.stateless.VanillaCallFacadeLocal vanillaCallFacade;
+ @EJB
+    private fr.ensimag.projetjava.stateless.VanillaPutFacadeLocal vanillaPutFacade;
     
     private String strategyName; 
     private double totalValue;
@@ -254,11 +258,11 @@ public class strategy implements Serializable {
                 return "ajout-produit";
 
             }
-            prix_asset = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
+            prix_asset = Double.toString(quantite_int * stock.getPrice(today)).substring(0, Math.min(Double.toString(quantite_int * stock.getPrice(today)).length(), 5));
             ParamAssetInteger param =  new ParamAssetInteger(stock, quantite_int);
             listAsset.add(param);
             totalValue += quantite_int * stock.getPrice(today);
-            prix = Double.toString(totalValue).substring(0, 5);
+            prix = Double.toString(totalValue).substring(0, Math.min(5, Double.toString(totalValue).length()));
         } else {
             double prix_temp;
 
@@ -302,12 +306,12 @@ public class strategy implements Serializable {
             String formatted = format1.format(maturite_cal.getTime());
 
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("call", stock, k_double, maturite_cal, today, formatted);
+                VanillaCall option = new VanillaCall("VanillaCall" + vanillaCallFacade.findAll().size() + "_" + stock.getName(), stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
                 ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
                 listAsset.add(param);
             } else {
-                VanillaPut option = new VanillaPut("put", stock, k_double, maturite_cal,  today, formatted);
+                VanillaPut option = new VanillaPut("VanillaPut" + vanillaPutFacade.findAll().size() + "_" + stock.getName(), stock, k_double, maturite_cal,  today, formatted);
                 prix_temp = option.getPrice(today);
                  ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
                 listAsset.add(param);
@@ -329,7 +333,7 @@ public class strategy implements Serializable {
             if (p.getAsset().getName().equals(name)) {
                 listAsset.remove(p);
                 totalValue -= p.getQuantity() * p.getAsset().getPrice(today);
-                prix = Double.toString(totalValue).substring(0, 5);
+                prix = Double.toString(totalValue).substring(0, Math.min(5, Double.toString(totalValue).length()));
                 break;
             }
         }
@@ -371,10 +375,10 @@ public class strategy implements Serializable {
                 return "";
             }
             for(ParamAssetInteger p : listAsset) {
-                String nameAsset = p.getAsset().getName() + assetFacade.findAll().size();
-                Asset ass = p.getAsset();
-                ass.setName(nameAsset);
-                p.setAsset(ass);
+                //String nameAsset = p.getAsset().getName() + assetFacade.findAll().size();
+                //Asset ass = p.getAsset();
+                //ass.setName(nameAsset);
+                //p.setAsset(ass);
                 if (!(p.getAsset() instanceof Stock)) {
                     if (assetFacade.find(p.getAsset().getName()) == null) {
                         assetFacade.create(p.getAsset());
@@ -391,10 +395,10 @@ public class strategy implements Serializable {
             port.setStrategies(listStrat);
             cl.setPortfolio(port);
             clientFacade.edit(cl);
-            currentStrat.setAssets(null);
+            listAsset = new ArrayList<>();
             msgerr = "";
             msgok = "";
-            return "";
+            return "portfolio";
         }
     }
 }
