@@ -163,7 +163,7 @@
                         
                     <div class="row">
                         <h:commandButton value="Valider" action="#{createaccount.createMember(name.value, firstName.value, email.value, mdp.value, cmdp.value, secretQuestion, secretQA.value)}" class="btn btn-success"></h:commandButton>
-                        <h:commandButton value="Annuler" onclick="returnConnection()" class="btn btn-danger"></h:commandButton>
+                        <h:commandButton value="Annuler" action="#{createaccount.returnHome()}" class="btn btn-danger"></h:commandButton>
                     </div>
                     
                 </h:form>

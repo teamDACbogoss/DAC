@@ -2,7 +2,8 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" 
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
 
     <h:body>
@@ -25,35 +26,38 @@
                         <div class="col-md-2">
                             Nom
                         </div>
-                        <div class="col-md-2">
-                            Prix
+                        <div class="input-group input-group-sm">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2">
+                                Prix
+                            </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <br></br>
                     </div>
-                    
                     <div class="row">
                         <div class="col-md-4"></div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3"/>
+                                <span><span></span></span>
+                                <h:inputText class="form-control" binding="#{strategyName}" />
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" value="" aria-describedby="sizing-addon3" readonly="true"></input>
+                                <input type="text" class="form-control" value="#{strategy.getTotalValue()}" aria-describedby="sizing-addon3" readonly="true"></input> 
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="row">
                         <br></br>
                         <br></br>
                         <br></br>            
                     </div>
-                    
+
                     <div class="table-responsive"> 
                         <table class="table table-bordered">
                             <thead>
@@ -81,25 +85,41 @@
                                     <td>0,33</td>
                                     <td>65</td>
                                 </tr>
-                                <ui:repeat var="o" value="#{order.orderList}" varStatus="status"><!-- TODO -->
-                                    <tr>
-                                            <td>#{o.name}</td>
-                                            <td>#{o.bid}</td>
-                                            <td>#{o.ask}</td>
-                                            <td>
-                                                <ui:fragment rendered="#{o.tendancy eq 1}">
-                                                    <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-                                                </ui:fragment>
-                                                <ui:fragment rendered="#{o.tendency eq -1}">
-                                                    <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
-                                                </ui:fragment>
-                                            </td>
-                                    </tr>
-                               </ui:repeat>
                             </tbody>
                         </table>
+                        
+                <div id="table-40">
+                    <div class="table-responsive">
+                        <h:dataTable value="#{option.listStock}" var="action"
+                            styleClass="employeeTable"
+                            headerClass="employeeTableHeader"
+                            rowClasses="employeeTableOddRow,employeeTableEvenRow"
+                            class="table table-bordered">
+                            <h:column>    				
+                               <f:facet name="header">Nom</f:facet>    				
+                               #{action.name}
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Prix</f:facet>
+                               #{action.stockPrice}                    
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Prix Précédent</f:facet>
+                               #{action.stockPricePrevious}                    
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Tendance</f:facet>
+                               <ui:fragment rendered="#{action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
+                               </ui:fragment>
+                               <ui:fragment rendered="#{!action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
+                               </ui:fragment>
+                            </h:column>
+                         </h:dataTable>
+                    </div>
+                </div>
                     </div>  
-                             
                     <div class="row">
                         <br></br>
                         <br></br>
