@@ -58,7 +58,46 @@
                         <br></br>            
                     </div>
 
-                    <div class="table-responsive"> 
+                    <div id="table-40">
+                        <div class="table-responsive">
+                            <h:dataTable value="#{strategy.listAsset}" var="asset"
+                            styleClass="employeeTable"
+                            headerClass="employeeTableHeader"
+                            rowClasses="employeeTableOddRow,employeeTableEvenRow"
+                            class="table table-bordered">
+                            <h:column>    				
+                               <f:facet name="header">Nom</f:facet>    				
+                               #{asset.name}
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Sous-Jacent</f:facet>
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Strike</f:facet>
+                                                  
+                            </h:column>
+                            <h:column>
+                               <f:facet name="header">Maturité</f:facet>
+                               <ui:fragment rendered="#{action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
+                               </ui:fragment>
+                               <ui:fragment rendered="#{!action.bool}">
+                                   <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
+                               </ui:fragment>
+                            </h:column>
+                                <h:column>
+                               <f:facet name="header">Quantité</f:facet>
+                                                   
+                            </h:column>
+                                <h:column>
+                               <f:facet name="header">Prix</f:facet>
+                                                   
+                            </h:column>
+                         </h:dataTable>
+                    </div>
+               
+                            
+                    
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -74,52 +113,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Call</td>
-                                    <td>ENGIE</td>
-                                    <td>33</td>
-                                    <td>2</td>
-                                    <td>3</td>
-                                    <td>0,33</td>
-                                    <td>0,33</td>
-                                    <td>0,33</td>
-                                    <td>65</td>
-                                </tr> 
+                                
                             </tbody>
                         </table>
+                     </div>
+                  <!--  </div>      -->
+            
                         
-                <div id="table-40">
-                    <div class="table-responsive">
-                        <h:dataTable value="#{option.listStock}" var="action"
-                            styleClass="employeeTable"
-                            headerClass="employeeTableHeader"
-                            rowClasses="employeeTableOddRow,employeeTableEvenRow"
-                            class="table table-bordered">
-                            <h:column>    				
-                               <f:facet name="header">Nom</f:facet>    				
-                               #{action.name}
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Prix</f:facet>
-                               #{action.stockPrice}                    
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Prix Précédent</f:facet>
-                               #{action.stockPricePrevious}                    
-                            </h:column>
-                            <h:column>
-                               <f:facet name="header">Tendance</f:facet>
-                               <ui:fragment rendered="#{action.bool}">
-                                   <span class="glyphicon glyphicon-triangle-top" aria-hidden="true" style="color:green"></span>
-                               </ui:fragment>
-                               <ui:fragment rendered="#{!action.bool}">
-                                   <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true" style="color:red"></span>
-                               </ui:fragment>
-                            </h:column>
-                         </h:dataTable>
-                    </div>
-                </div>
-                    </div>  
+                    
+                    
+                    
                     <div class="row">
                         <br></br>
                         <br></br>
