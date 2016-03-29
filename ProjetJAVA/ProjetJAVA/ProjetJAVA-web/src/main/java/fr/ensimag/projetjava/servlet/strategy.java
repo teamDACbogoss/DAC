@@ -297,14 +297,17 @@ public class strategy implements Serializable {
                 return "ajout-produit";
 
             }
+            
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+            String formatted = format1.format(maturite_cal.getTime());
 
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("call", stock, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("call", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
                 ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
                 listAsset.add(param);
             } else {
-                VanillaPut option = new VanillaPut("put", stock, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("put", stock, k_double, maturite_cal,  today, formatted);
                 prix_temp = option.getPrice(today);
                  ParamAssetInteger param =  new ParamAssetInteger(option, quantite_int);
                 listAsset.add(param);

@@ -12,10 +12,12 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import fr.ensimag.projetjava.entity.*;
+import static java.lang.Double.min;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.faces.context.FacesContext;
 
 /**
  *
@@ -27,6 +29,18 @@ public class option {
 
     @EJB
     private fr.ensimag.projetjava.stateless.StockFacadeLocal stockFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.StrategyFacadeLocal strategyFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.ClientFacadeLocal clientFacade;
+    @EJB 
+    private fr.ensimag.projetjava.stateless.VanillaCallFacadeLocal vanillaCallFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.VanillaPutFacadeLocal vanillaPutFacade;
+    @EJB
+    private fr.ensimag.projetjava.stateless.FinancialOptionFacadeLocal financialOptionFacade;
+    
+    
     
     private String prix;
 
@@ -44,6 +58,7 @@ public class option {
        for(Stock st : stockFacade.findAll()) {
            list_temp.add(st);
         }
+        listStock = list_temp;
         return list_temp;
    }
 
@@ -133,6 +148,11 @@ public class option {
         today.set(Calendar.HOUR_OF_DAY, 0);
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        sessionBean session = (sessionBean)facesContext.getApplication()
+                    .createValueBinding("#{sessionBean}").getValue(facesContext);
+        //ListPortfolio = session.getClient().getPortfolio().getStrategies();
+        Client client = clientFacade.find(session.getClient().getEmail());
         
         
         if (strat.equals("action"))
@@ -152,7 +172,10 @@ public class option {
                  msg_quantite = "Mauvaise quantité";
                 return "";
             }
-            prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, 5);
+            
+            prix = Double.toString(quantite_int * stock.getPrice(today)).substring(0, Math.min(5, Double.toString(quantite_int * stock.getPrice(today)).length()));
+
+
         } else {
             double prix_temp;
 
@@ -194,20 +217,26 @@ public class option {
                 return "";
 
             }
+            
             if (quantite_int <= 0) {
                 msg_quantite = "Mauvaise quantité";
                 return "";
             }
+
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            String formatted = format1.format(maturite_cal.getTime());
+
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
             } else {
-                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5);
+                prix = Double.toString(prix_temp).substring(0, Math.min(5, Double.toString(prix_temp).length()));
         }
                 
         return ""; 
@@ -225,6 +254,12 @@ public class option {
         today.set(Calendar.MINUTE, 0);
         today.set(Calendar.SECOND, 0);
         
+        FacesContext facesContext = FacesContext.getCurrentInstance();
+        sessionBean session = (sessionBean)facesContext.getApplication()
+                    .createValueBinding("#{sessionBean}").getValue(facesContext);
+        //ListPortfolio = session.getClient().getPortfolio().getStrategies();
+        Client client = clientFacade.find(session.getClient().getEmail());
+        
         
         if (strat.equals("action"))
         {
@@ -236,12 +271,23 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "";
+                return "nouvelle-position";
             }
             if (quantite_int <= 0) {
                  msg_quantite = "Mauvaise quantité";
-                return "";
-            }
+                return "nouvelle-position";
+            }            
+            List<ParamAssetInteger> stocks = new ArrayList<>();
+            ParamAssetInteger param = new ParamAssetInteger(stock, quantite_int);
+            stocks.add(param);
+            Strategy strategy = new Strategy("Stratégie"+ Integer.toString(strategyFacade.findAll().size() + 1), stocks);
+            strategyFacade.create(strategy);
+            client.getPortfolio().getStrategies().add(strategy);
+            client.setCash(client.getCash() - strategy.getPrice(today));
+            clientFacade.edit(client);
+            
+            return "portfolio";
+
         } else {
             double prix_temp;
 
@@ -253,7 +299,7 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_strike = "Mauvais strike";
-                return "";
+                return "nouvelle-position";
             }
             if (k_double <= 0) {
                  msg_quantite = "Mauvaise quantité";
@@ -265,7 +311,7 @@ public class option {
                 maturite_Date = formatter.parse(mat);
             } catch (ParseException e) {
                 msg_maturite = "Mauvaise maturité \n yyyy-MM-dd";
-                return "";
+                return "nouvelle-position";
             }
 
             Calendar maturite_cal = Calendar.getInstance();
@@ -279,26 +325,49 @@ public class option {
             catch(NumberFormatException e)  
             {  
                 msg_quantite = "Mauvaise quantité";
-                return "";
+                return "nouvelle-position";
             }
              if (quantite_int <= 0) {
                  msg_quantite = "Mauvaise quantité";
                 return "";
             }
 
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            String formatted = format1.format(maturite_cal.getTime());
+            Asset option;
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                option = new VanillaCall("VanillaCall" + Integer.toString(vanillaCallFacade.findAll().size() + 1) + "_" + stock.getName(), 
+                                         stock, 
+                                         k_double, 
+                                         maturite_cal, 
+                                         today,
+                                         formatted);
+                
                 prix_temp = option.getPrice(today);
             } else {
-                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                option = new VanillaPut("VanillaPut" + Integer.toString(vanillaPutFacade.findAll().size() + 1) + "_" + stock.getName(), 
+                                        stock, 
+                                        k_double, 
+                                        maturite_cal, 
+                                        today,
+                                        formatted);
                 prix_temp = option.getPrice(today);
             }
+            financialOptionFacade.create((FinancialOption) option);
+            prix_temp *= quantite_int;
+            prix = Double.toString(prix_temp).substring(0, Math.min(5, Double.toString(prix_temp).length()));  
+            List<ParamAssetInteger> stocks = new ArrayList<>();
+            ParamAssetInteger param = new ParamAssetInteger(option, quantite_int);
+            stocks.add(param);
+            Strategy strategy = new Strategy("Stratégie"+ Integer.toString(strategyFacade.findAll().size() + 1), stocks);
+            strategyFacade.create(strategy);
+            client.getPortfolio().getStrategies().add(strategy);
+            client.setCash(client.getCash() - strategy.getPrice(today));
+            clientFacade.edit(client);
             
-                prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5);  
-
+            return "portfolio";
         }
-        return "";
     }
     /*
     public String pricing_ajout(String strat, String actionName, String k, String mat, String quant)
@@ -367,16 +436,24 @@ public class option {
 
             }
 
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            String formatted = format1.format(maturite_cal.getTime());
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("toto", 
+                                                     stock, 
+                                                     k_double, 
+                                                     maturite_cal, 
+                                                     today, 
+                                                     formatted);
                 prix_temp = option.getPrice(today);
             } else {
-                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5);
+                prix = Double.toString(prix_temp).substring(0, Math.min(Double.toString(prix_temp).length(), 5));
         }
                 
         return "ajout-produit";
@@ -443,17 +520,22 @@ public class option {
                 msg_quantite = "Mauvaise quantité";
                 return "creation-strats";
             }
+            
+            
+            SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+            String formatted = format1.format(maturite_cal.getTime());
 
             if (strat.equals("call")){
-                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal);
+                VanillaCall option = new VanillaCall("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
             } else {
-                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal);
+                VanillaPut option = new VanillaPut("toto", stock, k_double, maturite_cal, today, formatted);
                 prix_temp = option.getPrice(today);
             }
             
                 prix_temp *= quantite_int;
-                prix = Double.toString(prix_temp).substring(0, 5);  
+                prix = Double.toString(prix_temp).substring(0, Math.min(Double.toString(prix_temp).length(), 5));  
 
         }
         return "creation-strats";

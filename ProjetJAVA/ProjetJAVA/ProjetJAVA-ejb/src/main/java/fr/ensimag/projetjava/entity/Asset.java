@@ -6,6 +6,7 @@
 package fr.ensimag.projetjava.entity;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Random;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -26,14 +27,20 @@ public abstract class Asset implements Serializable {
     protected String emissionDate;
     protected String maturityDate;
 
+    public Asset() {};
+    
+    public Asset(java.util.Calendar emissionDateCal)
+    {
+        SimpleDateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+
+        String formatted = format1.format(emissionDateCal.getTime());
+        //System.out.println(formatted);
+        this.maturityDate = "";
+        this.emissionDate = formatted;
+    }
 
     public String getEmissionDate() {
-        Random r = new Random();
-        int jour = r.nextInt(27)+1;
-                int mois = r.nextInt(11)+1;
-    int annee = r.nextInt(10)+1990;
-        
-        return Integer.toString(annee)+"-"+Integer.toString(mois)+"-"+Integer.toString(jour);
+        return this.emissionDate;
     }
 
     public void setEmissionDate(String emissionDate) {
@@ -41,12 +48,8 @@ public abstract class Asset implements Serializable {
     }
 
     public String getMaturityDate() {
-        Random r = new Random();
-        int jour = r.nextInt(27)+1;
-                int mois = r.nextInt(11)+1;
-        int annee = r.nextInt(10)+2015;
         
-        return Integer.toString(annee)+"-"+Integer.toString(mois)+"-"+Integer.toString(jour); 
+        return this.maturityDate; 
     }
     
     

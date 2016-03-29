@@ -74,7 +74,7 @@ public class Strategy implements Serializable {
             temp += pai.getAsset().getPrice(today) - pai.getAsset().getPricePrevious(today);
         }
         st = Double.toString(temp);
-        this.assetPrice = st.substring(0, 4);        
+        this.assetPrice = st.substring(0, Math.min(Double.toString(temp).length(), 5));        
         return st;
     }
 
