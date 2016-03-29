@@ -253,8 +253,7 @@ public class strategy implements Serializable {
                 prix = Double.toString(totalValue).substring(0, 5);
                 
                 
-        }
-        
+        }  
         return "creation-strats";
     }
 }
