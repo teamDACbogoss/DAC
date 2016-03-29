@@ -257,6 +257,7 @@ public class strategy implements Serializable {
         
         return "creation-strats";
     }
+}
     /*public void computePrice() {
         currentStrat.getPrice(timestamp.getTime());
     }
@@ -280,4 +281,3 @@ public class strategy implements Serializable {
             }
         }
     }*/
-}

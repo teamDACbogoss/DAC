@@ -26,6 +26,119 @@ public class Strategy implements Serializable {
     @OneToMany(cascade = CascadeType.PERSIST)
     private List<ParamAssetInteger> assets;
     
+    private String assetNames;
+    private String assetQuantity;
+    private String assetPrice;
+    private String assetPricePrevious;
+    
+    private String assetPriceProfit;
+    private String assetMaturity;
+
+    public String getAssetMaturity() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st += pai.getAsset().getMaturityDate() + ";" + "\r\n";
+        }     
+        return st;    
+    }
+
+    public void setAssetMaturity(String assetMaturity) {
+        this.assetMaturity = assetMaturity;
+    }
+
+    public String getAssetEmission() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st += pai.getAsset().getEmissionDate() + ";" + "\r\n";
+        }     
+        return st;    
+    }
+
+    public void setAssetEmission(String assetEmission) {
+        this.assetEmission = assetEmission;
+    }
+    private String assetEmission;
+
+    public String getAssetPriceProfit() {
+        
+        String st = "";
+        double temp = 0;
+        for (ParamAssetInteger pai : this.assets)
+        {
+            temp += pai.getAsset().getPrice(null) - pai.getAsset().getPricePrevious(null);
+        }
+        st = Double.toString(temp);
+        this.assetPrice = st.substring(0, 4);        
+        return st;
+    }
+
+    public void setAssetPriceProfit(String assetPriceProfit) {
+        
+        this.assetPriceProfit = assetPriceProfit;
+    }
+        
+
+
+    public String getAssetQuantity() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st = st + pai.getQuantity() + ";" + "\r\n";
+        }
+        this.assetQuantity = st;
+        return st;
+    }
+
+    public void setAssetQuantity(String assetQuantity) {
+        this.assetQuantity = assetQuantity;
+    }
+
+    public String getAssetPrice() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st = st + pai.getAsset().getPrice(null)+ ";" + "\r\n";
+        }
+        this.assetPrice = st;
+        return st;
+    }
+
+    public void setAssetPrice(String assetPrice) {
+        this.assetPrice = assetPrice;
+    }
+
+    public String getAssetPricePrevious() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st = st + pai.getAsset().getPricePrevious(null)+ ";" + "\r\n";
+        }
+        this.assetPricePrevious = st;
+        return st;
+    }
+
+    public void setAssetPricePrevious(String assetPricePrevious) {
+        this.assetPricePrevious = assetPricePrevious;
+    }
+
+    
+
+    public String getAssetNames() {
+        String st = "";
+        for (ParamAssetInteger pai : this.assets)
+        {
+            st = st + pai.getAsset().getName() + ";" + "\r\n";
+        }
+        this.assetNames = st;
+        return st;
+    }
+
+    public void setAssetNames(String assetNames) {
+        this.assetNames = assetNames;
+    }
+    
     public Strategy() {}
     
     public Strategy(String strategyName, List<ParamAssetInteger> assets) {

@@ -148,8 +148,8 @@ public class Init extends HttpServlet {
                             1000.0,
                             0);
         clientFacade.create(client);
-        client = new Client("xin@imag.fr", 
-                            "mdp", 
+        client = new Client("test", 
+                            "test", 
                             false, 
                             "Xin", 
                             "Riu", 
@@ -304,11 +304,20 @@ public class Init extends HttpServlet {
         }*/
     
         //Test insertion dans un portfolio chez un client    
+        //Stratégie 1
         List<ParamAssetInteger> stocks = new ArrayList<>();
         Stock stockInStrategy = stockFacade.find("TOTAL");
         ParamAssetInteger param = new ParamAssetInteger(stockInStrategy, 1);
         stocks.add(param);
         Strategy strategy = new Strategy("Stratégie1", stocks);
+        strategyFacade.create(strategy);
+        client.getPortfolio().getStrategies().add(strategy);
+        //Stratégie 2
+        stocks = new ArrayList<>();
+        stockInStrategy = stockFacade.find("Arcelormital");
+        param = new ParamAssetInteger(stockInStrategy, 2);
+        stocks.add(param);
+        strategy = new Strategy("Stratégie2", stocks);
         strategyFacade.create(strategy);
         client.getPortfolio().getStrategies().add(strategy);
         clientFacade.edit(client);
