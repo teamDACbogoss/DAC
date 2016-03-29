@@ -12,7 +12,6 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Calendar;
 import fr.ensimag.projetjava.entity.*;
-import static java.lang.Double.min;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;

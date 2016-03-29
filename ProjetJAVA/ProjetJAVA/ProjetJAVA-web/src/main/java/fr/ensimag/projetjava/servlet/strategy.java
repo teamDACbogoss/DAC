@@ -314,7 +314,7 @@ public class strategy implements Serializable {
             }
                 prix_temp *= quantite_int;
                 totalValue += prix_temp;
-                prix = Double.toString(totalValue).substring(0, 5);
+                prix = Double.toString(totalValue).substring(0, Math.min(5, Double.toString(totalValue).length()));
         }  
         return "creation-strats";
     }
